@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"c:/Users/sffra/Downloads/BSE 2025-2026/short-flights/short_lights.ipynb\":*)",
+      "Bash(where python)",
+      "Bash(where python3)",
+      "Bash(uv run jupyter kernelspec list)",
+      "Read(//c/Users/sffra/AppData/Local/Programs/Python/Python313/**)",
+      "Bash(python \"C:/Users/sffra/AppData/Local/Programs/Python/Python313/python.exe\" -c \"import unicodedata; print\\(''ok''\\)\")",
+      "Bash(\"C:/Users/sffra/AppData/Local/Programs/Python/Python313/python.exe\" -c \"import unicodedata; print\\(''ok''\\)\")",
+      "Bash(uv run python -c \"import contextily; print\\(contextily.__version__\\)\")"
+    ]
+  }
+}
