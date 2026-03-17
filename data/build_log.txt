@@ -1,0 +1,124 @@
+2026-03-16 23:24:34  
+2026-03-16 23:24:34  ============================================================
+2026-03-16 23:24:34    STEP 1 — Load raw rail lines from raw_lines.gpkg
+2026-03-16 23:24:34  ============================================================
+2026-03-16 23:24:34    Source : /sessions/busy-focused-dijkstra/mnt/europe_rail_som/hsr_analysis/data/raw_lines.gpkg
+2026-03-16 23:24:34    Note   : raw_lines.gpkg is from europe-railways.osm.pbf (service IS NULL).
+2026-03-16 23:24:34             Full continental coverage. Tags are in other_tags hstore column.
+2026-03-16 23:24:34    Reading file (1.2M rows — ~20s) …
+2026-03-16 23:25:19    Loaded 1,239,429 segments in 44.8s
+2026-03-16 23:25:19    CRS    : EPSG:4326
+2026-03-16 23:25:19    Columns: ['osm_id', 'name', 'highway', 'waterway', 'aerialway', 'barrier', 'man_made', 'railway', 'z_order', 'other_tags', 'geometry']
+2026-03-16 23:25:20    After railway=rail filter: 1,239,429 segments
+2026-03-16 23:25:20  
+2026-03-16 23:25:20  ============================================================
+2026-03-16 23:25:20    STEP 2 — Classify lines: HSR speed tier + conventional main
+2026-03-16 23:25:20  ============================================================
+2026-03-16 23:25:20    Extracting maxspeed, usage, service, highspeed from other_tags hstore …
+2026-03-16 23:25:38    HSR segments         : 42,576
+2026-03-16 23:25:38      200–239 km/h             : 24,401
+2026-03-16 23:25:38      240–269 km/h             : 5,272
+2026-03-16 23:25:38      270–309 km/h             : 9,752
+2026-03-16 23:25:38      310+ km/h                : 2,189
+2026-03-16 23:25:38      HSR (speed untagged)     : 962
+2026-03-16 23:25:38    Conventional (main+untagged) : 434,210
+2026-03-16 23:25:38      usage breakdown: {'main': np.int64(417814), 'NULL': np.int64(16169), 'freight': np.int64(77), 'crane': np.int64(61), 'leisure': np.int64(18), 'siding': np.int64(16), 'science': np.int64(10), 'training': np.int64(9)}
+2026-03-16 23:25:38  
+2026-03-16 23:25:38  ============================================================
+2026-03-16 23:25:38    STEP 3 — Build HSR lines GeoPackage (merged + simplified)
+2026-03-16 23:25:38  ============================================================
+2026-03-16 23:25:38    Method : union per speed tier → linemerge → simplify(750m) in EPSG:3035
+2026-03-16 23:25:39    [200–239 km/h] — 24,401 input segments
+2026-03-16 23:25:39      Merging 24,401 segments → continuous routes …
+2026-03-16 23:25:39      After merge: 1,518 routes  (0.4s)
+2026-03-16 23:25:39      Simplifying (Douglas-Peucker 750 m) …
+2026-03-16 23:25:39      After simplify: 1,518 routes  (0.7s)
+2026-03-16 23:25:39    [240–269 km/h] — 5,272 input segments
+2026-03-16 23:25:39      Merging 5,272 segments → continuous routes …
+2026-03-16 23:25:39      After merge: 219 routes  (0.1s)
+2026-03-16 23:25:39      Simplifying (Douglas-Peucker 750 m) …
+2026-03-16 23:25:39      After simplify: 219 routes  (0.1s)
+2026-03-16 23:25:39    [270–309 km/h] — 9,752 input segments
+2026-03-16 23:25:39      Merging 9,752 segments → continuous routes …
+2026-03-16 23:25:40      After merge: 197 routes  (0.3s)
+2026-03-16 23:25:40      Simplifying (Douglas-Peucker 750 m) …
+2026-03-16 23:25:40      After simplify: 197 routes  (0.5s)
+2026-03-16 23:25:40    [310+ km/h] — 2,189 input segments
+2026-03-16 23:25:40      Merging 2,189 segments → continuous routes …
+2026-03-16 23:25:40      After merge: 22 routes  (0.1s)
+2026-03-16 23:25:40      Simplifying (Douglas-Peucker 750 m) …
+2026-03-16 23:25:40      After simplify: 22 routes  (0.1s)
+2026-03-16 23:25:40    [HSR (speed untagged)] — 962 input segments
+2026-03-16 23:25:40      Merging 962 segments → continuous routes …
+2026-03-16 23:25:40      After merge: 287 routes  (0.0s)
+2026-03-16 23:25:40      Simplifying (Douglas-Peucker 750 m) …
+2026-03-16 23:25:40      After simplify: 287 routes  (0.0s)
+2026-03-16 23:25:40  
+  Output: 2,243 merged HSR routes
+2026-03-16 23:25:40    Total HSR km : 36,905
+2026-03-16 23:25:40  Created 2,243 records
+2026-03-16 23:25:41      (wrote via temp file tmpfjab7n0y.gpkg)
+2026-03-16 23:25:41    Saved → /sessions/busy-focused-dijkstra/mnt/europe_rail_som/hsr_analysis/data/hsr_lines.gpkg
+2026-03-16 23:25:41  
+2026-03-16 23:25:41  ============================================================
+2026-03-16 23:25:41    STEP 4 — Build conventional rail GeoPackage (main lines, simplified)
+2026-03-16 23:25:41  ============================================================
+2026-03-16 23:25:41    Filter : usage IN ('main', NULL) — excludes branch/industrial/tourism; service IS NULL, not HSR
+2026-03-16 23:25:41    Method : union → linemerge → simplify(750m) in EPSG:3035
+2026-03-16 23:25:41    Input  : 434,210 segments
+2026-03-16 23:25:45      Merging 434,210 segments → continuous routes …
+2026-03-16 23:26:05      After merge: 59,902 routes  (20.5s)
+2026-03-16 23:26:05      Simplifying (Douglas-Peucker 750 m) …
+2026-03-16 23:26:14      After simplify: 59,902 routes  (28.9s)
+2026-03-16 23:26:14    Dropped 45,400 stub routes shorter than 2.0 km
+2026-03-16 23:26:14    Output : 14,502 merged conventional routes
+2026-03-16 23:26:14    Total km : 284,532
+2026-03-16 23:26:15  Created 14,502 records
+2026-03-16 23:26:16      (wrote via temp file tmpym6higze.gpkg)
+2026-03-16 23:26:16    Saved → /sessions/busy-focused-dijkstra/mnt/europe_rail_som/hsr_analysis/data/conventional_lines.gpkg
+2026-03-16 23:26:16  
+2026-03-16 23:26:16  ============================================================
+2026-03-16 23:26:16    STEP 5 — Build HSR stations GeoPackage
+2026-03-16 23:26:16  ============================================================
+2026-03-16 23:26:16    Source   : /sessions/busy-focused-dijkstra/mnt/europe_rail_som/rail_simple.gpkg
+2026-03-16 23:26:16    SQL      : railway IN ('station','halt') AND name IS NOT NULL
+2026-03-16 23:26:16    Snap     : within 500 m of HSR network (EPSG:3035)
+2026-03-16 23:26:21    Loaded 10,761 candidate station nodes in 5.1s
+2026-03-16 23:26:21    CRS    : EPSG:4326
+2026-03-16 23:26:21    After point filter : 10,761
+2026-03-16 23:26:21    Building HSR buffer (2000 m) from merged routes …
+2026-03-16 23:26:21    (wider than 500 m to compensate for 750 m simplification displacement)
+2026-03-16 23:26:22    Stations within 500 m of HSR : 106
+2026-03-16 23:26:22  Created 106 records
+2026-03-16 23:26:22      (wrote via temp file tmpf_42svy2.gpkg)
+2026-03-16 23:26:22    Saved → /sessions/busy-focused-dijkstra/mnt/europe_rail_som/hsr_analysis/data/hsr_stations.gpkg
+2026-03-16 23:26:22  
+2026-03-16 23:26:22  ============================================================
+2026-03-16 23:26:22    STEP 6 — Build airports GeoPackage
+2026-03-16 23:26:22  ============================================================
+2026-03-16 23:26:22    Source : /sessions/busy-focused-dijkstra/mnt/europe_rail_som/europe_pipeline/data/airports.txt  (OpenFlights database)
+2026-03-16 23:26:22    Filter : 35 target IATA codes
+2026-03-16 23:26:22    Pairing airports to nearest HSR station …
+2026-03-16 23:26:22    Loaded 35 of 35 target airports
+2026-03-16 23:26:22    HSR-accessible (≤80 km): 16
+2026-03-16 23:26:22  Created 35 records
+2026-03-16 23:26:22      (wrote via temp file tmpi42p2x5l.gpkg)
+2026-03-16 23:26:22    Saved → /sessions/busy-focused-dijkstra/mnt/europe_rail_som/hsr_analysis/data/airports.gpkg
+2026-03-16 23:26:22  
+2026-03-16 23:26:22  ============================================================
+2026-03-16 23:26:22    SUMMARY
+2026-03-16 23:26:22  ============================================================
+2026-03-16 23:26:22    hsr_lines.gpkg          : 2,243 routes   (  36,905 km)
+2026-03-16 23:26:22    conventional_lines.gpkg : 14,502 routes   ( 284,532 km)
+2026-03-16 23:26:22    hsr_stations.gpkg       :   106 nodes
+2026-03-16 23:26:22    airports.gpkg           :    35 airports
+2026-03-16 23:26:22  
+2026-03-16 23:26:22    All layers saved to:
+2026-03-16 23:26:22      /sessions/busy-focused-dijkstra/mnt/europe_rail_som/hsr_analysis/data
+2026-03-16 23:26:22  
+2026-03-16 23:26:22    CRS          : EPSG:4326 (WGS-84)
+2026-03-16 23:26:22    Simplification : Douglas-Peucker, 750 m in EPSG:3035
+2026-03-16 23:26:22    Line merging : shapely.ops.linemerge(unary_union(...))
+2026-03-16 23:26:22    Station snap : within 500 m of HSR union geometry
+2026-03-16 23:26:22  
+2026-03-16 23:26:22  Script complete.
