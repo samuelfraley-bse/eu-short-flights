@@ -1,0 +1,5 @@
+library(sf)
+library(dplyr)
+airports <- st_read("data/main_airports.gpkg", quiet = TRUE)
+df <- airports %>% st_drop_geometry()
+cat(paste(df$ICAO, df$AirportName, sep = " | "), sep = "\n")

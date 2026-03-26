@@ -1,0 +1,183 @@
+---
+title: "Short-Haul Flight Substitution — Agent Quickstart"
+output: md_document
+---
+
+# Project Briefing for Claude
+
+> **Instructions for your classmate:** Paste this entire file into Claude as your first message. Claude will read the context and ask which task you are working on.
+
+---
+
+## What this project is about
+
+We are analysing which short-haul European flight routes could be substituted by high-speed rail (HSR), and under what conditions that substitution reduces carbon costs without destroying connectivity.
+
+The welfare measure is **market access** from Allen & Arkolakis (2014):
+
+```
+MA_i = sum_j [ pax_j * cost_ij ^ (-theta) ]
+```
+
+where `cost_ij` blends travel time and carbon emissions converted to time-equivalent units using a carbon price and a value of travel time. The **counterfactual** replaces aviation cost with HSR cost on substitutable routes and measures the change in market access (delta MA) per airport.
+
+Carbon parameters used throughout:
+- Aviation (short-haul, incl. radiative forcing): **255 g CO2 per pax-km**
+- High-speed rail (European average): **14 g CO2 per pax-km**
+- Carbon price baseline: **€100/tonne**
+- Value of travel time: **€30/hour**
+- Lambda (carbon price / VTT): `100 / (30 * 1000) = 0.00333 hours per kg CO2`
+
+Short-haul threshold: flight time <= 2.5 hours, estimated as `dist_km / 800 + 0.75` (the 0.75h captures airport overhead).
+
+---
+
+## Repository layout
+
+```
+short-flights/
+├── data/
+│   ├── clean/                        # Analysis-ready files (primary inputs — use these)
+│   │   ├── all_airports.gpkg         # 868 European airports (IATA, ICAO, lat/lon, country)
+│   │   ├── main_airports.gpkg        # 15 major hub airports (subset of above)
+│   │   ├── hsr_western_eu.gpkg       # 2,108 HSR segments (speed_tier, length_km, geometry)
+│   │   ├── ne_10m_countries.gpkg     # Country boundaries for mapping
+│   │   ├── ne_10m_conventional_western_eu.gpkg  # Conventional rail (background layer)
+│   │   ├── airports_pax_2019.gpkg    # Airports with passenger totals joined (spatial)
+│   │   ├── master_routes_2019.csv    # 1,447 O-D routes from 15 hub airports (2019)
+│   │   └── routes_2019.csv           # Parsed route-level passenger table
+│   │
+│   └── raw/                          # Source downloads (read-only, do not overwrite)
+│       ├── avia_paoa_2019.csv        # Airport-level annual passengers (Eurostat)
+│       ├── avia_paoa_2024.csv
+│       ├── avia_par_routes_2019.csv  # Route-level passengers, all countries combined
+│       ├── avia_par_routes_2024.csv
+│       ├── avia_paoa_spreadsheet.xlsx
+│       ├── airports.txt              # OpenFlights airport list
+│       ├── routes.txt                # OpenFlights route list
+│       ├── avia_par/                 # Per-country route CSVs from Eurostat
+│       │   └── avia_par_{at,be,ch,de,es,fr,it,nl,uk}.csv
+│       └── shapefiles/               # GL2017 rail network + Natural Earth
+│           └── railways_GL2017_EU.*
+│
+└── scripts/
+    ├── join_airports_passengers.R    # Joins Eurostat pax data to airport/route tables
+    ├── call_eurostat.py              # Downloads Eurostat data via API
+    ├── fetch_hsr_osm.py              # Fetches HSR network from Overpass/OSM
+    └── check_icao.R                  # Validates ICAO code coverage
+```
+
+---
+
+## Key data details
+
+### `data/clean/master_routes_2019.csv` — the main working table
+1,447 rows. One row = one directed route from a hub airport to a destination.
+
+| Column | Type | Notes |
+|---|---|---|
+| `start_airport` | string | Origin airport name |
+| `start_icao` | string | Origin ICAO code (4-letter) |
+| `end_airport` | string | Destination airport name |
+| `end_icao` | string | Destination ICAO code |
+| `route_name` | string | `"Start - End"` label |
+| `route_passengers` | numeric | Annual pax on this route (2019). **348 NAs** — Eurostat gap |
+| `start_pax_total` | numeric | Total annual pax at origin airport |
+| `end_pax_total` | numeric | Total annual pax at destination. **379 NAs** — not in Eurostat |
+| `start_pax_pct` | numeric | `route_passengers / start_pax_total * 100` |
+| `year` | int | 2019 throughout |
+
+Known issues to resolve before analysis:
+- **348 null `route_passengers`** — routes exist but Eurostat has no passenger count
+- **76 duplicate O-D pairs** — routes where both endpoints are hub airports appear twice (once from each direction)
+- **379 null `end_pax_total`** — destination not in Eurostat airport totals
+
+### `data/clean/hsr_western_eu.gpkg`
+2,108 line segments. CRS: EPSG:4326.
+
+| Column | Values |
+|---|---|
+| `speed_tier` | `"200–239 km/h"` (1,428), `"HSR (speed untagged)"` (274), `"240–269 km/h"` (188), `"270–309 km/h"` (197), `"310+ km/h"` (21) |
+| `length_km` | Segment length |
+| `route_id` | Line identifier |
+
+### `data/clean/all_airports.gpkg`
+868 airports. Key columns: `AirportName`, `IATA`, `ICAO`, `Country_Name`, `GeoPointLat`, `GeoPointLong`, `geometry` (point).
+
+The 15 hub airports in `main_airports.gpkg` are: MXP, BRU, ZRH, BCN, AMS, MUC, VIE, CPH, LGW, LHR, ORY, CDG, MAD, FCO, FRA.
+
+---
+
+## The three tasks
+
+```
+TASK A — Data audit & cleaning
+TASK B — Spatial analysis & HSR substitutability
+TASK C — Market access model & visualisation
+```
+
+### Task A — Data audit & cleaning
+**Goal:** Produce a clean, analysis-ready routes table.
+
+Steps:
+1. Load `data/clean/master_routes_2019.csv`
+2. Remove duplicate O-D pairs: keep one row per undirected pair (drop where `start_icao > end_icao` alphabetically)
+3. For null `route_passengers`: decide — drop rows, or impute with gravity proxy `sqrt(start_pax_total * end_pax_total)`
+4. Add a `data_quality` flag: `"complete"`, `"imputed_pax"`, or `"missing_end_pax"`
+5. Save to `data/clean/master_routes_clean.csv`
+
+Output: `data/clean/master_routes_clean.csv`
+Unblocks: Tasks B and C
+
+---
+
+### Task B — Spatial analysis & HSR substitutability
+**Goal:** Identify which routes are substitutable by HSR.
+
+Steps:
+1. Load `data/clean/all_airports.gpkg` and `data/clean/hsr_western_eu.gpkg`
+2. Reproject both to EPSG:3857 (metres), buffer each airport by 5,000 m
+3. Spatial join: flag airports where the buffer intersects an HSR segment → `hsr_access` (TRUE/FALSE)
+4. Load clean routes (from Task A output or `data/clean/master_routes_2019.csv` if A is not done)
+5. Join `hsr_access` for both `start_icao` and `end_icao`
+6. Compute Haversine distance and flight time per route:
+   - `dist_km` = Haversine(start lat/lon, end lat/lon)
+   - `flight_time_h` = `dist_km / 800 + 0.75`
+   - `is_short_haul` = `flight_time_h <= 2.5`
+7. `substitutable` = `is_short_haul AND start_hsr AND end_hsr`
+8. Produce a map: HSR network + airports coloured by `hsr_access`
+
+Output: `data/clean/routes_substitutable.csv`, substitutability map
+Unblocks: Task C
+
+---
+
+### Task C — Market access model & visualisation
+**Goal:** Compute delta MA under the HSR counterfactual and produce charts.
+
+Steps:
+1. Load `data/clean/routes_substitutable.csv` (from Task B)
+2. For each route compute carbon-adjusted bilateral cost:
+   - Flight: `tau_flight = flight_time_h + lambda * dist_km * 0.255`
+   - HSR:    `tau_hsr    = (dist_km / 250) + lambda * dist_km * 0.014`
+   - where `lambda = 0.00333`
+3. Baseline MA: `MA_i = sum_j [ pax_j * tau_flight_ij ^ (-5) ]` (theta = 5)
+4. Counterfactual MA: replace `tau_flight` with `tau_hsr` on substitutable routes only
+5. `delta_MA_i = (MA_counterfactual_i - MA_baseline_i) / MA_baseline_i * 100`
+6. Produce:
+   - Bar chart: top 20 airports ranked by `delta_MA`
+   - Map: airports sized by `delta_MA`, coloured positive/negative
+   - Table: top 20 substitutable routes by `route_passengers`
+
+Output: charts + `data/clean/airport_delta_MA.csv`
+
+---
+
+## Your turn
+
+**Which task are you working on — A, B, or C?**
+
+Once you tell me, I will:
+- Confirm the exact input files you need
+- Write the first script with you
+- Flag any data issues relevant to your task

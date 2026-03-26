@@ -2,8 +2,40 @@
 ### A Spatial Market Access Analysis
 
 **Context:** GIS & Data Analysis Portfolio Project — 2025/2026
-**Tools:** Python, GeoPandas, Shapely, Contextily, Eurostat API
+**Tools:** R (`sf`, `ggplot2`, `ggspatial`, `dplyr`), Python (legacy EDA), Eurostat API
 **Framework:** Allen & Arkolakis (2014) Market Access
+
+---
+
+## Repository Structure
+
+```
+short-flights/
+├── scripts/
+│   ├── paths.R                     # Shared path config — source this in all scripts
+│   ├── join_airports_passengers.R  # Joins Eurostat pax data to airport geometries; builds master route table
+│   ├── join_flight_routes.R        # Filters avia_par route data to top-15 hub airports
+│   ├── task_c_basemap.R            # Renders base map: countries, HSR network, major airports
+│   ├── analysis.R                  # Interactive EDA — loads all clean layers into memory
+│   ├── hsr_vulnerability.R         # Travel-time raster and HSR vulnerability choropleth
+│   ├── draft_notebook.Rmd          # End-to-end analysis notebook (R translation of Python EDA)
+│   ├── call_eurostat.py            # Fetches avia_paoa and avia_par from Eurostat SDMX API
+│   ├── fetch_hsr_osm.py            # Pulls HSR network from OpenStreetMap via Overpass
+│   └── check_icao.R                # Diagnostic: checks ICAO match rates between data sources
+├── data/
+│   ├── raw/                        # ⚠ Gitignored — stored in Google Drive (see below)
+│   ├── clean/                      # Processed spatial files (.gpkg) ready for analysis
+│   │   └── outputs/                # Map exports (.png, .pdf)
+│   └── master_flight_routes_2019.csv
+├── docs/                           # Write-up draft and project planning notes
+├── slides/                         # Slide export PNGs (one per analysis step)
+├── qgis/                           # QGIS project file
+└── old/                            # Legacy Python notebooks (pre-R migration)
+```
+
+**Data:** `data/raw/` is gitignored — store its contents in Google Drive alongside this repo.
+The two large files are `data/raw/avia_par/` (~1.6 GB) and `data/raw/avia_paoa_2024.csv` (~163 MB).
+`data/clean/` is committed — all processed `.gpkg` files are ≤ 6 MB.
 
 ---
 

@@ -8,3 +8,18 @@ wheels/
 
 # Virtual environments
 .venv
+.Rproj.user
+.Rhistory
+.RDataTmp
+.RData
+*.Rdb
+*.Rdx
+
+# Raw data — too large for git, stored in Google Drive
+data/raw/
+
+# Keep the directory structure so scripts don't break
+!data/raw/.gitkeep
+
+# Legacy notebooks and scratch files
+old/
