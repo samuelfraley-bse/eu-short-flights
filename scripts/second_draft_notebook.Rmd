@@ -1,0 +1,886 @@
+---
+title: "Western Europe Hub Airports: HSR Substitution Suitability"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+    code_folding: show
+---
+
+This notebook applies the Barcelona route-flagging approach to the current 15
+largest western-European airports in the repo. For each outbound route in
+`data/clean/master_routes_clean.csv`, it estimates a rail travel time using the
+GL2017 passenger rail network, then flags routes as plausible HSR alternatives
+when they are:
+
+- connector-feasible
+- rail-connected
+- below a simple rail-time threshold
+
+The airport-level "carbon suitability" score is defined here as the share of
+observed outbound passengers on flagged routes. That is a simple, interpretable
+proxy for where a shift from short flights to rail could affect the most people.
+
+**Research question:** Among the 15 main western-European airports in this
+project, which hubs appear most suitable for substituting outbound short-haul
+flights with rail, once we use observed route counts and passengers rather than
+the earlier gravity proxy?
+
+**Approach:**
+
+- Build a route-level rail-time model on the GL2017 passenger rail network
+- Apply a simple HSR-alternative flag to observed outbound routes
+- Summarise route, flight, and passenger substitution potential by airport
+- Map airport-level substitution suitability across the 15 hubs
+
+**Data:** GL2017 rail, cleaned airport layers, and Eurostat-derived route and
+airport totals already built in this repo
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.width = 13,
+  fig.height = 8
+)
+```
+
+## 1. Shared Setup
+
+```{r packages}
+suppressPackageStartupMessages({
+  library(sf)
+  library(dplyr)
+  library(readr)
+  library(tidyr)
+  library(purrr)
+  library(stringr)
+  library(ggplot2)
+  library(scales)
+  library(ggrepel)
+  library(here)
+  library(sfnetworks)
+  library(tidygraph)
+  library(units)
+})
+
+source(here::here("scripts", "paths.R"))
+```
+
+```{r constants}
+ANALYSIS_CRS <- 3035
+C_HSR <- "#e63946"
+C_CONV <- "#cccccc"
+C_APHSR <- "#2176ae"
+C_APNONE <- "#aaaaaa"
+SOURCE <- "Data: GL2017 rail, cleaned airport layers, Eurostat-derived route totals"
+PASSENGER_RAIL_CLASSES <- c("Passenger", "Passenger and freight")
+HSR_SPEED_KMH <- 250
+CONVENTIONAL_SPEED_KMH <- 110
+CONNECTOR_SPEED_KMH <- 45
+MAX_CONNECTOR_KM <- 25
+MIN_CONTIGUOUS_HSR_KM <- 50
+TRANSFER_PENALTY_H <- 0.5
+ALTERNATIVE_TIME_H <- 6
+
+routes_path <- file.path(data_clean, "master_routes_clean.csv")
+airports_path <- file.path(data_clean, "all_airports.gpkg")
+main_airports_path <- file.path(data_clean, "main_airports.gpkg")
+rail_path <- file.path(data_raw, "shapefiles", "railways_GL2017_EU.shp")
+countries_path <- file.path(data_clean, "ne_10m_countries.gpkg")
+
+required_paths <- c(routes_path, airports_path, main_airports_path, rail_path, countries_path)
+stopifnot(all(file.exists(required_paths)))
+
+theme_map <- function(...) {
+  theme_void(...) +
+    theme(
+      plot.title = element_text(face = "bold", size = 16, hjust = 0),
+      plot.subtitle = element_text(size = 10, hjust = 0, color = "#444444"),
+      plot.caption = element_text(size = 7.5, color = "#999999", face = "italic", hjust = 1),
+      legend.position = "bottom"
+    )
+}
+```
+
+## 2. Airport and Route Data
+
+```{r read-inputs}
+routes_raw <- read_csv(routes_path, show_col_types = FALSE)
+
+airports_raw <- st_read(airports_path, quiet = TRUE) %>%
+  st_make_valid() %>%
+  st_transform(ANALYSIS_CRS)
+
+main_airports_raw <- st_read(main_airports_path, quiet = TRUE) %>%
+  st_make_valid() %>%
+  st_transform(ANALYSIS_CRS)
+
+rail_raw <- st_read(rail_path, quiet = TRUE) %>%
+  st_make_valid() %>%
+  st_transform(ANALYSIS_CRS)
+
+countries <- st_read(countries_path, quiet = TRUE) %>%
+  st_make_valid() %>%
+  st_transform(ANALYSIS_CRS)
+```
+
+```{r audit}
+cat("Routes in master_routes_clean.csv:", nrow(routes_raw), "\n")
+cat("Distinct route origins:", n_distinct(routes_raw$start_icao), "\n")
+cat("Airport points in all_airports.gpkg:", nrow(airports_raw), "\n")
+cat("Main airports in main_airports.gpkg:", nrow(main_airports_raw), "\n")
+cat("GL2017 passenger-capable segments before filtering:", nrow(rail_raw), "\n")
+```
+
+## 3. Observed Passenger Demand and Route Tables
+
+```{r clean-airports-routes}
+safe_max <- function(x) {
+  if (all(is.na(x))) {
+    return(NA_real_)
+  }
+  max(x, na.rm = TRUE)
+}
+
+airports_clean <- airports_raw %>%
+  mutate(
+    station_like = str_detect(
+      str_to_upper(AirportName),
+      "RAILWAY STATION|\\bHBF\\b|\\bSTATION\\b"
+    ),
+    name_length = nchar(AirportName)
+  ) %>%
+  arrange(ICAO, station_like, desc(name_length)) %>%
+  group_by(ICAO) %>%
+  slice(1) %>%
+  ungroup() %>%
+  select(-name_length)
+
+main_airports <- main_airports_raw %>%
+  mutate(
+    station_like = str_detect(
+      str_to_upper(AirportName),
+      "RAILWAY STATION|\\bHBF\\b|\\bSTATION\\b"
+    ),
+    name_length = nchar(AirportName)
+  ) %>%
+  arrange(ICAO, station_like, desc(name_length)) %>%
+  group_by(ICAO) %>%
+  slice(1) %>%
+  ungroup() %>%
+  select(-name_length)
+
+route_pairs <- routes_raw %>%
+  group_by(start_icao, end_icao) %>%
+  summarise(
+    start_airport = first(start_airport),
+    start_iata = first(start_iata),
+    start_country_name = first(start_country_name),
+    start_country_a2 = first(start_country_a2),
+    end_airport = first(end_airport),
+    end_iata = first(end_iata),
+    end_country_name = first(end_country_name),
+    end_country_a2 = first(end_country_a2),
+    route_name = first(route_name),
+    total_flights = safe_max(total_flights),
+    route_passengers = safe_max(route_passengers),
+    start_pax_total = safe_max(start_pax_total),
+    end_pax_total = safe_max(end_pax_total),
+    start_pax_pct = safe_max(start_pax_pct),
+    reporting_country = first(reporting_country),
+    year = first(year),
+    destination_in_western_europe = first(destination_in_western_europe),
+    .groups = "drop"
+  )
+
+route_airport_codes <- union(route_pairs$start_icao, route_pairs$end_icao)
+route_airports <- airports_clean %>%
+  filter(ICAO %in% route_airport_codes) %>%
+  transmute(ICAO, AirportName)
+```
+
+## 4. European Rail Infrastructure and Access Model
+
+```{r prepare-rail}
+rail_passenger <- rail_raw %>%
+  filter(RAILWAYS_A %in% PASSENGER_RAIL_CLASSES) %>%
+  filter(!st_is_empty(geometry), !is.na(geometry)) %>%
+  st_collection_extract("LINESTRING") %>%
+  mutate(
+    speed_kmh = if_else(TYPE == "High speed", HSR_SPEED_KMH, CONVENTIONAL_SPEED_KMH),
+    rail_class = if_else(TYPE == "High speed", "High speed", "Conventional")
+  )
+
+cat("Passenger-capable GL2017 rail segments retained:", nrow(rail_passenger), "\n")
+print(rail_passenger %>% st_drop_geometry() %>% count(TYPE, sort = TRUE))
+
+rail_bbox <- st_bbox(rail_passenger)
+rail_xlim <- c(rail_bbox$xmin, rail_bbox$xmax)
+rail_ylim <- c(rail_bbox$ymin, rail_bbox$ymax)
+```
+
+### Rail Network and Main Airports
+
+```{r rail-network-map, fig.cap="GL2017 passenger rail network and the 15 main airports"}
+rail_network_map <- ggplot() +
+  geom_sf(data = countries, fill = "#F8F8F6", color = "#D0D5D9", linewidth = 0.16) +
+  geom_sf(
+    data = rail_passenger %>% filter(TYPE != "High speed"),
+    color = "#9FB88D",
+    linewidth = 0.22,
+    alpha = 0.45
+  ) +
+  geom_sf(
+    data = rail_passenger %>% filter(TYPE == "High speed"),
+    color = C_HSR,
+    linewidth = 0.45,
+    alpha = 0.85
+  ) +
+  geom_sf(
+    data = main_airports,
+    shape = 21,
+    size = 3.6,
+    fill = "#7DE3EA",
+    color = "#143C54",
+    stroke = 0.35
+  ) +
+  geom_text_repel(
+    data = main_airports %>% cbind(st_coordinates(.)),
+    aes(X, Y, label = IATA),
+    size = 3.2,
+    box.padding = 0.35,
+    point.padding = 0.2,
+    min.segment.length = 0
+  ) +
+  coord_sf(xlim = rail_xlim, ylim = rail_ylim, expand = FALSE) +
+  labs(
+    title = "GL2017 Passenger Rail Network and the 15 Main Airports",
+    subtitle = "High-speed segments are highlighted in red; conventional passenger rail is shown in green",
+    caption = SOURCE
+  ) +
+  theme_map()
+
+rail_network_map
+```
+
+```{r snap-airports}
+nearest_edge_idx <- st_nearest_feature(route_airports, rail_passenger)
+
+snapped_geoms <- lapply(seq_len(nrow(route_airports)), function(i) {
+  pair <- st_nearest_points(route_airports[i, ], rail_passenger[nearest_edge_idx[i], ])
+  snapped_pair_points <- st_cast(pair, "POINT")
+  snapped_pair_points[2]
+})
+
+snapped_sfc <- do.call(c, snapped_geoms)
+st_crs(snapped_sfc) <- st_crs(ANALYSIS_CRS)
+
+snapped_airports <- st_as_sf(
+  route_airports %>% st_drop_geometry(),
+  geometry = snapped_sfc
+) %>%
+  mutate(
+    nearest_edge_idx = nearest_edge_idx,
+    access_km = as.numeric(
+      set_units(st_distance(route_airports, geometry, by_element = TRUE), "km")
+    ),
+    access_time_h = access_km / CONNECTOR_SPEED_KMH,
+    within_connector_limit = access_km <= MAX_CONNECTOR_KM
+  )
+
+snapped_airports %>%
+  st_drop_geometry() %>%
+  slice_max(order_by = access_km, n = 20)
+```
+
+### Airport-to-Rail Accessibility
+
+```{r airport-access-map-data}
+main_airport_access <- main_airports %>%
+  rename(ICAO = ICAO, IATA = IATA) %>%
+  left_join(
+    snapped_airports %>%
+      st_drop_geometry() %>%
+      select(ICAO, access_km, access_time_h, within_connector_limit),
+    by = "ICAO"
+  ) %>%
+  mutate(
+    access_status = if_else(within_connector_limit, "Within modeled rail catchment", "No nearby rail in dataset")
+  )
+```
+
+```{r airport-access-map, fig.cap="Distance from each main airport to the nearest passenger rail segment"}
+airport_access_map <- ggplot() +
+  geom_sf(data = countries, fill = "#F8F8F6", color = "#D0D5D9", linewidth = 0.16) +
+  geom_sf(data = rail_passenger, color = "#AEB8C2", linewidth = 0.18, alpha = 0.35) +
+  geom_sf(
+    data = main_airport_access %>% filter(within_connector_limit),
+    aes(color = access_km, size = access_km),
+    alpha = 0.9
+  ) +
+  geom_sf(
+    data = main_airport_access %>% filter(!within_connector_limit),
+    color = "#8F8F8F",
+    size = 3.8,
+    alpha = 0.95
+  ) +
+  geom_text_repel(
+    data = main_airport_access %>% cbind(st_coordinates(.)),
+    aes(X, Y, label = IATA),
+    size = 3.2,
+    box.padding = 0.35,
+    point.padding = 0.2,
+    min.segment.length = 0
+  ) +
+  scale_color_gradientn(
+    colours = c("#1a9850", "#91cf60", "#fee08b", "#fc8d59", "#d73027"),
+    name = "Distance to rail (km)"
+  ) +
+  scale_size_continuous(range = c(2.5, 6), guide = "none") +
+  coord_sf(xlim = rail_xlim, ylim = rail_ylim, expand = FALSE) +
+  labs(
+    title = "Airport-to-Rail Accessibility for the 15 Main Airports",
+    subtitle = paste0("Airports within ", MAX_CONNECTOR_KM, " km are treated as connector-feasible; grey points have no nearby rail in this dataset"),
+    caption = SOURCE
+  ) +
+  theme_map()
+
+airport_access_map
+```
+
+## 5. Spatial Analysis — HSR Airport Access
+
+The flood-fill diagnostic below mirrors the older draft notebook. I keep it as
+an optional reachability visualization rather than the main travel-time model:
+an airport that sits within the connector threshold of one HSR segment
+effectively gains access to the whole geometrically connected corridor.
+
+### Optional Flood-Fill Diagnostic
+
+```{r flood-fill-data}
+hs_only <- rail_passenger %>%
+  filter(TYPE == "High speed")
+
+airport_buffers <- main_airports %>%
+  st_buffer(MAX_CONNECTOR_KM * 1000)
+
+accessible <- as.logical(st_intersects(hs_only, st_union(airport_buffers), sparse = FALSE))
+
+for (i in seq_len(100)) {
+  prev <- sum(accessible)
+  expanded <- hs_only$geometry[accessible] %>% st_union() %>% st_buffer(200)
+  accessible <- as.logical(st_intersects(hs_only, expanded, sparse = FALSE))
+  if (sum(accessible) == prev) {
+    break
+  }
+}
+
+hs_accessible <- hs_only[accessible, ]
+hs_not_accessible <- hs_only[!accessible, ]
+main_airports_hsr_access <- main_airport_access %>%
+  mutate(hsr_access = within_connector_limit)
+```
+
+```{r flood-fill-map, fig.cap="Optional diagnostic: connected GL2017 high-speed subnetwork reachable from the 15 airports"}
+flood_fill_map <- ggplot() +
+  geom_sf(data = countries, fill = "#F8F8F6", color = "#D0D5D9", linewidth = 0.16) +
+  geom_sf(data = hs_not_accessible, color = "#F4A261", linewidth = 0.35, alpha = 0.55) +
+  geom_sf(data = hs_accessible, color = "#D1495B", linewidth = 0.55, alpha = 0.9) +
+  geom_sf(
+    data = main_airports_hsr_access,
+    aes(color = hsr_access),
+    size = 2.6,
+    alpha = 0.9
+  ) +
+  scale_color_manual(
+    values = c("TRUE" = "#1B9E77", "FALSE" = "#7F8C8D"),
+    labels = c("FALSE" = "Outside snap cap", "TRUE" = "Within snap cap"),
+    name = NULL
+  ) +
+  coord_sf(xlim = rail_xlim, ylim = rail_ylim, expand = FALSE) +
+  labs(
+    title = "Reachable High-Speed Corridor System from the 15 Airports",
+    subtitle = "Airports trigger access to connected GL2017 high-speed corridors within the snap threshold",
+    caption = "This is a corridor-reachability visualization, not the route-specific travel-time model"
+  ) +
+  theme_map()
+
+flood_fill_map
+```
+
+```{r build-network}
+rail_net <- rail_passenger %>%
+  as_sfnetwork(directed = FALSE) %>%
+  convert(to_spatial_subdivision)
+
+rail_net <- st_network_blend(rail_net, snapped_airports)
+
+rail_net <- rail_net %>%
+  activate("edges") %>%
+  mutate(
+    edge_length_km = as.numeric(set_units(st_length(geometry), "km"))
+  )
+
+network_nodes <- st_as_sf(rail_net, "nodes")
+network_edges <- st_as_sf(rail_net, "edges")
+
+snapped_airports <- snapped_airports %>%
+  mutate(node_id = st_nearest_feature(geometry, network_nodes))
+```
+
+## 6. Substitutable Routes with Observed Counts
+
+```{r route-function}
+build_route_result <- function(origin_code, dest_code) {
+  origin_info <- snapped_airports %>% filter(ICAO == origin_code)
+  dest_info <- snapped_airports %>% filter(ICAO == dest_code)
+
+  if (!nrow(origin_info) || !nrow(dest_info)) {
+    return(
+      tibble(
+        start_icao = origin_code,
+        end_icao = dest_code,
+        connector_feasible = FALSE,
+        rail_connected = FALSE,
+        rail_km = NA_real_,
+        raw_high_speed_km = NA_real_,
+        high_speed_km = NA_real_,
+        conventional_km = NA_real_,
+        rail_in_vehicle_h = NA_real_,
+        origin_access_km = NA_real_,
+        destination_access_km = NA_real_,
+        origin_access_h = NA_real_,
+        destination_access_h = NA_real_,
+        transfer_penalty_h = TRANSFER_PENALTY_H,
+        rail_total_time_h = NA_real_
+      )
+    )
+  }
+
+  if (!isTRUE(origin_info$within_connector_limit) || !isTRUE(dest_info$within_connector_limit)) {
+    return(
+      tibble(
+        start_icao = origin_code,
+        end_icao = dest_code,
+        connector_feasible = FALSE,
+        rail_connected = FALSE,
+        rail_km = NA_real_,
+        raw_high_speed_km = NA_real_,
+        high_speed_km = NA_real_,
+        conventional_km = NA_real_,
+        rail_in_vehicle_h = NA_real_,
+        origin_access_km = origin_info$access_km,
+        destination_access_km = dest_info$access_km,
+        origin_access_h = origin_info$access_time_h,
+        destination_access_h = dest_info$access_time_h,
+        transfer_penalty_h = TRANSFER_PENALTY_H,
+        rail_total_time_h = NA_real_
+      )
+    )
+  }
+
+  edge_weights <- network_edges$edge_length_km /
+    ifelse(network_edges$TYPE == "High speed", HSR_SPEED_KMH, CONVENTIONAL_SPEED_KMH)
+
+  path <- suppressWarnings(
+    st_network_paths(
+      rail_net,
+      from = origin_info$node_id,
+      to = dest_info$node_id,
+      weights = edge_weights
+    )
+  )
+
+  edge_ids <- unlist(path$edge_paths)
+
+  if (!length(edge_ids)) {
+    return(
+      tibble(
+        start_icao = origin_code,
+        end_icao = dest_code,
+        connector_feasible = TRUE,
+        rail_connected = FALSE,
+        rail_km = NA_real_,
+        raw_high_speed_km = NA_real_,
+        high_speed_km = NA_real_,
+        conventional_km = NA_real_,
+        rail_in_vehicle_h = NA_real_,
+        origin_access_km = origin_info$access_km,
+        destination_access_km = dest_info$access_km,
+        origin_access_h = origin_info$access_time_h,
+        destination_access_h = dest_info$access_time_h,
+        transfer_penalty_h = TRANSFER_PENALTY_H,
+        rail_total_time_h = NA_real_
+      )
+    )
+  }
+
+  path_edge_df <- network_edges[edge_ids, ] %>%
+    st_drop_geometry() %>%
+    mutate(
+      is_hsr = TYPE == "High speed",
+      run_id = cumsum(coalesce(is_hsr != lag(is_hsr), TRUE))
+    )
+
+  hsr_runs <- path_edge_df %>%
+    group_by(run_id, is_hsr) %>%
+    summarise(run_km = sum(edge_length_km), .groups = "drop")
+
+  effective_high_speed_km <- hsr_runs %>%
+    filter(is_hsr, run_km >= MIN_CONTIGUOUS_HSR_KM) %>%
+    summarise(value = sum(run_km), .groups = "drop") %>%
+    pull(value)
+
+  if (!length(effective_high_speed_km) || is.na(effective_high_speed_km)) {
+    effective_high_speed_km <- 0
+  }
+
+  raw_high_speed_km <- path_edge_df %>%
+    filter(is_hsr) %>%
+    summarise(value = sum(edge_length_km), .groups = "drop") %>%
+    pull(value)
+
+  if (!length(raw_high_speed_km) || is.na(raw_high_speed_km)) {
+    raw_high_speed_km <- 0
+  }
+
+  rail_km <- sum(path_edge_df$edge_length_km)
+  conventional_km <- rail_km - effective_high_speed_km
+
+  rail_in_vehicle_h <- (effective_high_speed_km / HSR_SPEED_KMH) +
+    (conventional_km / CONVENTIONAL_SPEED_KMH)
+
+  tibble(
+    start_icao = origin_code,
+    end_icao = dest_code,
+    connector_feasible = TRUE,
+    rail_connected = TRUE,
+    rail_km = rail_km,
+    raw_high_speed_km = raw_high_speed_km,
+    high_speed_km = effective_high_speed_km,
+    conventional_km = conventional_km,
+    rail_in_vehicle_h = rail_in_vehicle_h,
+    origin_access_km = origin_info$access_km,
+    destination_access_km = dest_info$access_km,
+    origin_access_h = origin_info$access_time_h,
+    destination_access_h = dest_info$access_time_h,
+    transfer_penalty_h = TRANSFER_PENALTY_H,
+    rail_total_time_h = rail_in_vehicle_h + origin_info$access_time_h + dest_info$access_time_h + TRANSFER_PENALTY_H
+  )
+}
+```
+
+```{r build-all-routes}
+route_results <- map2_dfr(route_pairs$start_icao, route_pairs$end_icao, build_route_result)
+
+all_routes <- route_pairs %>%
+  left_join(route_results, by = c("start_icao", "end_icao")) %>%
+  mutate(
+    hsr_alternative = rail_connected & rail_total_time_h < ALTERNATIVE_TIME_H,
+    counted_flights = coalesce(total_flights, 0),
+    counted_passengers = coalesce(route_passengers, 0)
+  )
+
+cat("Total route pairs evaluated:", nrow(all_routes), "\n")
+cat("Connector-feasible route pairs:", sum(all_routes$connector_feasible, na.rm = TRUE), "\n")
+cat("Rail-connected route pairs:", sum(all_routes$rail_connected, na.rm = TRUE), "\n")
+cat("Flagged HSR alternatives:", sum(all_routes$hsr_alternative, na.rm = TRUE), "\n")
+```
+
+### Route-Level Summary
+
+```{r route-level-summary}
+route_flag_summary <- all_routes %>%
+  mutate(
+    route_group = case_when(
+      hsr_alternative ~ "Flagged as HSR alternative",
+      rail_connected ~ "Rail-connected but slower (6 h+)",
+      TRUE ~ "Not rail-feasible / disconnected"
+    )
+  ) %>%
+  group_by(route_group) %>%
+  summarise(
+    routes = n(),
+    flights = sum(counted_flights, na.rm = TRUE),
+    passengers = sum(counted_passengers, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    route_pct = routes / sum(routes),
+    flight_pct = flights / sum(flights),
+    passenger_pct = passengers / sum(passengers)
+  )
+
+route_flag_summary
+```
+
+### Top Flagged Routes by Observed Passengers
+
+```{r top-routes-map-data}
+top_flagged_routes <- all_routes %>%
+  filter(hsr_alternative, !is.na(route_passengers)) %>%
+  arrange(desc(route_passengers)) %>%
+  slice_head(n = 50)
+
+top_route_airports <- airports_clean %>%
+  filter(ICAO %in% union(top_flagged_routes$start_icao, top_flagged_routes$end_icao)) %>%
+  transmute(
+    ICAO,
+    lon = GeoPointLong,
+    lat = GeoPointLat,
+    geometry = st_geometry(.)
+  )
+
+top_route_lines <- top_flagged_routes %>%
+  left_join(top_route_airports %>% st_drop_geometry() %>% rename(start_icao = ICAO, start_lon = lon, start_lat = lat), by = "start_icao") %>%
+  left_join(top_route_airports %>% st_drop_geometry() %>% rename(end_icao = ICAO, end_lon = lon, end_lat = lat), by = "end_icao") %>%
+  rowwise() %>%
+  mutate(
+    geometry = st_sfc(
+      st_linestring(
+        matrix(c(start_lon, start_lat, end_lon, end_lat), ncol = 2, byrow = TRUE)
+      ),
+      crs = 4326
+    )
+  ) %>%
+  ungroup() %>%
+  st_as_sf() %>%
+  st_transform(ANALYSIS_CRS)
+
+top_route_airports_sf <- top_route_airports %>%
+  filter(ICAO %in% union(top_flagged_routes$start_icao, top_flagged_routes$end_icao))
+```
+
+```{r top-routes-map, fig.cap="Top 50 flagged HSR-alternative routes ranked by observed passengers"}
+top_routes_map <- ggplot() +
+  geom_sf(data = countries, fill = "#F8F8F6", color = "#D0D5D9", linewidth = 0.16) +
+  geom_sf(
+    data = top_route_lines,
+    aes(color = rail_total_time_h, linewidth = log10(route_passengers)),
+    alpha = 0.72,
+    lineend = "round"
+  ) +
+  geom_sf(
+    data = top_route_airports_sf,
+    color = "#1E2D3B",
+    size = 2.1,
+    alpha = 0.85
+  ) +
+  scale_color_gradientn(
+    colours = c("#1a9850", "#91cf60", "#fee08b", "#fc8d59", "#d73027"),
+    name = "Rail time (hours)"
+  ) +
+  scale_linewidth_continuous(range = c(0.35, 2.2), guide = "none") +
+  coord_sf(expand = FALSE) +
+  labs(
+    title = "Top 50 Flagged HSR-Alternative Routes",
+    subtitle = "Routes are ranked by observed passengers rather than a gravity proxy",
+    caption = SOURCE
+  ) +
+  theme_map()
+
+top_routes_map
+```
+
+## 7. Airport-Level Suitability Summary
+
+```{r airport-summary}
+airport_summary <- all_routes %>%
+  group_by(start_airport, start_iata, start_icao, start_country_name, start_country_a2) %>%
+  summarise(
+    start_pax_total = safe_max(start_pax_total),
+    outbound_routes = n(),
+    outbound_flights = sum(counted_flights, na.rm = TRUE),
+    outbound_passengers = sum(counted_passengers, na.rm = TRUE),
+    alternative_routes = sum(hsr_alternative, na.rm = TRUE),
+    alternative_flights = sum(counted_flights[hsr_alternative], na.rm = TRUE),
+    alternative_passengers = sum(counted_passengers[hsr_alternative], na.rm = TRUE),
+    route_share = alternative_routes / outbound_routes,
+    flight_share = if_else(outbound_flights > 0, alternative_flights / outbound_flights, NA_real_),
+    passenger_share = if_else(outbound_passengers > 0, alternative_passengers / outbound_passengers, NA_real_),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    carbon_suitability_score = passenger_share
+  ) %>%
+  left_join(
+    main_airport_access %>%
+      st_drop_geometry() %>%
+      transmute(start_iata = IATA, airport_access_km = access_km, within_connector_limit),
+    by = "start_iata"
+  ) %>%
+  arrange(desc(carbon_suitability_score))
+
+airport_summary
+```
+
+### Airport Suitability Map
+
+```{r airport-map-data}
+airport_map_data <- main_airports %>%
+  rename(
+    start_airport = AirportName,
+    start_iata = IATA,
+    start_icao = ICAO
+  ) %>%
+  left_join(airport_summary, by = c("start_airport", "start_iata", "start_icao"))
+
+airport_map_data <- airport_map_data %>%
+  mutate(
+    score_status = if_else(within_connector_limit, "Scored from modeled rail access", "No nearby rail in dataset")
+  )
+```
+
+```{r airport-suitability-map, fig.cap="Carbon-suitability proxy for the 15 main western-European airports"}
+airport_suitability_map <- ggplot() +
+  geom_sf(data = countries, fill = "#F8F8F6", color = "#D0D5D9", linewidth = 0.16) +
+  geom_sf(
+    data = airport_map_data %>% filter(within_connector_limit),
+    aes(size = outbound_passengers, fill = carbon_suitability_score),
+    shape = 21,
+    color = "#1E2D3B",
+    stroke = 0.35,
+    alpha = 0.95
+  ) +
+  geom_sf(
+    data = airport_map_data %>% filter(!within_connector_limit),
+    shape = 21,
+    size = 5.5,
+    fill = "#BDBDBD",
+    color = "#5F6368",
+    stroke = 0.35,
+    alpha = 0.98
+  ) +
+  geom_text_repel(
+    data = airport_map_data %>%
+      cbind(st_coordinates(.)),
+    aes(X, Y, label = start_iata),
+    size = 3.4,
+    box.padding = 0.35,
+    point.padding = 0.2,
+    min.segment.length = 0
+  ) +
+  scale_fill_viridis_c(
+    option = "cividis",
+    labels = percent_format(accuracy = 1),
+    name = "Passenger share\nflagged as HSR\nalternative"
+  ) +
+  scale_size_continuous(
+    range = c(3, 11),
+    labels = label_number(big.mark = ","),
+    name = "Outbound passengers"
+  ) +
+  coord_sf(xlim = rail_xlim, ylim = rail_ylim, expand = FALSE) +
+  labs(
+    title = "Carbon Suitability Proxy Across the 15 Main Airports",
+    subtitle = paste0(
+      "Score = share of observed outbound passengers on routes flagged as HSR alternatives (rail-connected and < ",
+      ALTERNATIVE_TIME_H,
+      " h); grey airports sit outside the modeled rail catchment in this dataset"
+    ),
+    caption = SOURCE
+  ) +
+  theme_map()
+
+airport_suitability_map
+```
+
+### Ranked Airport Scores
+
+```{r ranked-airport-scores, fig.cap="Airport ranking by passenger-share substitution suitability"}
+ranked_airport_scores <- airport_summary %>%
+  mutate(start_iata = factor(start_iata, levels = rev(start_iata))) %>%
+  ggplot(aes(x = carbon_suitability_score, y = start_iata, color = carbon_suitability_score)) +
+  geom_segment(
+    aes(x = 0, xend = carbon_suitability_score, y = start_iata, yend = start_iata),
+    linewidth = 0.8,
+    alpha = 0.7
+  ) +
+  geom_point(aes(size = outbound_passengers), alpha = 0.95) +
+  scale_color_viridis_c(option = "cividis", labels = percent_format(accuracy = 1), guide = "none") +
+  scale_size_continuous(range = c(2.5, 8), labels = label_number(big.mark = ","), name = "Outbound passengers") +
+  scale_x_continuous(labels = percent_format(accuracy = 1)) +
+  labs(
+    title = "Airport Ranking by HSR Substitution Suitability",
+    subtitle = "Higher values mean a larger share of outbound passengers are on flagged HSR-alternative routes",
+    x = "Passenger share flagged as HSR alternative",
+    y = NULL
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold"),
+    legend.position = "bottom"
+  )
+
+ranked_airport_scores
+```
+
+### Airport-Level Route / Flight / Passenger Shares
+
+```{r airport-share-comparison, fig.cap="Comparison of route, flight, and passenger shares flagged as HSR alternatives"}
+airport_share_long <- airport_summary %>%
+  select(start_iata, route_share, flight_share, passenger_share) %>%
+  pivot_longer(
+    cols = c(route_share, flight_share, passenger_share),
+    names_to = "metric",
+    values_to = "share"
+  ) %>%
+  mutate(
+    metric = recode(
+      metric,
+      route_share = "Route share",
+      flight_share = "Flight share",
+      passenger_share = "Passenger share"
+    ),
+    start_iata = factor(start_iata, levels = airport_summary$start_iata[order(airport_summary$carbon_suitability_score)])
+  )
+
+airport_share_comparison <- ggplot(airport_share_long, aes(x = start_iata, y = share, fill = metric)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.72) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  scale_fill_manual(
+    values = c(
+      "Route share" = "#7B9ACC",
+      "Flight share" = "#F2B134",
+      "Passenger share" = "#2C7C5A"
+    ),
+    name = NULL
+  ) +
+  labs(
+    title = "How the HSR Alternative Flag Scales by Airport",
+    subtitle = "Comparing the share of routes, flights, and passengers flagged as substitutable by rail",
+    x = NULL,
+    y = "Share flagged as HSR alternative"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold"),
+    legend.position = "bottom"
+  )
+
+airport_share_comparison
+```
+
+## 8. Summary and Export Tables
+
+```{r export, eval=FALSE}
+write_csv(all_routes, file.path(outputs, "all_15_airports_hsr_route_flags.csv"))
+write_csv(airport_summary, file.path(outputs, "all_15_airports_hsr_airport_summary.csv"))
+```
+
+## 9. Summary
+
+- The route flag is intentionally simple: rail-connected and below a 6-hour
+  threshold after connector access and transfer penalty.
+- The airport score is not a full welfare model. It is a descriptive proxy for
+  where replacing outbound short flights with rail could affect the largest
+  share of passengers.
+- Because all routes share the same rail model assumptions, the scores are best
+  interpreted comparatively across airports rather than as precise forecasts.
