@@ -1,0 +1,1089 @@
+---
+title: "Barcelona El Prat Outbound Flights and Rail Alternatives"
+output:
+  pdf_document:
+    toc: true
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+    code_folding: show
+---
+
+This notebook audits the corrected route and airport files in this repo,
+extracts all outbound routes from Barcelona El Prat (`LEBL`), maps those flight
+links, and then estimates a rail-based shortest path for each destination using
+the GL2017 European rail network.
+
+The rail workflow is deliberately conservative and reproducible:
+
+- airports are snapped to their nearest passenger-capable rail segment
+- the GL2017 rail network is split at line intersections before routing
+- travel time is the sum of:
+  - substantial contiguous high-speed segment distance / `HSR_SPEED_KMH`
+  - remaining routed rail distance / `CONVENTIONAL_SPEED_KMH`
+  - airport-to-rail connector distance at `CONNECTOR_SPEED_KMH` on both ends
+  - a fixed transfer penalty of `TRANSFER_PENALTY_H`
+- routes with no connected rail path remain `NA`
+- airports farther than `MAX_CONNECTOR_KM` from passenger rail are treated as
+  not rail-feasible
+- only contiguous HSR runs of at least `MIN_CONTIGUOUS_HSR_KM` are counted as
+  effective high-speed rail in the travel-time calculation
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.width = 13,
+  fig.height = 8
+)
+```
+
+## Packages and Paths
+
+```{r packages}
+suppressPackageStartupMessages({
+  library(sf)
+  library(dplyr)
+  library(readr)
+  library(tidyr)
+  library(purrr)
+  library(stringr)
+  library(ggplot2)
+  library(scales)
+  library(ggrepel)
+  library(here)
+  library(sfnetworks)
+  library(tidygraph)
+  library(units)
+})
+
+source(here::here("scripts", "paths.R"))
+```
+
+```{r constants}
+ANALYSIS_CRS <- 3035
+PASSENGER_RAIL_CLASSES <- c("Passenger", "Passenger and freight")
+HSR_SPEED_KMH <- 250
+CONVENTIONAL_SPEED_KMH <- 110
+CONNECTOR_SPEED_KMH <- 45
+MAX_CONNECTOR_KM <- 25
+MIN_CONTIGUOUS_HSR_KM <- 50
+TRANSFER_PENALTY_H <- 0.5
+ORIGIN_ICAO <- "LEBL"
+
+routes_path <- file.path(data_clean, "master_routes_clean.csv")
+airports_path <- file.path(data_clean, "all_airports.gpkg")
+rail_path <- file.path(data_raw, "shapefiles", "railways_GL2017_EU.shp")
+countries_path <- file.path(data_clean, "ne_10m_countries.gpkg")
+
+required_paths <- c(routes_path, airports_path, rail_path, countries_path)
+stopifnot(all(file.exists(required_paths)))
+
+dir.create(outputs, recursive = TRUE, showWarnings = FALSE)
+```
+
+## File Audit
+
+```{r read-inputs}
+routes_raw <- read_csv(routes_path, show_col_types = FALSE)
+
+airports_raw <- st_read(airports_path, quiet = TRUE) %>%
+  st_make_valid() %>%
+  st_transform(ANALYSIS_CRS)
+
+rail_raw <- st_read(rail_path, quiet = TRUE) %>%
+  st_make_valid() %>%
+  st_transform(ANALYSIS_CRS)
+
+countries <- st_read(countries_path, quiet = TRUE) %>%
+  st_make_valid() %>%
+  st_transform(ANALYSIS_CRS)
+```
+
+```{r column-audit}
+cat("master_routes_clean.csv columns:\n")
+print(names(routes_raw))
+
+cat("\nall_airports.gpkg columns:\n")
+print(names(airports_raw))
+
+cat("\nrailways_GL2017_EU.shp columns:\n")
+print(names(rail_raw))
+```
+
+```{r audit-summary}
+cat("Rows in master_routes_clean.csv:", nrow(routes_raw), "\n")
+cat("Rows in all_airports.gpkg:", nrow(airports_raw), "\n")
+cat("Rows in GL2017 rail shapefile:", nrow(rail_raw), "\n")
+
+cat("\nDistinct start airports named Barcelona / LEBL in route table:\n")
+print(
+  routes_raw %>%
+    filter(start_icao == ORIGIN_ICAO | str_detect(start_airport, regex("Barcelona", ignore_case = TRUE))) %>%
+    distinct(start_airport, start_icao)
+)
+```
+
+## Barcelona El Prat Outbound Routes
+
+The corrected route table is already close to one row per route, but I still
+collapse to one record per `end_icao` as a safeguard. For any duplicated
+destination ICAO, the notebook keeps the maximum observed route passenger count
+for plotting.
+
+```{r airport-cleaning}
+airports_clean <- airports_raw %>%
+  mutate(
+    station_like = str_detect(
+      str_to_upper(AirportName),
+      "RAILWAY STATION|\\bHBF\\b|\\bSTATION\\b"
+    ),
+    name_length = nchar(AirportName)
+  ) %>%
+  arrange(ICAO, station_like, desc(name_length)) %>%
+  group_by(ICAO) %>%
+  slice(1) %>%
+  ungroup() %>%
+  select(-name_length)
+
+safe_max <- function(x) {
+  if (all(is.na(x))) {
+    return(NA_real_)
+  }
+  max(x, na.rm = TRUE)
+}
+
+barcelona_routes <- routes_raw %>%
+  filter(start_icao == ORIGIN_ICAO) %>%
+  group_by(end_icao) %>%
+  summarise(
+    total_flights = safe_max(total_flights),
+    route_passengers = safe_max(route_passengers),
+    raw_rows = n(),
+    passenger_sum_raw = sum(route_passengers, na.rm = TRUE),
+    passenger_max_raw = safe_max(route_passengers),
+    .groups = "drop"
+  ) %>%
+  left_join(
+    airports_clean %>%
+      st_drop_geometry() %>%
+      transmute(
+        end_icao = ICAO,
+        end_airport = AirportName,
+        end_iata = IATA,
+        end_city = City_Name,
+        end_country = Country_Name
+      ),
+    by = "end_icao"
+  ) %>%
+  filter(!is.na(end_airport)) %>%
+  arrange(desc(route_passengers))
+
+barcelona_airport <- airports_clean %>%
+  filter(ICAO == ORIGIN_ICAO)
+
+destination_airports <- airports_clean %>%
+  filter(ICAO %in% barcelona_routes$end_icao) %>%
+  transmute(
+    end_icao = ICAO,
+    end_airport_geom = AirportName
+  )
+
+flight_destinations <- destination_airports %>%
+  left_join(barcelona_routes, by = "end_icao") %>%
+  filter(!is.na(route_passengers))
+
+cat("Barcelona outbound rows in source table:", nrow(routes_raw %>% filter(start_icao == ORIGIN_ICAO)), "\n")
+cat("Distinct Barcelona destination ICAOs after collapse:", nrow(barcelona_routes), "\n")
+cat("Routes with non-missing passenger counts:", sum(!is.na(barcelona_routes$route_passengers)), "\n")
+```
+
+```{r duplicate-diagnostics}
+duplicate_routes <- routes_raw %>%
+  filter(start_icao == ORIGIN_ICAO) %>%
+  count(end_icao, sort = TRUE) %>%
+  filter(n > 1)
+
+duplicate_airports <- airports_raw %>%
+  st_drop_geometry() %>%
+  count(ICAO, sort = TRUE) %>%
+  filter(n > 1)
+
+duplicate_routes
+duplicate_airports
+```
+
+## Flight Map from El Prat
+
+```{r arc-helpers}
+make_arc <- function(from_xy, to_xy, curvature = 0.035, n = 120) {
+  t <- seq(0, 1, length.out = n)
+  base <- (1 - t) %o% from_xy + t %o% to_xy
+  direction <- to_xy - from_xy
+  seg_length <- sqrt(sum(direction^2))
+
+  if (seg_length == 0) {
+    return(st_linestring(base))
+  }
+
+  unit_perp <- c(-direction[2], direction[1]) / seg_length
+  curve_side <- ifelse(to_xy[1] >= from_xy[1], 1, -1)
+  offset <- curve_side * curvature * seg_length * sin(pi * t)
+  curve <- base + offset %o% unit_perp
+  st_linestring(curve)
+}
+
+origin_xy <- st_coordinates(barcelona_airport)[1, 1:2]
+dest_xy <- st_coordinates(flight_destinations)[, 1:2, drop = FALSE]
+
+flight_arc_sfc <- st_sfc(
+  lapply(seq_len(nrow(flight_destinations)), function(i) {
+    make_arc(origin_xy, dest_xy[i, ], curvature = 0.035)
+  }),
+  crs = ANALYSIS_CRS
+)
+
+flight_arcs <- st_sf(
+  flight_destinations %>%
+    st_drop_geometry() %>%
+    select(end_icao, end_airport, route_passengers, raw_rows),
+  geometry = flight_arc_sfc
+)
+```
+
+```{r map-extent}
+map_bbox <- st_bbox(
+  st_union(
+    st_geometry(barcelona_airport),
+    st_geometry(destination_airports)
+  )
+)
+
+x_pad <- (map_bbox$xmax - map_bbox$xmin) * 0.10
+y_pad <- (map_bbox$ymax - map_bbox$ymin) * 0.10
+
+map_xlim <- c(map_bbox$xmin - x_pad, map_bbox$xmax + x_pad)
+map_ylim <- c(map_bbox$ymin - y_pad, map_bbox$ymax + y_pad)
+```
+
+```{r flight-map, fig.cap="Barcelona El Prat outbound flights, coloured by passengers"}
+top_labels <- barcelona_routes %>%
+  filter(!is.na(route_passengers)) %>%
+  slice_max(order_by = route_passengers, n = 15, with_ties = FALSE) %>%
+  select(end_icao)
+
+flight_map <- ggplot() +
+  geom_sf(data = countries, fill = "#F8F8F6", color = "#C9CDD1", linewidth = 0.18) +
+  geom_sf(
+    data = flight_arcs,
+    aes(color = route_passengers, linewidth = route_passengers),
+    alpha = 0.78,
+    lineend = "round",
+    show.legend = "line"
+  ) +
+  geom_sf(
+    data = flight_destinations,
+    aes(size = route_passengers),
+    shape = 21,
+    fill = "white",
+    color = "#19324A",
+    stroke = 0.35,
+    alpha = 0.95
+  ) +
+  geom_sf(
+    data = barcelona_airport,
+    shape = 21,
+    size = 5,
+    fill = "#F25F5C",
+    color = "#5C1A18",
+    stroke = 0.8
+  ) +
+  geom_text_repel(
+    data = flight_destinations %>%
+      filter(end_icao %in% top_labels$end_icao) %>%
+      cbind(st_coordinates(.)),
+    aes(X, Y, label = end_airport),
+    size = 3.1,
+    box.padding = 0.35,
+    point.padding = 0.2,
+    min.segment.length = 0
+  ) +
+  scale_color_viridis_c(
+    option = "plasma",
+    trans = "log10",
+    labels = label_number(big.mark = ","),
+    na.value = "#B8C4CE",
+    name = "Route passengers"
+  ) +
+  scale_linewidth_continuous(range = c(0.18, 1.5), guide = "none") +
+  scale_size_continuous(range = c(1.1, 5.2), labels = label_number(big.mark = ","), guide = "none") +
+  coord_sf(xlim = map_xlim, ylim = map_ylim, expand = FALSE) +
+  labs(
+    title = "Outbound Flight Routes from Barcelona El Prat",
+    subtitle = paste0(
+      sum(!is.na(barcelona_routes$route_passengers)),
+      " outbound routes with observed passenger counts to ",
+      nrow(barcelona_routes),
+      " destination ICAOs"
+    ),
+    caption = "Source files: data/clean/master_routes_clean.csv and data/clean/all_airports.gpkg"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    panel.background = element_rect(fill = "#EAF3FB", color = NA),
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.grid.major = element_line(color = "#D7E0EA", linewidth = 0.22),
+    panel.grid.minor = element_blank(),
+    axis.title = element_blank(),
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold")
+  )
+
+flight_map
+```
+
+```{r save-flight-map, eval=FALSE}
+ggsave(
+  file.path(outputs, "barcelona_el_prat_flight_routes.png"),
+  flight_map,
+  width = 13,
+  height = 8,
+  dpi = 300,
+  bg = "white"
+)
+```
+
+## Rail Network Routing
+
+```{r prepare-rail}
+rail_passenger <- rail_raw %>%
+  filter(RAILWAYS_A %in% PASSENGER_RAIL_CLASSES) %>%
+  filter(!st_is_empty(geometry), !is.na(geometry)) %>%
+  st_collection_extract("LINESTRING") %>%
+  mutate(
+    speed_kmh = if_else(TYPE == "High speed", HSR_SPEED_KMH, CONVENTIONAL_SPEED_KMH),
+    rail_class = if_else(TYPE == "High speed", "High speed", "Conventional")
+  )
+
+cat("Passenger-capable GL2017 rail segments retained:", nrow(rail_passenger), "\n")
+print(rail_passenger %>% st_drop_geometry() %>% count(TYPE, sort = TRUE))
+```
+
+```{r snap-airports-to-rail}
+route_airports <- airports_clean %>%
+  filter(ICAO %in% c(ORIGIN_ICAO, barcelona_routes$end_icao)) %>%
+  transmute(ICAO, AirportName)
+
+nearest_edge_idx <- st_nearest_feature(route_airports, rail_passenger)
+
+snapped_geoms <- lapply(seq_len(nrow(route_airports)), function(i) {
+  pair <- st_nearest_points(route_airports[i, ], rail_passenger[nearest_edge_idx[i], ])
+  snapped_pair_points <- st_cast(pair, "POINT")
+  snapped_pair_points[2]
+})
+
+snapped_sfc <- do.call(c, snapped_geoms)
+st_crs(snapped_sfc) <- st_crs(ANALYSIS_CRS)
+
+snapped_airports <- st_as_sf(
+  route_airports %>% st_drop_geometry(),
+  geometry = snapped_sfc
+) %>%
+  mutate(
+    nearest_edge_idx = nearest_edge_idx,
+    access_km = as.numeric(
+      set_units(st_distance(route_airports, geometry, by_element = TRUE), "km")
+    ),
+    access_time_h = access_km / CONNECTOR_SPEED_KMH,
+    within_connector_limit = access_km <= MAX_CONNECTOR_KM
+  )
+
+snapped_airports %>%
+  st_drop_geometry() %>%
+  slice_max(order_by = access_km, n = 12)
+```
+
+```{r build-network}
+rail_net <- rail_passenger %>%
+  as_sfnetwork(directed = FALSE) %>%
+  convert(to_spatial_subdivision)
+
+rail_net <- st_network_blend(rail_net, snapped_airports)
+
+rail_net <- rail_net %>%
+  activate("edges") %>%
+  mutate(
+    edge_length_km = as.numeric(set_units(st_length(geometry), "km")),
+    edge_time_h = edge_length_km / speed_kmh
+  )
+
+network_nodes <- st_as_sf(rail_net, "nodes")
+network_edges <- st_as_sf(rail_net, "edges")
+
+snapped_airports <- snapped_airports %>%
+  mutate(node_id = st_nearest_feature(geometry, network_nodes))
+```
+
+```{r route-function}
+origin_node_id <- snapped_airports %>%
+  filter(ICAO == ORIGIN_ICAO) %>%
+  pull(node_id)
+
+origin_access_h <- snapped_airports %>%
+  filter(ICAO == ORIGIN_ICAO) %>%
+  pull(access_time_h)
+
+origin_access_km <- snapped_airports %>%
+  filter(ICAO == ORIGIN_ICAO) %>%
+  pull(access_km)
+
+build_rail_route <- function(dest_code) {
+  dest_info <- snapped_airports %>%
+    filter(ICAO == dest_code)
+
+  if (!isTRUE(dest_info$within_connector_limit) || !isTRUE(snapped_airports %>% filter(ICAO == ORIGIN_ICAO) %>% pull(within_connector_limit))) {
+    return(
+      st_sf(
+        end_icao = dest_code,
+        rail_connected = FALSE,
+        connector_feasible = FALSE,
+        rail_km = NA_real_,
+        high_speed_km = NA_real_,
+        raw_high_speed_km = NA_real_,
+        conventional_km = NA_real_,
+        rail_in_vehicle_h = NA_real_,
+        origin_access_km = origin_access_km,
+        destination_access_km = dest_info$access_km,
+        origin_access_h = origin_access_h,
+        destination_access_h = dest_info$access_time_h,
+        transfer_penalty_h = TRANSFER_PENALTY_H,
+        rail_total_time_h = NA_real_,
+        geometry = st_sfc(st_geometrycollection(), crs = ANALYSIS_CRS)
+      )
+    )
+  }
+
+  dest_node_id <- dest_info$node_id
+  path <- st_network_paths(
+    rail_net,
+    from = origin_node_id,
+    to = dest_node_id,
+    weights = "edge_time_h"
+  )
+
+  edge_ids <- unlist(path$edge_paths)
+
+  if (!length(edge_ids)) {
+    return(
+      st_sf(
+        end_icao = dest_code,
+        rail_connected = FALSE,
+        connector_feasible = TRUE,
+        rail_km = NA_real_,
+        high_speed_km = NA_real_,
+        raw_high_speed_km = NA_real_,
+        conventional_km = NA_real_,
+        rail_in_vehicle_h = NA_real_,
+        origin_access_km = origin_access_km,
+        destination_access_km = dest_info$access_km,
+        origin_access_h = origin_access_h,
+        destination_access_h = dest_info$access_time_h,
+        transfer_penalty_h = TRANSFER_PENALTY_H,
+        rail_total_time_h = NA_real_,
+        geometry = st_sfc(st_geometrycollection(), crs = ANALYSIS_CRS)
+      )
+    )
+  }
+
+  path_edges <- network_edges[edge_ids, ]
+  path_edge_df <- path_edges %>%
+    st_drop_geometry() %>%
+    mutate(
+      is_hsr = TYPE == "High speed",
+      run_id = cumsum(coalesce(is_hsr != lag(is_hsr), TRUE))
+    )
+
+  hsr_runs <- path_edge_df %>%
+    group_by(run_id, is_hsr) %>%
+    summarise(run_km = sum(edge_length_km), .groups = "drop")
+
+  effective_high_speed_km <- hsr_runs %>%
+    filter(is_hsr, run_km >= MIN_CONTIGUOUS_HSR_KM) %>%
+    summarise(value = sum(run_km), .groups = "drop") %>%
+    pull(value)
+
+  if (!length(effective_high_speed_km) || is.na(effective_high_speed_km)) {
+    effective_high_speed_km <- 0
+  }
+
+  raw_high_speed_km <- path_edge_df %>%
+    filter(is_hsr) %>%
+    summarise(value = sum(edge_length_km), .groups = "drop") %>%
+    pull(value)
+
+  if (!length(raw_high_speed_km) || is.na(raw_high_speed_km)) {
+    raw_high_speed_km <- 0
+  }
+
+  conventional_km <- sum(path_edge_df$edge_length_km) - effective_high_speed_km
+  effective_in_vehicle_h <- (effective_high_speed_km / HSR_SPEED_KMH) +
+    (conventional_km / CONVENTIONAL_SPEED_KMH)
+
+  route_geom <- st_line_merge(st_union(st_geometry(path_edges)))
+
+  st_sf(
+    end_icao = dest_code,
+    rail_connected = TRUE,
+    connector_feasible = TRUE,
+    rail_km = sum(path_edges$edge_length_km),
+    high_speed_km = effective_high_speed_km,
+    raw_high_speed_km = raw_high_speed_km,
+    conventional_km = conventional_km,
+    rail_in_vehicle_h = effective_in_vehicle_h,
+    origin_access_km = origin_access_km,
+    destination_access_km = dest_info$access_km,
+    origin_access_h = origin_access_h,
+    destination_access_h = dest_info$access_time_h,
+    transfer_penalty_h = TRANSFER_PENALTY_H,
+    rail_total_time_h = effective_in_vehicle_h + origin_access_h + dest_info$access_time_h + TRANSFER_PENALTY_H,
+    geometry = st_sfc(route_geom, crs = ANALYSIS_CRS)
+  )
+}
+```
+
+```{r build-all-rail-routes}
+rail_routes_sf <- do.call(
+  rbind,
+  lapply(barcelona_routes$end_icao, build_rail_route)
+) %>%
+  left_join(
+    barcelona_routes %>%
+      select(end_icao, end_airport, total_flights, route_passengers, raw_rows),
+    by = "end_icao"
+  ) %>%
+  st_as_sf()
+
+rail_route_summary <- rail_routes_sf %>%
+  st_drop_geometry() %>%
+  mutate(
+    total_connector_km = origin_access_km + destination_access_km,
+    total_connector_h = origin_access_h + destination_access_h,
+    hsr_share = if_else(rail_connected & rail_km > 0, high_speed_km / rail_km, NA_real_),
+    avg_kmh = if_else(rail_connected & rail_total_time_h > 0, rail_km / rail_total_time_h, NA_real_),
+    connector_share = if_else(rail_connected & rail_total_time_h > 0, total_connector_h / rail_total_time_h, NA_real_)
+  ) %>%
+  arrange(rail_total_time_h)
+
+rail_route_summary %>%
+  select(
+    end_airport,
+    end_icao,
+    rail_connected,
+    rail_km,
+    high_speed_km,
+    conventional_km,
+    rail_total_time_h
+  ) %>%
+  slice_head(n = 20)
+```
+
+```{r rail-routing-summary}
+cat("Rail-connected Barcelona destinations:", sum(rail_routes_sf$rail_connected, na.rm = TRUE), "\n")
+cat("Not rail-connected in this network:", sum(!rail_routes_sf$rail_connected, na.rm = TRUE), "\n")
+cat(
+  "Excluded by max airport-to-rail connector threshold:",
+  sum(!rail_routes_sf$connector_feasible, na.rm = TRUE),
+  "\n"
+)
+cat(
+  "Within connector threshold but still disconnected in rail graph:",
+  sum(rail_routes_sf$connector_feasible & !rail_routes_sf$rail_connected, na.rm = TRUE),
+  "\n"
+)
+
+rail_routes_sf %>%
+  st_drop_geometry() %>%
+  summarise(
+    median_time_h = median(rail_total_time_h, na.rm = TRUE),
+    mean_time_h = mean(rail_total_time_h, na.rm = TRUE),
+    max_time_h = max(rail_total_time_h, na.rm = TRUE)
+  )
+```
+
+## Rail Diagnostics
+
+These checks are here to test whether the travel-time surface looks plausible.
+If almost every connected route uses a large share of high-speed track, or if
+average end-to-end speeds cluster implausibly high, that is a sign the GL2017
+typing or the network topology may still need refinement.
+
+In the diagnostics below, `raw_high_speed_km` is the total routed length on
+segments labelled `High speed`, while `high_speed_km` is the effective HSR
+length that survives the contiguous-run threshold of `MIN_CONTIGUOUS_HSR_KM`.
+Total rail time includes both airport connector times and a fixed transfer
+penalty of `TRANSFER_PENALTY_H`.
+
+```{r rail-diagnostics-summary}
+rail_route_summary %>%
+  filter(rail_connected) %>%
+  summarise(
+    connected_routes = n(),
+    min_time_h = min(rail_total_time_h, na.rm = TRUE),
+    q25_time_h = quantile(rail_total_time_h, 0.25, na.rm = TRUE),
+    median_time_h = median(rail_total_time_h, na.rm = TRUE),
+    mean_time_h = mean(rail_total_time_h, na.rm = TRUE),
+    q75_time_h = quantile(rail_total_time_h, 0.75, na.rm = TRUE),
+    max_time_h = max(rail_total_time_h, na.rm = TRUE),
+    median_avg_kmh = median(avg_kmh, na.rm = TRUE),
+    mean_avg_kmh = mean(avg_kmh, na.rm = TRUE),
+    max_avg_kmh = max(avg_kmh, na.rm = TRUE)
+  )
+```
+
+```{r routes-with-hsr}
+routes_with_hsr <- rail_route_summary %>%
+  filter(rail_connected, high_speed_km > 0) %>%
+  select(
+    end_airport,
+    end_icao,
+    rail_total_time_h,
+    rail_km,
+    raw_high_speed_km,
+    high_speed_km,
+    conventional_km,
+    hsr_share,
+    avg_kmh,
+    route_passengers
+  ) %>%
+  arrange(desc(high_speed_km))
+
+routes_with_hsr %>% slice_head(n = 40)
+```
+
+```{r routes-without-hsr}
+routes_without_hsr <- rail_route_summary %>%
+  filter(rail_connected, high_speed_km == 0) %>%
+  select(
+    end_airport,
+    end_icao,
+    rail_total_time_h,
+    rail_km,
+    raw_high_speed_km,
+    total_connector_km,
+    avg_kmh,
+    route_passengers
+  ) %>%
+  arrange(rail_total_time_h)
+
+routes_without_hsr
+```
+
+```{r suspicious-routes}
+rail_route_summary %>%
+  filter(rail_connected) %>%
+  select(
+    end_airport,
+    end_icao,
+    rail_total_time_h,
+    rail_km,
+    total_connector_km,
+    total_connector_h,
+    raw_high_speed_km,
+    high_speed_km,
+    conventional_km,
+    hsr_share,
+    avg_kmh,
+    connector_share,
+    route_passengers
+  ) %>%
+  arrange(desc(hsr_share), desc(avg_kmh), rail_total_time_h) %>%
+  slice_head(n = 30)
+```
+
+## Presentation Figures
+
+For presentation, the routed-path map is visually dense because many Barcelona
+routes share the same rail corridors. The three figures below focus instead on:
+
+- a simple origin-destination map from Barcelona
+- the distribution of estimated rail times
+- a ranked destination view
+
+```{r presentation-data}
+presentation_routes <- rail_route_summary %>%
+  left_join(
+    destination_airports %>%
+      st_drop_geometry() %>%
+      select(end_icao),
+    by = "end_icao"
+  ) %>%
+  left_join(
+    airports_clean %>%
+      st_drop_geometry() %>%
+      transmute(end_icao = ICAO, dest_lat = GeoPointLat, dest_lon = GeoPointLong),
+    by = "end_icao"
+  ) %>%
+  left_join(
+    destination_airports %>%
+      mutate(dest_x = st_coordinates(.)[, 1], dest_y = st_coordinates(.)[, 2]) %>%
+      st_drop_geometry() %>%
+      select(end_icao, dest_x, dest_y),
+    by = "end_icao"
+  ) %>%
+  mutate(
+    time_bin = case_when(
+      !connector_feasible ~ "Not rail-feasible",
+      connector_feasible & !rail_connected ~ "Disconnected in network",
+      rail_total_time_h < 4 ~ "< 4 h",
+      rail_total_time_h < 6 ~ "4 to <6 h",
+      rail_total_time_h < 8 ~ "6 to <8 h",
+      TRUE ~ "8 h+"
+    ),
+    time_bin = factor(
+      time_bin,
+      levels = c("< 4 h", "4 to <6 h", "6 to <8 h", "8 h+", "Disconnected in network", "Not rail-feasible")
+    )
+  )
+
+origin_coords <- st_coordinates(barcelona_airport)[1, 1:2]
+
+straight_line_sfc <- st_sfc(
+  lapply(seq_len(nrow(presentation_routes)), function(i) {
+    st_linestring(
+      matrix(
+        c(
+          origin_coords[1], origin_coords[2],
+          presentation_routes$dest_x[i], presentation_routes$dest_y[i]
+        ),
+        ncol = 2,
+        byrow = TRUE
+      )
+    )
+  }),
+  crs = ANALYSIS_CRS
+)
+
+presentation_lines <- st_sf(
+  presentation_routes %>%
+    select(end_icao, end_airport, total_flights, route_passengers, rail_total_time_h, time_bin),
+  geometry = straight_line_sfc
+)
+
+presentation_points <- destination_airports %>%
+  left_join(
+    presentation_routes %>%
+      select(end_icao, end_airport, total_flights, route_passengers, rail_total_time_h, time_bin),
+    by = "end_icao"
+  )
+
+time_bin_colors <- c(
+  "< 4 h" = "#1b9e77",
+  "4 to <6 h" = "#66a61e",
+  "6 to <8 h" = "#e6ab02",
+  "8 h+" = "#d95f02",
+  "Disconnected in network" = "#7570b3",
+  "Not rail-feasible" = "#bdbdbd"
+)
+```
+
+### BCN Route and Passenger Summary
+
+```{r bcn-summary}
+bcn_summary <- presentation_routes %>%
+  st_drop_geometry() %>%
+  mutate(
+    counted_passengers = coalesce(route_passengers, 0)
+  ) %>%
+  group_by(time_bin) %>%
+  summarise(
+    routes = n(),
+    passengers = sum(counted_passengers, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    route_pct = routes / sum(routes),
+    passenger_pct = passengers / sum(passengers)
+  )
+
+bcn_summary
+```
+
+```{r bcn-summary-collapsed}
+bcn_summary_collapsed <- presentation_routes %>%
+  st_drop_geometry() %>%
+  mutate(
+    counted_passengers = coalesce(route_passengers, 0),
+    rail_substitutable = case_when(
+      rail_connected & rail_total_time_h < 6 ~ "Rail-competitive (<6 h)",
+      rail_connected ~ "Rail-connected but slower (6 h+)",
+      TRUE ~ "Not rail-feasible / disconnected"
+    )
+  ) %>%
+  group_by(rail_substitutable) %>%
+  summarise(
+    routes = n(),
+    passengers = sum(counted_passengers, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    route_pct = routes / sum(routes),
+    passenger_pct = passengers / sum(passengers)
+  )
+
+bcn_summary_collapsed
+```
+
+## HSR Alternative Flags
+
+For the BCN-focused notebook, I flag routes as plausible high-speed-rail
+alternatives when they are:
+
+- connector-feasible
+- rail-connected in the GL2017 passenger network
+- below a simple rail-time threshold of 6 hours
+
+This is a descriptive substitution flag, not yet a full generalized-cost test.
+
+```{r hsr-alternative-flags}
+hsr_flag_routes <- presentation_routes %>%
+  st_drop_geometry() %>%
+  mutate(
+    hsr_alternative = rail_connected & rail_total_time_h < 6,
+    counted_passengers = coalesce(route_passengers, 0),
+    counted_flights = coalesce(total_flights, 0)
+  )
+
+hsr_flag_routes %>%
+  select(
+    end_airport,
+    end_icao,
+    total_flights,
+    route_passengers,
+    rail_total_time_h,
+    hsr_alternative
+  ) %>%
+  arrange(rail_total_time_h)
+```
+
+```{r hsr-alternative-summary}
+hsr_alternative_summary <- hsr_flag_routes %>%
+  summarise(
+    total_routes = n(),
+    total_flights = sum(counted_flights, na.rm = TRUE),
+    total_passengers = sum(counted_passengers, na.rm = TRUE),
+    alternative_routes = sum(hsr_alternative, na.rm = TRUE),
+    alternative_route_share = alternative_routes / total_routes,
+    alternative_flights = sum(counted_flights[hsr_alternative], na.rm = TRUE),
+    alternative_flight_share = alternative_flights / total_flights,
+    alternative_passengers = sum(counted_passengers[hsr_alternative], na.rm = TRUE),
+    alternative_passenger_share = alternative_passengers / total_passengers
+  )
+
+hsr_alternative_summary
+```
+
+```{r hsr-alternative-by-bin}
+hsr_flag_routes %>%
+  mutate(
+    alternative_group = case_when(
+      hsr_alternative ~ "Flagged as HSR alternative",
+      rail_connected ~ "Rail-connected but slower (6 h+)",
+      TRUE ~ "Not rail-feasible / disconnected"
+    )
+  ) %>%
+  group_by(alternative_group) %>%
+  summarise(
+    routes = n(),
+    flights = sum(counted_flights, na.rm = TRUE),
+    passengers = sum(counted_passengers, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    route_pct = routes / sum(routes),
+    flight_pct = flights / sum(flights),
+    passenger_pct = passengers / sum(passengers)
+  )
+```
+
+### Figure 1: Straight-Line Map from Barcelona
+
+```{r od-time-map, fig.cap="Barcelona origin-destination map coloured by estimated rail travel-time class"}
+od_time_map <- ggplot() +
+  geom_sf(data = countries, fill = "#F8F8F6", color = "#D0D5D9", linewidth = 0.16) +
+  geom_sf(
+    data = presentation_lines,
+    aes(color = time_bin),
+    linewidth = 0.45,
+    alpha = 0.55,
+    lineend = "round",
+    show.legend = "line"
+  ) +
+  geom_sf(
+    data = presentation_points,
+    aes(fill = time_bin),
+    shape = 21,
+    size = 2.2,
+    color = "#1E2D3B",
+    stroke = 0.25
+  ) +
+  geom_sf(
+    data = barcelona_airport,
+    shape = 21,
+    size = 5,
+    fill = "#F25F5C",
+    color = "#5C1A18",
+    stroke = 0.8
+  ) +
+  geom_text_repel(
+    data = destination_airports %>%
+      left_join(rail_routes_sf %>% st_drop_geometry(), by = "end_icao") %>%
+      filter(rail_connected) %>%
+      slice_min(order_by = rail_total_time_h, n = 12) %>%
+      cbind(st_coordinates(.)),
+    aes(X, Y, label = end_airport),
+    size = 3.1,
+    box.padding = 0.35,
+    point.padding = 0.2,
+    min.segment.length = 0
+  ) +
+  scale_color_manual(values = time_bin_colors, name = NULL, drop = FALSE) +
+  scale_fill_manual(values = time_bin_colors, guide = "none", drop = FALSE) +
+  coord_sf(xlim = map_xlim, ylim = map_ylim, expand = FALSE) +
+  labs(
+    title = "Barcelona-to-Destination Rail Time Classes",
+    subtitle = paste0(
+      "Straight origin-destination lines for readability; classes reflect routed rail-time estimates with a ",
+      MAX_CONNECTOR_KM,
+      " km snap cap"
+    ),
+    caption = "Source files: data/raw/shapefiles/railways_GL2017_EU.shp and data/clean/all_airports.gpkg"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    panel.background = element_rect(fill = "#EEF4F7", color = NA),
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.grid.major = element_line(color = "#D9E3E9", linewidth = 0.22),
+    panel.grid.minor = element_blank(),
+    axis.title = element_blank(),
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold")
+  )
+
+od_time_map
+```
+
+```{r save-od-time-map, eval=FALSE}
+ggsave(
+  file.path(outputs, "barcelona_el_prat_od_time_bins.png"),
+  od_time_map,
+  width = 13,
+  height = 8,
+  dpi = 300,
+  bg = "white"
+)
+```
+
+### Figure 2: Histogram of Rail Times
+
+```{r rail-time-histogram, fig.cap="Distribution of Barcelona rail travel times to western-European destinations"}
+rail_time_hist <- presentation_routes %>%
+  filter(rail_connected) %>%
+  ggplot(aes(x = rail_total_time_h)) +
+  geom_histogram(binwidth = 1, boundary = 0, fill = "#2C4C7E", color = "white", alpha = 0.9) +
+  geom_vline(xintercept = median(presentation_routes$rail_total_time_h[presentation_routes$rail_connected], na.rm = TRUE),
+             color = "#D95F02", linewidth = 0.9, linetype = "dashed") +
+  labs(
+    title = "Distribution of Estimated Rail Travel Times from Barcelona",
+    subtitle = "Only destinations that are connector-feasible and rail-connected are included",
+    x = "Estimated rail travel time (hours)",
+    y = "Number of destinations",
+    caption = "Dashed line marks the median connected-destination rail time"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold")
+  )
+
+rail_time_hist
+```
+
+```{r save-rail-time-histogram, eval=FALSE}
+ggsave(
+  file.path(outputs, "barcelona_el_prat_rail_time_histogram.png"),
+  rail_time_hist,
+  width = 10,
+  height = 6,
+  dpi = 300,
+  bg = "white"
+)
+```
+
+### Figure 3: Ranked Destination Rail Times
+
+```{r ranked-rail-times, fig.cap="Ranked Barcelona destinations by estimated rail travel time"}
+ranked_destinations <- presentation_routes %>%
+  filter(rail_connected) %>%
+  arrange(rail_total_time_h) %>%
+  mutate(end_airport = factor(end_airport, levels = rev(end_airport))) %>%
+  slice_head(n = 30)
+
+ranked_rail_times <- ggplot(ranked_destinations, aes(x = rail_total_time_h, y = end_airport, color = time_bin)) +
+  geom_segment(
+    aes(x = 0, xend = rail_total_time_h, y = end_airport, yend = end_airport),
+    linewidth = 0.7,
+    alpha = 0.7
+  ) +
+  geom_point(aes(size = route_passengers), alpha = 0.9) +
+  scale_color_manual(values = time_bin_colors, name = NULL, drop = FALSE) +
+  scale_size_continuous(range = c(2, 6), labels = label_number(big.mark = ","), name = "Route passengers") +
+  labs(
+    title = "Fastest Rail-Connected Barcelona Destinations",
+    subtitle = "Top 30 destinations ranked by estimated rail travel time",
+    x = "Estimated rail travel time (hours)",
+    y = NULL,
+    caption = "Point size reflects route passengers"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold"),
+    legend.position = "bottom"
+  )
+
+ranked_rail_times
+```
+
+```{r save-ranked-rail-times, eval=FALSE}
+ggsave(
+  file.path(outputs, "barcelona_el_prat_ranked_rail_times.png"),
+  ranked_rail_times,
+  width = 10,
+  height = 9,
+  dpi = 300,
+  bg = "white"
+)
+```
+
+## Export a Route Summary Table
+
+```{r export-table, eval=FALSE}
+rail_routes_sf %>%
+  st_drop_geometry() %>%
+  arrange(rail_total_time_h) %>%
+  write_csv(file.path(outputs, "barcelona_el_prat_rail_route_summary.csv"))
+```
+
+## Notes
+
+- `master_routes_clean.csv` contains duplicate Barcelona destination rows for a
+  small number of ICAOs, so the notebook collapses to one row per `end_icao`.
+- `all_airports.gpkg` contains duplicate airport ICAOs for `EDDB` and `EDLW`;
+  the notebook resolves those by preferring non-station entries and then longer
+  airport names.
+- Islands and disconnected segments in the rail network correctly return no
+  rail path.
