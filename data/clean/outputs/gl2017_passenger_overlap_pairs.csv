@@ -1,0 +1,7 @@
+left_idx,right_idx,left_id,right_id,left_type,right_type,left_railways_a,right_railways_a,same_type,overlap_m
+335,1240,20398,170206172210454,High speed,High speed,Passenger,Passenger,True,93143.304
+116,1348,20404,170206172210453,High speed,High speed,Passenger,Passenger,True,27544.334
+2072,2165,18165,190129143753102,Conventional,High speed,Passenger and freight,Passenger,False,1428.489
+2069,2165,150424105307018,190129143753102,Conventional,High speed,Passenger,Passenger,False,1419.824
+221,559,20000032,20000030,Conventional,Conventional,Passenger and freight,Passenger and freight,True,902.755
+554,2461,20000031,20000033,Conventional,Conventional,Passenger and freight,Passenger and freight,True,831.467
