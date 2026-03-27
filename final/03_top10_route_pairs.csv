@@ -1,0 +1,11 @@
+Route,Distance (km),Est. flight time (h),Annual passengers,Annual flights
+Barcelona - Barajas,483,1.35,"2,572,893","16,308"
+Barajas - Barcelona,483,1.35,"2,572,893","16,308"
+Frankfurt Main - Tegel,434,1.29,"2,249,667","16,152"
+Orly - Blagnac,572,1.46,"2,216,636","16,011"
+Barcelona - Palma de Mallorca,202,1,"2,173,939","15,030"
+Orly - Cote D'Azur,676,1.59,"2,059,092","13,790"
+Barajas - Palma de Mallorca,546,1.43,"1,995,104","13,306"
+Franz Josef Strauss - Tegel,480,1.35,"1,934,225","16,741"
+Fiumicino - Catania Fontanarossa,539,1.42,"1,824,428","12,502"
+Heathrow - Schiphol,370,1.21,"1,748,216","13,084"

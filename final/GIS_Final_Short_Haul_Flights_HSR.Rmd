@@ -1,0 +1,245 @@
+---
+title: "HSR Substitution Suitability — Analysis Summary"
+subtitle: "BSE GIS Final · 2025-2026"
+output:
+  pdf_document:
+    toc: true
+    latex_engine: xelatex
+    extra_dependencies: ["float"]
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+    self_contained: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo      = FALSE,
+  message   = FALSE,
+  warning   = FALSE,
+  out.width = "100%",
+  fig.align = "center",
+  fig.pos   = "H"
+)
+suppressPackageStartupMessages({
+  library(readr)
+  library(dplyr)
+  library(knitr)
+  library(kableExtra)
+  library(scales)
+})
+
+# kable styling that works for both HTML and PDF
+tbl <- function(df, ...) {
+  if (knitr::is_latex_output()) {
+    nc  <- ncol(df)
+    out <- kable(df, booktabs = TRUE, longtable = FALSE, ...) %>%
+      kable_styling(latex_options = c("striped", "HOLD_position"),
+                    full_width = FALSE,
+                    font_size  = 9)
+    if (nc >= 5) {
+      col_w <- paste0(round(14 / nc, 1), "cm")
+      out   <- out %>% column_spec(1:nc, width = col_w)
+    }
+    out
+  } else {
+    kable(df, ...) %>%
+      kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                    full_width = FALSE)
+  }
+}
+```
+
+---
+
+## What We Did
+
+We asked: **which short-haul European flights could realistically be replaced by high-speed rail, and under what conditions?**
+
+Using spatial network analysis on 15 major western European hub airports, we:
+
+- Mapped the GL2017 European passenger rail network and identified HSR corridors
+- Scored each of the 15 airports by how close they sit to HSR infrastructure
+- Flagged outbound routes as "HSR-suitable" if both endpoints are within 25 km of HSR and rail journey time is under 6 hours
+- Applied a carbon-adjusted cost model (Allen & Arkolakis, 2014) to identify routes where rail wins outright
+- Ran a carbon price sensitivity analysis to quantify how many more routes flip under the EU's 2030 targets
+
+---
+
+## Data Sources
+
+- **Rail network:** GL2017 EU railway shapefile (3,361 segments, HSR flagged)
+- **Airports:** OpenFlights airports.txt filtered to European commercial airports
+- **Routes & passengers:** Eurostat avia_paoa (2019), joined via ICAO codes
+- **Carbon parameters:** 255 g CO2/pax-km (aviation, incl. radiative forcing), 14 g CO2/pax-km (HSR)
+- **Cost model:** Carbon price 100 EUR/tonne, value of time 30 EUR/hr
+
+---
+
+## Map 1 — European Passenger Rail Network
+
+```{r map_1, fig.cap="European passenger rail network (GL2017)"}
+knitr::include_graphics("01_rail_network.png")
+```
+
+The European passenger rail network reveals a highly uneven but strategically dense distribution of infrastructure across western Europe. HSR corridors are concentrated in France, Spain, Germany, and northern Italy. A key limitation of the dataset is that certain fast lines — particularly in the UK — are classified as conventional rather than high-speed, which may understate true HSR accessibility in some regions.
+
+---
+
+## Map 2 — Top 15 Western European Hub Airports
+
+```{r map_2, fig.cap="Top 15 western European hub airports by annual passengers (2019)"}
+knitr::include_graphics("02_top15_airports.png")
+```
+
+London Heathrow (LHR), Paris Charles de Gaulle (CDG), and Amsterdam Schiphol (AMS) dominate passenger volume. All 15 hubs are located within the same western European core that contains the densest rail infrastructure, suggesting strong structural potential for modal substitution.
+
+---
+
+## Table — Top 10 Busiest Route Pairs
+
+```{r}
+read_csv("03_top10_route_pairs.csv", show_col_types = FALSE) %>%
+  tbl()
+```
+
+---
+
+## Map 3 — Airport Proximity to Rail Infrastructure
+
+```{r map_3, out.width="75%", fig.cap="Hub airport proximity to passenger rail (25 km buffer)"}
+knitr::include_graphics("04_rail_proximity.png")
+```
+
+Most hub airports sit within 25 km of the rail network, indicating that physical access is not the primary binding constraint. The notable exception is London Heathrow (LHR), which lacks a direct HSR connection within the threshold — highlighting that last-mile airport-to-rail integration matters as much as network coverage.
+
+---
+
+## Table — HSR Suitability by Airport
+
+```{r}
+read_csv("05_airport_suitability.csv", show_col_types = FALSE) %>%
+  transmute(
+    Airport              = start_iata,
+    `Total routes`       = total_routes,
+    `HSR-suitable`       = suitable_routes,
+    `Route share`        = percent(as.numeric(route_share),     accuracy = 1),
+    `Suitable pax`       = comma(as.numeric(suitable_pax),      accuracy = 1),
+    `Total pax`          = comma(as.numeric(total_passengers),  accuracy = 1),
+    `Passenger share`    = percent(as.numeric(passenger_share), accuracy = 1)
+  ) %>%
+  tbl(align = c("l","r","r","r","r","r","r"))
+```
+
+---
+
+## Map 4 — HSR Substitution Suitability by Airport
+
+```{r map_4, fig.cap="HSR substitution suitability by hub airport"}
+knitr::include_graphics("06_suitability_map.png")
+```
+
+Substitution suitability varies significantly across airports, driven by both infrastructure access and route network structure. Central European airports — Frankfurt (FRA), Paris (CDG), Amsterdam (AMS) — score highest, benefiting from dense HSR networks and a concentration of short-distance routes. Barcelona (BCN) scores lower despite strong infrastructure access because its route network skews toward longer destinations that exceed the six-hour threshold. Overall, 417 of 506 rail-connected routes meet the six-hour criterion.
+
+---
+
+## Carbon-Adjusted Cost Model
+
+The carbon-adjusted generalised cost for each mode follows Allen & Arkolakis (2014):
+
+$$C_{\text{flight}} = t_{\text{flight}} + \frac{e_{\text{flight}} \cdot d}{10^{6}} \cdot \frac{p_c}{v}$$
+
+$$C_{\text{rail}} = t_{\text{rail}} + \frac{e_{\text{rail}} \cdot d}{10^{6}} \cdot \frac{p_c}{v}$$
+
+where $t$ is journey time (hours), $d$ is great-circle distance (km),
+$e_{\text{flight}} = 255$ g CO$_2$/pax-km (incl. radiative forcing),
+$e_{\text{rail}} = 14$ g CO$_2$/pax-km,
+$p_c = 100$ EUR/tonne CO$_2$, and $v = 30$ EUR/hour (value of time).
+A route is carbon-optimal if $C_{\text{rail}} < C_{\text{flight}}$.
+
+---
+
+## Map 5 — Routes Where Rail Wins on Carbon-Adjusted Cost
+
+```{r map_5, fig.cap="Routes where carbon-adjusted rail cost < flight cost at €100/tonne CO2"}
+knitr::include_graphics("07_carbon_routes_map.png")
+```
+
+At a baseline carbon price of €100/tonne CO₂, approximately 25–35 routes are strictly carbon-optimal for rail. These are concentrated in the France–Spain–Germany corridor where HSR speeds and coverage are highest. The relatively small number underscores that the EU ETS as currently priced is insufficient to make rail economically dominant across the board.
+
+---
+
+## Table — Carbon-Optimal Routes
+
+```{r}
+read_csv("08_carbon_optimal_routes.csv", show_col_types = FALSE) %>%
+  mutate(
+    across(c(dist_km, rail_time_h, flight_time_h, cost_flight, cost_rail), ~ round(., 2)),
+    route_passengers = comma(as.numeric(route_passengers), accuracy = 1)
+  ) %>%
+  tbl()
+```
+
+---
+
+## Table — Airport Leaderboard (Carbon-Optimal Routes)
+
+```{r}
+read_csv("09_airport_leaderboard.csv", show_col_types = FALSE) %>%
+  tbl()
+```
+
+---
+
+## Chart — Carbon Price Sensitivity
+
+```{r chart_sensitivity, fig.cap="Routes unlocked as carbon price rises from €50 to €300/tonne"}
+knitr::include_graphics("10_carbon_sensitivity.png")
+```
+
+The stepwise pattern reflects discrete thresholds at which individual routes become economically favorable for rail. At current EU ETS levels (~€65/tonne) relatively few routes qualify. Moving toward the EU 2030 target (~€130/tonne) substantially expands the carbon-optimal set, particularly in central Europe — suggesting that modest price increases could have outsized impact on shifting travel behavior.
+
+---
+
+## Table — Carbon Price Impact by Airport (65 to 130 EUR/tonne)
+
+```{r}
+read_csv("11_carbon_delta_65_130.csv", show_col_types = FALSE) %>%
+  mutate(
+    across(c(optimal_pax_65, optimal_pax_130, delta_pax), ~ comma(as.numeric(.), accuracy = 1)),
+    delta_routes = as.integer(delta_routes)
+  ) %>%
+  arrange(desc(delta_routes)) %>%
+  tbl()
+```
+
+---
+
+## Key Findings
+
+1. **Infrastructure access, not distance, is the binding constraint.** LHR has zero HSR-suitable routes despite being Europe's busiest airport. CDG has 21. The difference is a rail station, not geography.
+
+2. **At current carbon prices (~65 EUR/tonne), only ~25 routes are strictly carbon-optimal.** The EU ETS as currently priced is insufficient to make rail economically dominant on most routes.
+
+3. **The 2030 carbon target (~130 EUR/tonne) meaningfully expands the carbon-optimal set**, particularly for central European hubs (FRA, CDG, AMS). Several routes sit just above the break-even and would flip with a moderate price increase.
+
+4. **BCN is the most instructive case.** Well-connected to HSR (3.4 km to nearest segment), but its destination network skews just above the carbon break-even. VLC at 296 km misses by under 0.01 cost units at 65 EUR/tonne.
+
+5. **Airport overhead is as important as carbon price.** The 0.75h flight overhead is the key asymmetry between modes. Direct HSR-airport integration shifts the break-even distance more than a doubling of the carbon price.
+
+---
+
+## Limitations
+
+| Assumption | Direction of bias |
+|---|---|
+| 25 km buffer as HSR access proxy | Overstates accessibility for some airports |
+| Straight-line / HSR speed for rail time | Understates rail time for routes requiring transfers |
+| 0.75h flat flight overhead | Conservative — understates airport friction |
+| 255 g CO2/pax-km includes radiative forcing | Excluded from some policy frameworks |
+| 2019 Eurostat passenger data | Pre-COVID; post-pandemic demand patterns differ |
+
+---
+
+*Tools: R (sf, ggplot2, sfnetworks, dplyr) · Framework: Allen & Arkolakis (2014)*
