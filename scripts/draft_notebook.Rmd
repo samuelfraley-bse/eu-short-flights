@@ -15,18 +15,18 @@ preliminary analysis to determine if this project is reasonable for the final
 capstone.
 
 **Research question:** Which short-haul European flight routes are substitutable
-by existing high-speed rail, and what policy levers make that substitution
-welfare-improving?
+by rail based on estimated travel times, and what policy levers make that
+substitution welfare-improving?
 
 **Approach:**
 
-- Spatial analysis of the European HSR network and its proximity to airports
-- Flight time and great-circle distance modelling to identify substitutable routes
+- Spatial analysis of airport access to the European rail network
+- Flight time and rail time modelling to identify substitutable routes
 - Carbon-adjusted market access framework (Allen & Arkolakis, 2014) to measure
   connectivity change
 - Sensitivity analysis across carbon prices and airport overhead assumptions
 
-**Data:** GL2017 EU Rail, OpenFlights (airports + routes), Eurostat `avia_paoa`
+**Data:** Natural Earth rail, OpenFlights (airports + routes), Eurostat `avia_paoa`
 
 ---
 
@@ -68,7 +68,11 @@ C_HSR    <- "#e63946"
 C_CONV   <- "#cccccc"
 C_APHSR  <- "#2176ae"
 C_APNONE <- "#aaaaaa"
-SOURCE   <- "Data: GL2017 EU Rail, OpenFlights, Eurostat avia_paoa"
+SOURCE   <- "Data: Natural Earth rail, OpenFlights, Eurostat avia_paoa"
+ANALYSIS_CRS <- 3035
+RAIL_SPEED <- 800
+LOCAL_ACCESS_SPEED <- 60
+STATION_PENALTY <- 0.75
 
 # Minimal theme for all maps
 theme_map <- function(...) {
@@ -87,52 +91,65 @@ theme_map <- function(...) {
 
 ## 1. European Rail Infrastructure
 
-I tried several OSM passes as well as various data sources (Eurostat), but had
-some trouble finding a stable source. I reverted to a 2017 web version.
+The original workflow depended on a GL2017 rail file with a high-speed flag.
+That is useful for visualization, but it is not reliable enough to define
+substitutability in the model. I now use the more complete Natural Earth rail
+network for calculations and define rail feasibility functionally using travel
+time rather than infrastructure labels.
 
-The GL2017 EU railway shapefile covers 3,361 line segments across all EU member
-states, classified by type (conventional vs high speed) and linked to TEN-T
-corridor designations. The dataset is in EPSG:3857 (Web Mercator), which
-preserves metre-based distance calculations.
-
-**Notes:**
-
-- High-speed rail accounts for 660 segments (19.6% of the network)
-- Germany, France and Italy hold the largest share of segments by country
+GL2017 is still kept as an optional visual overlay so I can compare modeled
+rail-feasible routes against where an explicit high-speed label exists. It is
+not used in the calculations below.
 
 ```{r load-railways}
-railways <- st_read(
+countries <- st_read(file.path(data_clean, "ne_10m_countries.gpkg"), quiet = TRUE) %>%
+  st_make_valid() %>%
+  st_transform(ANALYSIS_CRS)
+
+countries_mask <- st_union(countries)
+
+rail_ne <- st_read(
+  paste0(
+    "/vsizip/",
+    normalizePath(
+      file.path(data_raw, "shapefiles", "ne_10m_railroads.zip"),
+      winslash = "/", mustWork = TRUE
+    )
+  ),
+  quiet = TRUE
+) %>%
+  st_make_valid() %>%
+  st_transform(ANALYSIS_CRS) %>%
+  st_intersection(countries_mask)
+
+rail_gl2017 <- st_read(
   file.path(data_raw, "shapefiles", "railways_GL2017_EU.shp"),
   quiet = TRUE
-)
-hs <- railways %>% filter(TYPE == "High speed")
+) %>%
+  st_make_valid() %>%
+  st_transform(ANALYSIS_CRS) %>%
+  st_intersection(countries_mask)
 
-cat(sprintf("Total segments:   %s\n", format(nrow(railways), big.mark = ",")))
-cat(sprintf("High speed:       %s  (%.1f%%)\n",
-            format(nrow(hs), big.mark = ","),
-            nrow(hs) / nrow(railways) * 100))
-cat(sprintf("CRS:              %s\n", st_crs(railways)$input))
+gl2017_hs <- rail_gl2017 %>% filter(TYPE == "High speed")
 
-cat("\nSegments by type:\n")
-print(railways %>% st_drop_geometry() %>% count(TYPE, sort = TRUE))
+cat(sprintf("Natural Earth rail segments: %s\n", format(nrow(rail_ne), big.mark = ",")))
+cat(sprintf("GL2017 rail segments:        %s\n", format(nrow(rail_gl2017), big.mark = ",")))
+cat(sprintf("GL2017 'High speed':         %s\n", format(nrow(gl2017_hs), big.mark = ",")))
+cat(sprintf("Analysis CRS:                %s\n", st_crs(rail_ne)$input))
 
-cat("\nSegments by country (top 10):\n")
-print(railways %>% st_drop_geometry() %>% count(COUNTRY_CO, sort = TRUE) %>% head(10))
+cat("\nNatural Earth feature classes:\n")
+print(rail_ne %>% st_drop_geometry() %>% count(featurecla, sort = TRUE))
 ```
 
 ```{r plot-rail, fig.cap="European rail network — conventional and high speed"}
 p_rail <- ggplot() +
   annotation_map_tile(type = "cartolight", zoom = 5, quiet = TRUE) +
-  geom_sf(data = railways, color = "forestgreen", linewidth = 0.3, alpha = 0.7) +
-  geom_sf(data = hs,       color = C_HSR,         linewidth = 0.8) +
+  geom_sf(data = rail_ne, color = "forestgreen", linewidth = 0.3, alpha = 0.65) +
+  geom_sf(data = gl2017_hs, color = C_HSR, linewidth = 0.5, alpha = 0.8) +
   labs(
-    title   = "European Rail Network: Conventional & High Speed",
+    title   = "European Rail Network for the Accessibility Model",
+    subtitle = "Natural Earth rail is the modeling base; GL2017 high-speed labels are shown only as an optional overlay",
     caption = SOURCE
-  ) +
-  scale_color_identity(
-    guide  = "legend",
-    labels = c("High speed (n=660)", "Conventional (n=2,701)"),
-    name   = NULL
   ) +
   theme_map()
 
@@ -456,6 +473,128 @@ as well as Istanbul, others in northern Europe as well.
 
 ---
 
+## Refactored accessibility model
+
+The sections below implement the time-based rail accessibility model that
+replaces the older HSR-buffer workflow. They are the chunks that should be used
+for interpretation and any downstream calculations.
+
+```{r rail-access}
+gdf_civil <- europe_civil %>%
+  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>%
+  st_transform(ANALYSIS_CRS)
+
+nearest_rail_idx <- st_nearest_feature(gdf_civil, rail_ne)
+nearest_rail_dist_m <- st_distance(
+  gdf_civil,
+  rail_ne[nearest_rail_idx, ],
+  by_element = TRUE
+)
+
+airport_access <- gdf_civil %>%
+  mutate(
+    dist_to_rail_km = as.numeric(nearest_rail_dist_m) / 1000,
+    access_time_h = dist_to_rail_km / LOCAL_ACCESS_SPEED
+  )
+
+airport_access_lookup <- airport_access %>%
+  st_drop_geometry() %>%
+  select(id, iata, dist_to_rail_km, access_time_h)
+```
+
+```{r plot-rail-access}
+p_buf <- ggplot() +
+  annotation_map_tile(type = "cartolight", zoom = 5, quiet = TRUE) +
+  geom_sf(data = rail_ne, color = "#888888", linewidth = 0.35, alpha = 0.55) +
+  geom_sf(data = airport_access, aes(color = dist_to_rail_km), size = 2.2, alpha = 0.85) +
+  scale_color_gradientn(
+    colours = c("#1a9850", "#91cf60", "#fee08b", "#fc8d59", "#d73027"),
+    name = "Distance to nearest rail (km)",
+    guide = guide_colorbar(title.position = "top", barwidth = 15)
+  ) +
+  labs(
+    title = "Airport-to-Rail Accessibility",
+    subtitle = "Each airport is linked to the nearest Natural Earth rail segment; rail feasibility is defined using GIS distance, not HSR labels",
+    caption = SOURCE
+  ) +
+  theme_map()
+
+ggsave(file.path(root_dir, "slides", "05_buffer_methodology.png"),
+       p_buf, width = 14, height = 8.75, dpi = 150, bg = "white")
+p_buf
+```
+
+```{r plot-rail-access-mismatch}
+airport_access_mismatch <- airport_access %>%
+  mutate(
+    gl2017_hs_near = lengths(st_intersects(geometry, st_buffer(gl2017_hs, 5000))) > 0,
+    mismatch = case_when(
+      access_time_h <= 0.25 & !gl2017_hs_near ~ "Rail-feasible, no GL2017 HSR nearby",
+      access_time_h <= 0.25 &  gl2017_hs_near ~ "Rail-feasible, GL2017 HSR nearby",
+      TRUE ~ "Longer local access"
+    )
+  )
+
+p_flood <- ggplot() +
+  annotation_map_tile(type = "cartolight", zoom = 5, quiet = TRUE) +
+  geom_sf(data = rail_ne, color = "#bdbdbd", linewidth = 0.25, alpha = 0.45) +
+  geom_sf(data = gl2017_hs, color = C_HSR, linewidth = 0.45, alpha = 0.55) +
+  geom_sf(data = airport_access_mismatch, aes(color = mismatch), size = 2.3, alpha = 0.85) +
+  scale_color_manual(
+    values = c(
+      "Rail-feasible, no GL2017 HSR nearby" = "#f4a261",
+      "Rail-feasible, GL2017 HSR nearby" = C_APHSR,
+      "Longer local access" = C_APNONE
+    ),
+    name = NULL
+  ) +
+  labs(
+    title = "Modeled Rail Accessibility vs GL2017 Overlay",
+    subtitle = "Optional comparison: where the time-based model finds rail-feasible access without a nearby GL2017 high-speed segment",
+    caption = SOURCE
+  ) +
+  theme_map()
+
+ggsave(file.path(root_dir, "slides", "06_hsr_flood_fill.png"),
+       p_flood, width = 14, height = 8.75, dpi = 150, bg = "white")
+p_flood
+```
+
+```{r substitutable-routes-refactor}
+pax_lookup <- europe_civil_pax %>%
+  distinct(id, .keep_all = TRUE) %>%
+  filter(!is.na(passengers)) %>%
+  select(id, name, passengers)
+
+routes_time <- eu_routes %>%
+  left_join(
+    airport_access_lookup %>%
+      rename(src_id = id, src_dist_to_rail_km = dist_to_rail_km, src_access_time_h = access_time_h),
+    by = "src_id"
+  ) %>%
+  left_join(
+    airport_access_lookup %>%
+      rename(dst_id = id, dst_dist_to_rail_km = dist_to_rail_km, dst_access_time_h = access_time_h),
+    by = "dst_id"
+  ) %>%
+  mutate(
+    rail_time_h = dist_km / RAIL_SPEED + src_access_time_h + dst_access_time_h + STATION_PENALTY,
+    substitutable = rail_time_h <= 2.5
+  ) %>%
+  left_join(pax_lookup %>% rename(src_id = id, src_name = name, src_pax = passengers), by = "src_id") %>%
+  left_join(pax_lookup %>% rename(dst_id = id, dst_name = name, dst_pax = passengers), by = "dst_id") %>%
+  mutate(
+    gravity = src_pax * dst_pax,
+    route_key = map2_chr(src_id, dst_id, ~ paste(sort(c(.x, .y)), collapse = "_"))
+  )
+
+sub_routes <- routes_time %>%
+  filter(substitutable) %>%
+  arrange(desc(gravity)) %>%
+  distinct(route_key, .keep_all = TRUE)
+```
+
+
 ## 5. Spatial Analysis — HSR Airport Access
 
 I defined airport HSR access using a 5 km buffer around each airport,
@@ -475,7 +614,7 @@ access to the whole connected corridor, not just that one piece.
 - Focused on HSR line edges rather than stations — a station-level dataset
   would be more precise
 
-```{r flood-fill}
+```{r flood-fill, eval=FALSE, include=FALSE}
 airport_buf <- gdf_civil %>%
   st_transform(3857) %>%          # hs is in 3857
   st_buffer(5000)
@@ -509,7 +648,7 @@ cat(sprintf("Civil airports with HSR access:        %d / %d\n",
             nrow(civil_near_hsr), nrow(gdf_civil)))
 ```
 
-```{r plot-buffer}
+```{r plot-buffer, eval=FALSE, include=FALSE}
 hs_near       <- hs %>% filter(as.logical(st_intersects(., civil_buf_union, sparse = FALSE)))
 bufs_near_hsr <- airport_buf %>%
   filter(as.logical(st_intersects(., hs_union, sparse = FALSE)))
@@ -532,7 +671,7 @@ ggsave(file.path(root_dir, "slides", "05_buffer_methodology.png"),
 p_buf
 ```
 
-```{r plot-flood-fill}
+```{r plot-flood-fill, eval=FALSE, include=FALSE}
 p_flood <- ggplot() +
   annotation_map_tile(type = "cartolight", zoom = 5, quiet = TRUE) +
   geom_sf(data = hs_not_accessible, color = "#f4a261", linewidth = 0.6) +
@@ -567,7 +706,7 @@ transport models.
 - Deduplicated so A–B and B–A count as one route
 - Airports not matched to Eurostat are excluded from the ranked list
 
-```{r substitutable-routes}
+```{r substitutable-routes, eval=FALSE, include=FALSE}
 hsr_ids  <- civil_near_hsr$id
 
 pax_lookup <- europe_civil_pax %>%
@@ -609,7 +748,7 @@ both_hsr_dedup %>%
 ```
 
 ```{r plot-top50}
-top50 <- both_hsr_dedup %>%
+top50 <- sub_routes %>%
   filter(!is.na(gravity)) %>%
   slice_max(gravity, n = 50)
 
@@ -624,10 +763,8 @@ top50_sf <- top50 %>%
   st_transform(3857)
 
 ap50_ids <- union(top50$src_id, top50$dst_id)
-ap50 <- europe_civil_pax %>%
-  distinct(id, .keep_all = TRUE) %>%
+ap50 <- airport_access %>%
   filter(id %in% ap50_ids) %>%
-  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>%
   st_transform(3857)
 
 # Label midpoints for the top 10 routes
@@ -639,20 +776,19 @@ top10_routes <- top50_sf %>% slice_head(n = 10) %>%
 
 p_top50 <- ggplot() +
   annotation_map_tile(type = "cartolight", zoom = 5, quiet = TRUE) +
-  geom_sf(data = top50_sf, aes(color = gravity, linewidth = log10(gravity)),
+  geom_sf(data = top50_sf, aes(color = rail_time_h, linewidth = log10(gravity)),
           alpha = 0.75) +
   geom_sf(data = ap50, color = C_APHSR, size = 3, alpha = 0.8) +
   geom_sf_text(data = top10_routes, aes(label = label, geometry = mid),
                size = 2.2, fontface = "bold", color = "#222222") +
-  scale_color_distiller(
-    palette = "YlOrRd", direction = 1,
-    trans   = "log10",
+  scale_color_gradientn(
+    colours = c("#1a9850", "#91cf60", "#fee08b", "#fc8d59", "#d73027"),
     name    = "Gravity score  (pax_origin × pax_dest)",
-    guide   = guide_colorbar(title.position = "top", barwidth = 15)
+    guide   = guide_colorbar(title = "Rail travel time (hours)", title.position = "top", barwidth = 15)
   ) +
   scale_linewidth_continuous(range = c(0.4, 3), guide = "none") +
   labs(
-    title    = "Top 50 Short-Haul Routes Substitutable by HSR",
+    title    = "Top 50 Short-Haul Routes with Rail-Competitive Travel Times",
     subtitle = "Both airports ≤ 5 km from HSR  |  Flight ≤ 2.5 h  |  Ranked by passenger gravity",
     caption  = SOURCE
   ) +
@@ -709,7 +845,7 @@ routes. $\Delta MA_i$ measures the resulting change in connectivity.
   equilibrium effects.
 
 ```{r market-access}
-HSR_SPEED    <- 250
+HSR_SPEED    <- RAIL_SPEED
 CO2_FLIGHT   <- 255
 CO2_RAIL     <- 14
 CARBON_PRICE <- 0.10   # EUR/kg (= EUR 100/tonne)
@@ -727,21 +863,31 @@ ap_pax <- setNames(ap_universe$passengers, ap_universe$id)
 routes_ma <- eu_routes %>%
   filter(src_id %in% ap_ids, dst_id %in% ap_ids) %>%
   distinct(src_id, dst_id, .keep_all = TRUE) %>%
+  left_join(
+    airport_access_lookup %>%
+      rename(src_id = id, src_access_time_h = access_time_h),
+    by = "src_id"
+  ) %>%
+  left_join(
+    airport_access_lookup %>%
+      rename(dst_id = id, dst_access_time_h = access_time_h),
+    by = "dst_id"
+  ) %>%
   mutate(
     dist_km       = haversine_km(src_lat, src_lon, dst_lat, dst_lon),
     flight_time_h = dist_km / 800 + 0.75,
-    hsr_time_h    = dist_km / HSR_SPEED,
+    rail_time_h   = dist_km / RAIL_SPEED + src_access_time_h + dst_access_time_h + STATION_PENALTY,
     cost_baseline = flight_time_h + CO2_FLIGHT * dist_km / 1000 * LAMBDA,
     cost_counter  = cost_baseline,
     route_key     = map2_chr(src_id, dst_id,
                              ~ paste(sort(c(.x, .y)), collapse = "_"))
   )
 
-sub_keys <- both_hsr_dedup$route_key
+sub_keys <- sub_routes$route_key
 routes_ma <- routes_ma %>%
   mutate(cost_counter = if_else(
     route_key %in% sub_keys,
-    hsr_time_h + CO2_RAIL * dist_km / 1000 * LAMBDA,
+    rail_time_h + CO2_RAIL * dist_km / 1000 * LAMBDA,
     cost_counter
   )) %>%
   mutate(Y_dst = ap_pax[as.character(dst_id)])
@@ -872,14 +1018,16 @@ flips at anything above EUR 100/t.
   infrastructure problem, not a tax policy problem
 
 ```{r breakeven-curve, fig.width=12, fig.height=6.5}
+median_access_pair_h <- median(sub_routes$src_access_time_h + sub_routes$dst_access_time_h, na.rm = TRUE)
 distances    <- seq(50, 1400, length.out = 500)
 costs_flight <- distances / 800 + 0.75 + CO2_FLIGHT * distances / 1000 * LAMBDA
-costs_hsr    <- distances / 250        + CO2_RAIL   * distances / 1000 * LAMBDA
-breakeven    <- 0.75 / ((1 / HSR_SPEED - 1 / 800) + (CO2_RAIL - CO2_FLIGHT) / 1000 * LAMBDA)
+costs_hsr    <- distances / RAIL_SPEED + median_access_pair_h + STATION_PENALTY +
+                CO2_RAIL * distances / 1000 * LAMBDA
+breakeven    <- median_access_pair_h / ((CO2_FLIGHT - CO2_RAIL) / 1000 * LAMBDA)
 
 cat(sprintf("Break-even distance (baseline params): %.0f km\n", breakeven))
-cat(sprintf("Routes below break-even: %d\n", sum(both_hsr_dedup$dist_km < breakeven,  na.rm = TRUE)))
-cat(sprintf("Routes above break-even: %d\n", sum(both_hsr_dedup$dist_km >= breakeven, na.rm = TRUE)))
+cat(sprintf("Routes below break-even: %d\n", sum(sub_routes$dist_km < breakeven,  na.rm = TRUE)))
+cat(sprintf("Routes above break-even: %d\n", sum(sub_routes$dist_km >= breakeven, na.rm = TRUE)))
 
 cost_df <- data.frame(
   dist       = rep(distances, 2),
@@ -943,7 +1091,8 @@ heatmap_df <- expand.grid(overhead = overheads, carbon_price = carbon_prices) %>
   mutate(
     lam     = carbon_price / (1000 * VOT),
     cf      = dist_bm / 800 + overhead + CO2_FLIGHT * dist_bm / 1000 * lam,
-    cr      = dist_bm / 250             + CO2_RAIL   * dist_bm / 1000 * lam,
+    cr      = dist_bm / RAIL_SPEED + median_access_pair_h + STATION_PENALTY +
+              CO2_RAIL * dist_bm / 1000 * lam,
     hsr_win = cr < cf,
     margin  = (cf - cr) * 60   # minutes
   )
@@ -1040,12 +1189,14 @@ plot_isochrone <- function(hub_iata, time_budget = 4.0) {
     mutate(
       dist_km       = haversine_km(hub_lat, hub_lon, lat, lon),
       flight_time_h = dist_km / 800 + 0.75,
-      hsr_time_h    = dist_km / HSR_SPEED,
-      hsr_ok        = id %in% hsr_ids
+      hsr_time_h    = dist_km / RAIL_SPEED +
+                      airport_access_lookup$access_time_h[match(hub_row$id, airport_access_lookup$id)] +
+                      airport_access_lookup$access_time_h[match(id, airport_access_lookup$id)] +
+                      STATION_PENALTY
     )
 
   by_flight <- ap %>% filter(flight_time_h <= time_budget)
-  by_hsr    <- ap %>% filter(hsr_time_h    <= time_budget, hsr_ok)
+  by_hsr    <- ap %>% filter(hsr_time_h <= time_budget)
 
   ap <- ap %>%
     mutate(reach = case_when(
