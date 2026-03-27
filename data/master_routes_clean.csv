@@ -1,0 +1,1346 @@
+start_airport,start_icao,end_airport,end_icao,route_name,route_passengers,start_pax_total,end_pax_total,start_pax_pct,year,data_quality
+Schwechat,LOWW,Tirana Rinas,LATI,Schwechat - Tirana Rinas,186878,31258901,NA,0.6,2019,missing_end_pax
+Schwechat,LOWW,Graz,LOWG,Schwechat - Graz,131536,31258901,899161,0.42,2019,complete
+Schwechat,LOWW,Innsbruck,LOWI,Schwechat - Innsbruck,204473,31258901,949950,0.65,2019,complete
+Schwechat,LOWW,Klagenfurt,LOWK,Schwechat - Klagenfurt,119543,31258901,197478,0.38,2019,complete
+Schwechat,LOWW,Blue Danube,LOWL,Schwechat - Blue Danube,2831789.7921519526,31258901,256536,NA,2019,complete
+Schwechat,LOWW,Wolfgang A. Mozart,LOWS,Schwechat - Wolfgang A. Mozart,92313,31258901,1479739,0.3,2019,complete
+Schwechat,LOWW,Sarajevo,LQSA,Schwechat - Sarajevo,159292,31258901,NA,0.51,2019,missing_end_pax
+Schwechat,LOWW,Brussels South,EBCI,Schwechat - Brussels South,16006870.28573987,31258901,8196702,NA,2019,complete
+Schwechat,LOWW,Bale Mulhouse,LFSB,Schwechat - Bale Mulhouse,196972,31258901,8271471,0.63,2019,complete
+Schwechat,LOWW,Bale Mulhouse,LFSB,Schwechat - Bale Mulhouse,196972,31258901,562406,0.63,2019,complete
+Schwechat,LOWW,Geneve Cointrin,LSGG,Schwechat - Geneve Cointrin,289265,31258901,17742225,0.93,2019,complete
+Schwechat,LOWW,Zurich,LSZH,Schwechat - Zurich,940410,31258901,31292970,3.01,2019,complete
+Schwechat,LOWW,St Gallen Altenrhein,LSZR,Schwechat - St Gallen Altenrhein,83403,31258901,107485,0.27,2019,complete
+Schwechat,LOWW,Schonefeld,EDDB,Schwechat - Schonefeld,18566955.867952023,31258901,11028278,NA,2019,complete
+Schwechat,LOWW,Berlin Brandenburg Willy Brandt,EDDB,Schwechat - Berlin Brandenburg Willy Brandt,18566955.867952023,31258901,11028278,NA,2019,complete
+Schwechat,LOWW,Hamburg,EDDH,Schwechat - Hamburg,720332,31258901,16279030,2.3,2019,complete
+Schwechat,LOWW,Koln Bonn,EDDK,Schwechat - Koln Bonn,373014,31258901,10641348,1.19,2019,complete
+Schwechat,LOWW,Dusseldorf,EDDL,Schwechat - Dusseldorf,771175,31258901,24588161,2.47,2019,complete
+Schwechat,LOWW,Nurnberg,EDDN,Schwechat - Nurnberg,10439676.556387464,31258901,3486586,NA,2019,complete
+Schwechat,LOWW,Stuttgart,EDDS,Schwechat - Stuttgart,556925,31258901,12275312,1.78,2019,complete
+Schwechat,LOWW,Tegel,EDDT,Schwechat - Tegel,966659,31258901,24008455,3.09,2019,complete
+Schwechat,LOWW,Hannover,EDDV,Schwechat - Hannover,223481,31258901,5908901,0.71,2019,complete
+Schwechat,LOWW,Dortmund,EDLW,Schwechat - Dortmund,108276,31258901,2691042,0.35,2019,complete
+Schwechat,LOWW,HBF RAILWAY STATION,EDLW,Schwechat - HBF RAILWAY STATION,108276,31258901,2691042,0.35,2019,complete
+Schwechat,LOWW,Eleftherios Venizelos Intl,LGAV,Schwechat - Eleftherios Venizelos Intl,330018,31258901,NA,1.06,2019,missing_end_pax
+Schwechat,LOWW,Nikos Kazantzakis,LGIR,Schwechat - Nikos Kazantzakis,107615,31258901,NA,0.34,2019,missing_end_pax
+Schwechat,LOWW,Kos,LGKO,Schwechat - Kos,NA,31258901,NA,NA,2019,missing_end_pax
+Schwechat,LOWW,Ioannis Kapodistrias Intl,LGKR,Schwechat - Ioannis Kapodistrias Intl,NA,31258901,NA,NA,2019,missing_end_pax
+Schwechat,LOWW,Rhodes Diagoras,LGRP,Schwechat - Rhodes Diagoras,78095,31258901,NA,0.25,2019,missing_end_pax
+Schwechat,LOWW,Makedonia,LGTS,Schwechat - Makedonia,159367,31258901,NA,0.51,2019,missing_end_pax
+Schwechat,LOWW,Gran Canaria,GCLP,Schwechat - Gran Canaria,18708106.65572802,31258901,11196595,NA,2019,complete
+Schwechat,LOWW,Tenerife Sur,GCTS,Schwechat - Tenerife Sur,112946,31258901,9350488,0.36,2019,complete
+Schwechat,LOWW,Alicante,LEAL,Schwechat - Alicante,21382851.817808986,31258901,14627077,NA,2019,complete
+Schwechat,LOWW,Ibiza,LEIB,Schwechat - Ibiza,76414,31258901,7632907,0.24,2019,complete
+Schwechat,LOWW,Malaga,LEMG,Schwechat - Malaga,174201,31258901,19158321,0.56,2019,complete
+Schwechat,LOWW,Palma de Mallorca,LEPA,Schwechat - Palma de Mallorca,479402,31258901,27397471,1.53,2019,complete
+Schwechat,LOWW,Valencia,LEVC,Schwechat - Valencia,150576,31258901,8341358,0.48,2019,complete
+Schwechat,LOWW,Sevilla,LEZL,Schwechat - Sevilla,15264898.725079214,31258901,7454425,NA,2019,complete
+Schwechat,LOWW,Helsinki Vantaa,EFHK,Schwechat - Helsinki Vantaa,194345,31258901,NA,0.62,2019,missing_end_pax
+Schwechat,LOWW,Saint Exupery,LFLL,Schwechat - Saint Exupery,138750,31258901,11461753,0.44,2019,complete
+Schwechat,LOWW,Provence,LFML,Schwechat - Provence,17707216.07457533,31258901,10030599,NA,2019,complete
+Schwechat,LOWW,Cote D'Azur,LFMN,Schwechat - Cote D'Azur,224219,31258901,14277508,0.72,2019,complete
+Schwechat,LOWW,Beauvais–Tille,LFOB,Schwechat - Beauvais–Tille,11046257.63547646,31258901,3903522,NA,2019,complete
+Schwechat,LOWW,Bale Mulhouse,LFSB,Schwechat - Bale Mulhouse,16079710.604154883,31258901,8271471,NA,2019,complete
+Schwechat,LOWW,Bale Mulhouse,LFSB,Schwechat - Bale Mulhouse,4192874.1306895916,31258901,562406,NA,2019,complete
+Schwechat,LOWW,Dubrovnik,LDDU,Schwechat - Dubrovnik,88948,31258901,NA,0.28,2019,missing_end_pax
+Schwechat,LOWW,Split International,LDSP,Schwechat - Split International,NA,31258901,NA,NA,2019,missing_end_pax
+Schwechat,LOWW,Zagreb,LDZA,Schwechat - Zagreb,173171,31258901,NA,0.55,2019,missing_end_pax
+Schwechat,LOWW,Zadar,LDZD,Schwechat - Zadar,NA,31258901,NA,NA,2019,missing_end_pax
+Schwechat,LOWW,Dublin,EIDW,Schwechat - Dublin,222771,31258901,NA,0.71,2019,missing_end_pax
+Schwechat,LOWW,Keflavik International Airport,BIKF,Schwechat - Keflavik International Airport,NA,31258901,NA,NA,2019,missing_end_pax
+Schwechat,LOWW,Bari,LIBD,Schwechat - Bari,89631,31258901,5464123,0.29,2019,complete
+Schwechat,LOWW,Catania Fontanarossa,LICC,Schwechat - Catania Fontanarossa,104259,31258901,9740700,0.33,2019,complete
+Schwechat,LOWW,Palermo,LICJ,Schwechat - Palermo,14725172.715078998,31258901,6936607,NA,2019,complete
+Schwechat,LOWW,Bergamo Orio Al Serio,LIME,Schwechat - Bergamo Orio Al Serio,114810,31258901,13600898,0.37,2019,complete
+Schwechat,LOWW,Linate,LIML,Schwechat - Linate,14293056.126104208,31258901,6535465,NA,2019,complete
+Schwechat,LOWW,Bologna,LIPE,Schwechat - Bologna,182491,31258901,9338293,0.58,2019,complete
+Schwechat,LOWW,Marco Polo di Tessera,LIPZ,Schwechat - Marco Polo di Tessera,181525,31258901,11454860,0.58,2019,complete
+Schwechat,LOWW,Capodichino,LIRN,Schwechat - Capodichino,141845,31258901,10387667,0.45,2019,complete
+Schwechat,LOWW,Peretola,LIRQ,Schwechat - Peretola,9455688.94066461,31258901,2860307,NA,2019,complete
+Schwechat,LOWW,Vilnius Intl,EYVI,Schwechat - Vilnius Intl,NA,31258901,NA,NA,2019,missing_end_pax
+Schwechat,LOWW,Luxembourg,ELLX,Schwechat - Luxembourg,124512,31258901,NA,0.4,2019,missing_end_pax
+Schwechat,LOWW,Riga Intl,EVRA,Schwechat - Riga Intl,133874,31258901,NA,0.43,2019,missing_end_pax
+Schwechat,LOWW,Podgorica,LYPG,Schwechat - Podgorica,86933,31258901,NA,0.28,2019,missing_end_pax
+Schwechat,LOWW,Alexaner The Great,LWSK,Schwechat - Alexaner The Great,136072,31258901,NA,0.44,2019,missing_end_pax
+Schwechat,LOWW,Luqa,LMML,Schwechat - Luqa,138198,31258901,NA,0.44,2019,missing_end_pax
+Schwechat,LOWW,Eindhoven,EHEH,Schwechat - Eindhoven,14519349.073300324,31258901,6744047,NA,2019,complete
+Schwechat,LOWW,Rotterdam,EHRD,Schwechat - Rotterdam,7788719.353699939,31258901,1940700,NA,2019,complete
+Schwechat,LOWW,Gardermoen,ENGM,Schwechat - Gardermoen,172412,31258901,NA,0.55,2019,missing_end_pax
+Schwechat,LOWW,Porto,LPPR,Schwechat - Porto,NA,31258901,NA,NA,2019,missing_end_pax
+Schwechat,LOWW,Lisboa,LPPT,Schwechat - Lisboa,335342,31258901,NA,1.07,2019,missing_end_pax
+Schwechat,LOWW,Beograd,LYBE,Schwechat - Beograd,212412,31258901,NA,0.68,2019,missing_end_pax
+Schwechat,LOWW,Nis,LYNI,Schwechat - Nis,NA,31258901,NA,NA,2019,missing_end_pax
+Schwechat,LOWW,Landvetter,ESGG,Schwechat - Landvetter,NA,31258901,NA,NA,2019,missing_end_pax
+Schwechat,LOWW,Arlanda,ESSA,Schwechat - Arlanda,264672,31258901,NA,0.85,2019,missing_end_pax
+Schwechat,LOWW,Ljubljana,LJLJ,Schwechat - Ljubljana,NA,31258901,NA,NA,2019,missing_end_pax
+Schwechat,LOWW,Manchester,EGCC,Schwechat - Manchester,116876,31258901,26895408,0.37,2019,complete
+Schwechat,LOWW,Luton,EGGW,Schwechat - Luton,23695318.70542078,31258901,17961864,NA,2019,complete
+Schwechat,LOWW,Edinburgh,EGPH,Schwechat - Edinburgh,21297676.028005473,31258901,14510779,NA,2019,complete
+Schwechat,LOWW,Stansted,EGSS,Schwechat - Stansted,232968,31258901,27745806,0.75,2019,complete
+Frankfurt Main,EDDF,Tirana Rinas,LATI,Frankfurt Main - Tirana Rinas,125795,70066509,NA,0.18,2019,missing_end_pax
+Frankfurt Main,EDDF,Graz,LOWG,Frankfurt Main - Graz,237075,70066509,899161,0.34,2019,complete
+Frankfurt Main,EDDF,Innsbruck,LOWI,Frankfurt Main - Innsbruck,167732,70066509,949950,0.24,2019,complete
+Frankfurt Main,EDDF,Blue Danube,LOWL,Frankfurt Main - Blue Danube,177371,70066509,256536,0.25,2019,complete
+Frankfurt Main,EDDF,Wolfgang A. Mozart,LOWS,Frankfurt Main - Wolfgang A. Mozart,226645,70066509,1479739,0.32,2019,complete
+Frankfurt Main,EDDF,Schwechat,LOWW,Frankfurt Main - Schwechat,1106632,70066509,31258901,1.58,2019,complete
+Frankfurt Main,EDDF,Sarajevo,LQSA,Frankfurt Main - Sarajevo,NA,70066509,NA,NA,2019,missing_end_pax
+Frankfurt Main,EDDF,Bale Mulhouse,LFSB,Frankfurt Main - Bale Mulhouse,179358,70066509,8271471,0.26,2019,complete
+Frankfurt Main,EDDF,Bale Mulhouse,LFSB,Frankfurt Main - Bale Mulhouse,179358,70066509,562406,0.26,2019,complete
+Frankfurt Main,EDDF,Geneve Cointrin,LSGG,Frankfurt Main - Geneve Cointrin,433551,70066509,17742225,0.62,2019,complete
+Frankfurt Main,EDDF,Zurich,LSZH,Frankfurt Main - Zurich,652458,70066509,31292970,0.93,2019,complete
+Frankfurt Main,EDDF,Schonefeld,EDDB,Frankfurt Main - Schonefeld,27797714.64961647,70066509,11028278,NA,2019,complete
+Frankfurt Main,EDDF,Berlin Brandenburg Willy Brandt,EDDB,Frankfurt Main - Berlin Brandenburg Willy Brandt,27797714.64961647,70066509,11028278,NA,2019,complete
+Frankfurt Main,EDDF,Dresden International,EDDC,Frankfurt Main - Dresden International,331930,70066509,1420208,0.47,2019,complete
+Frankfurt Main,EDDF,Munster Osnabruck,EDDG,Frankfurt Main - Munster Osnabruck,132578,70066509,715527,0.19,2019,complete
+Frankfurt Main,EDDF,Hamburg,EDDH,Frankfurt Main - Hamburg,1426073,70066509,16279030,2.04,2019,complete
+Frankfurt Main,EDDF,Tempelhof,EDDI,Frankfurt Main - Tempelhof,NA,70066509,NA,NA,2019,missing_end_pax
+Frankfurt Main,EDDF,Koln Bonn,EDDK,Frankfurt Main - Koln Bonn,27305715.61805572,70066509,10641348,NA,2019,complete
+Frankfurt Main,EDDF,Dusseldorf,EDDL,Frankfurt Main - Dusseldorf,379383,70066509,24588161,0.54,2019,complete
+Frankfurt Main,EDDF,Franz Josef Strauss,EDDM,Frankfurt Main - Franz Josef Strauss,1136769,70066509,47266254,1.62,2019,complete
+Frankfurt Main,EDDF,Nurnberg,EDDN,Frankfurt Main - Nurnberg,249465,70066509,3486586,0.36,2019,complete
+Frankfurt Main,EDDF,Leipzig Halle,EDDP,Frankfurt Main - Leipzig Halle,264452,70066509,2217214,0.38,2019,complete
+Frankfurt Main,EDDF,Stuttgart,EDDS,Frankfurt Main - Stuttgart,321345,70066509,12275312,0.46,2019,complete
+Frankfurt Main,EDDF,Tegel,EDDT,Frankfurt Main - Tegel,2249667,70066509,24008455,3.21,2019,complete
+Frankfurt Main,EDDF,Hannover,EDDV,Frankfurt Main - Hannover,353782,70066509,5908901,0.5,2019,complete
+Frankfurt Main,EDDF,Neuenland,EDDW,Frankfurt Main - Neuenland,303122,70066509,2196047,0.43,2019,complete
+Frankfurt Main,EDDF,Paderborn Lippstadt,EDLP,Frankfurt Main - Paderborn Lippstadt,5689207.6512931045,70066509,461948,NA,2019,complete
+Frankfurt Main,EDDF,Friedrichshafen,EDNY,Frankfurt Main - Friedrichshafen,145720,70066509,385996,0.21,2019,complete
+Frankfurt Main,EDDF,Billund,EKBI,Frankfurt Main - Billund,283298,70066509,2974341,0.4,2019,complete
+Frankfurt Main,EDDF,Kastrup,EKCH,Frankfurt Main - Kastrup,659835,70066509,28737167,0.94,2019,complete
+Frankfurt Main,EDDF,Tallinn,EETN,Frankfurt Main - Tallinn,279702,70066509,NA,0.4,2019,missing_end_pax
+Frankfurt Main,EDDF,Eleftherios Venizelos Intl,LGAV,Frankfurt Main - Eleftherios Venizelos Intl,617277,70066509,NA,0.88,2019,missing_end_pax
+Frankfurt Main,EDDF,Nikos Kazantzakis,LGIR,Frankfurt Main - Nikos Kazantzakis,223415,70066509,NA,0.32,2019,missing_end_pax
+Frankfurt Main,EDDF,Kos,LGKO,Frankfurt Main - Kos,84722,70066509,NA,0.12,2019,missing_end_pax
+Frankfurt Main,EDDF,Ioannis Kapodistrias Intl,LGKR,Frankfurt Main - Ioannis Kapodistrias Intl,92555,70066509,NA,0.13,2019,missing_end_pax
+Frankfurt Main,EDDF,Rhodes Diagoras,LGRP,Frankfurt Main - Rhodes Diagoras,106309,70066509,NA,0.15,2019,missing_end_pax
+Frankfurt Main,EDDF,Makedonia,LGTS,Frankfurt Main - Makedonia,217167,70066509,NA,0.31,2019,missing_end_pax
+Frankfurt Main,EDDF,Fuerteventura,GCFV,Frankfurt Main - Fuerteventura,180194,70066509,4935430,0.26,2019,complete
+Frankfurt Main,EDDF,Gran Canaria,GCLP,Frankfurt Main - Gran Canaria,239609,70066509,11196595,0.34,2019,complete
+Frankfurt Main,EDDF,Lanzarote,GCRR,Frankfurt Main - Lanzarote,109005,70066509,6401678,0.16,2019,complete
+Frankfurt Main,EDDF,Tenerife Sur,GCTS,Frankfurt Main - Tenerife Sur,231516,70066509,9350488,0.33,2019,complete
+Frankfurt Main,EDDF,Tenerife Norte,GCXO,Frankfurt Main - Tenerife Norte,20153627.121565934,70066509,5796902,NA,2019,complete
+Frankfurt Main,EDDF,Alicante,LEAL,Frankfurt Main - Alicante,132178,70066509,14627077,0.19,2019,complete
+Frankfurt Main,EDDF,Bilbao,LEBB,Frankfurt Main - Bilbao,234773,70066509,5814556,0.34,2019,complete
+Frankfurt Main,EDDF,Barcelona,LEBL,Frankfurt Main - Barcelona,1032333,70066509,51210817,1.47,2019,complete
+Frankfurt Main,EDDF,Ibiza,LEIB,Frankfurt Main - Ibiza,94133,70066509,7632907,0.13,2019,complete
+Frankfurt Main,EDDF,Jerez,LEJR,Frankfurt Main - Jerez,8725523.43100189,70066509,1086607,NA,2019,complete
+Frankfurt Main,EDDF,Barajas,LEMD,Frankfurt Main - Barajas,1066069,70066509,59373123,1.52,2019,complete
+Frankfurt Main,EDDF,Malaga,LEMG,Frankfurt Main - Malaga,292291,70066509,19158321,0.42,2019,complete
+Frankfurt Main,EDDF,Palma de Mallorca,LEPA,Frankfurt Main - Palma de Mallorca,1128316,70066509,27397471,1.61,2019,complete
+Frankfurt Main,EDDF,Valencia,LEVC,Frankfurt Main - Valencia,382509,70066509,8341358,0.55,2019,complete
+Frankfurt Main,EDDF,Sevilla,LEZL,Frankfurt Main - Sevilla,120202,70066509,7454425,0.17,2019,complete
+Frankfurt Main,EDDF,Helsinki Malmi,EFHF,Frankfurt Main - Helsinki Malmi,NA,70066509,NA,NA,2019,missing_end_pax
+Frankfurt Main,EDDF,Helsinki Vantaa,EFHK,Frankfurt Main - Helsinki Vantaa,524946,70066509,NA,0.75,2019,missing_end_pax
+Frankfurt Main,EDDF,Merignac,LFBD,Frankfurt Main - Merignac,23104299.067508865,70066509,7618599,NA,2019,complete
+Frankfurt Main,EDDF,Blagnac,LFBO,Frankfurt Main - Blagnac,272254,70066509,9451746,0.39,2019,complete
+Frankfurt Main,EDDF,Saint Exupery,LFLL,Frankfurt Main - Saint Exupery,381470,70066509,11461753,0.54,2019,complete
+Frankfurt Main,EDDF,Provence,LFML,Frankfurt Main - Provence,249711,70066509,10030599,0.36,2019,complete
+Frankfurt Main,EDDF,Cote D'Azur,LFMN,Frankfurt Main - Cote D'Azur,313309,70066509,14277508,0.45,2019,complete
+Frankfurt Main,EDDF,Charles De Gaulle,LFPG,Frankfurt Main - Charles De Gaulle,1040806,70066509,75449170,1.49,2019,complete
+Frankfurt Main,EDDF,Orly,LFPO,Frankfurt Main - Orly,47140943.63313627,70066509,31716559,NA,2019,complete
+Frankfurt Main,EDDF,Dubrovnik,LDDU,Frankfurt Main - Dubrovnik,120606,70066509,NA,0.17,2019,missing_end_pax
+Frankfurt Main,EDDF,Split International,LDSP,Frankfurt Main - Split International,153436,70066509,NA,0.22,2019,missing_end_pax
+Frankfurt Main,EDDF,Zagreb,LDZA,Frankfurt Main - Zagreb,328992,70066509,NA,0.47,2019,missing_end_pax
+Frankfurt Main,EDDF,Dublin,EIDW,Frankfurt Main - Dublin,758907,70066509,NA,1.08,2019,missing_end_pax
+Frankfurt Main,EDDF,Keflavik International Airport,BIKF,Frankfurt Main - Keflavik International Airport,255326,70066509,NA,0.36,2019,missing_end_pax
+Frankfurt Main,EDDF,Catania Fontanarossa,LICC,Frankfurt Main - Catania Fontanarossa,164262,70066509,9740700,0.23,2019,complete
+Frankfurt Main,EDDF,Olbia Costa Smeralda,LIEO,Frankfurt Main - Olbia Costa Smeralda,13911556.533112677,70066509,2762110,NA,2019,complete
+Frankfurt Main,EDDF,Malpensa,LIMC,Frankfurt Main - Malpensa,483269,70066509,28346074,0.69,2019,complete
+Frankfurt Main,EDDF,Bergamo Orio Al Serio,LIME,Frankfurt Main - Bergamo Orio Al Serio,124196,70066509,13600898,0.18,2019,complete
+Frankfurt Main,EDDF,Torino,LIMF,Frankfurt Main - Torino,192753,70066509,3839752,0.28,2019,complete
+Frankfurt Main,EDDF,Linate,LIML,Frankfurt Main - Linate,329230,70066509,6535465,0.47,2019,complete
+Frankfurt Main,EDDF,Bologna,LIPE,Frankfurt Main - Bologna,310750,70066509,9338293,0.44,2019,complete
+Frankfurt Main,EDDF,Treviso,LIPH,Frankfurt Main - Treviso,97301,70066509,3200504,0.14,2019,complete
+Frankfurt Main,EDDF,Ronchi Dei Legionari,LIPQ,Frankfurt Main - Ronchi Dei Legionari,7093699.714052393,70066509,718183,NA,2019,complete
+Frankfurt Main,EDDF,Villafranca,LIPX,Frankfurt Main - Villafranca,156815,70066509,3315795,0.22,2019,complete
+Frankfurt Main,EDDF,Marco Polo di Tessera,LIPZ,Frankfurt Main - Marco Polo di Tessera,485005,70066509,11454860,0.69,2019,complete
+Frankfurt Main,EDDF,Fiumicino,LIRF,Frankfurt Main - Fiumicino,690898,70066509,43191420,0.99,2019,complete
+Frankfurt Main,EDDF,Capodichino,LIRN,Frankfurt Main - Capodichino,214697,70066509,10387667,0.31,2019,complete
+Frankfurt Main,EDDF,Pisa,LIRP,Frankfurt Main - Pisa,19374052.90491592,70066509,5357109,NA,2019,complete
+Frankfurt Main,EDDF,Peretola,LIRQ,Frankfurt Main - Peretola,278957,70066509,2860307,0.4,2019,complete
+Frankfurt Main,EDDF,Vilnius Intl,EYVI,Frankfurt Main - Vilnius Intl,226787,70066509,NA,0.32,2019,missing_end_pax
+Frankfurt Main,EDDF,Luxembourg,ELLX,Frankfurt Main - Luxembourg,202031,70066509,NA,0.29,2019,missing_end_pax
+Frankfurt Main,EDDF,Riga Intl,EVRA,Frankfurt Main - Riga Intl,252320,70066509,NA,0.36,2019,missing_end_pax
+Frankfurt Main,EDDF,Alexaner The Great,LWSK,Frankfurt Main - Alexaner The Great,NA,70066509,NA,NA,2019,missing_end_pax
+Frankfurt Main,EDDF,Luqa,LMML,Frankfurt Main - Luqa,356043,70066509,NA,0.51,2019,missing_end_pax
+Frankfurt Main,EDDF,Schiphol,EHAM,Frankfurt Main - Schiphol,879896,70066509,71054718,1.26,2019,complete
+Frankfurt Main,EDDF,Flesland,ENBR,Frankfurt Main - Flesland,NA,70066509,NA,NA,2019,missing_end_pax
+Frankfurt Main,EDDF,Gardermoen,ENGM,Frankfurt Main - Gardermoen,538163,70066509,NA,0.77,2019,missing_end_pax
+Frankfurt Main,EDDF,Sola,ENZV,Frankfurt Main - Sola,NA,70066509,NA,NA,2019,missing_end_pax
+Frankfurt Main,EDDF,Faro International,LPFR,Frankfurt Main - Faro International,228674,70066509,NA,0.33,2019,missing_end_pax
+Frankfurt Main,EDDF,Porto,LPPR,Frankfurt Main - Porto,450466,70066509,NA,0.64,2019,missing_end_pax
+Frankfurt Main,EDDF,Lisboa,LPPT,Frankfurt Main - Lisboa,853113,70066509,NA,1.22,2019,missing_end_pax
+Frankfurt Main,EDDF,Beograd,LYBE,Frankfurt Main - Beograd,260250,70066509,NA,0.37,2019,missing_end_pax
+Frankfurt Main,EDDF,Landvetter,ESGG,Frankfurt Main - Landvetter,401681,70066509,NA,0.57,2019,missing_end_pax
+Frankfurt Main,EDDF,Arlanda,ESSA,Frankfurt Main - Arlanda,693393,70066509,NA,0.99,2019,missing_end_pax
+Frankfurt Main,EDDF,Ljubljana,LJLJ,Frankfurt Main - Ljubljana,127230,70066509,NA,0.18,2019,missing_end_pax
+Frankfurt Main,EDDF,Birmingham,EGBB,Frankfurt Main - Birmingham,316971,70066509,11271854,0.45,2019,complete
+Frankfurt Main,EDDF,Manchester,EGCC,Frankfurt Main - Manchester,510511,70066509,26895408,0.73,2019,complete
+Frankfurt Main,EDDF,Gatwick,EGKK,Frankfurt Main - Gatwick,55456541.70916032,70066509,43892982,NA,2019,complete
+Frankfurt Main,EDDF,City,EGLC,Frankfurt Main - City,267740,70066509,5121684,0.38,2019,complete
+Frankfurt Main,EDDF,Heathrow,EGLL,Frankfurt Main - Heathrow,1541211,70066509,80788471,2.2,2019,complete
+Frankfurt Main,EDDF,Dyce,EGPD,Frankfurt Main - Dyce,12636692.138414506,70066509,2279063,NA,2019,complete
+Frankfurt Main,EDDF,Glasgow International,EGPF,Frankfurt Main - Glasgow International,93711,70066509,8396045,0.13,2019,complete
+Frankfurt Main,EDDF,Edinburgh,EGPH,Frankfurt Main - Edinburgh,196165,70066509,14510779,0.28,2019,complete
+Frankfurt Main,EDDF,Stansted,EGSS,Frankfurt Main - Stansted,256227,70066509,27745806,0.37,2019,complete
+Franz Josef Strauss,EDDM,Tirana Rinas,LATI,Franz Josef Strauss - Tirana Rinas,NA,47266254,NA,NA,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Graz,LOWG,Franz Josef Strauss - Graz,224874,47266254,899161,0.48,2019,complete
+Franz Josef Strauss,EDDM,Schwechat,LOWW,Franz Josef Strauss - Schwechat,529680,47266254,31258901,1.12,2019,complete
+Franz Josef Strauss,EDDM,Sarajevo,LQSA,Franz Josef Strauss - Sarajevo,82272,47266254,NA,0.17,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Bale Mulhouse,LFSB,Franz Josef Strauss - Bale Mulhouse,177116,47266254,8271471,0.37,2019,complete
+Franz Josef Strauss,EDDM,Bale Mulhouse,LFSB,Franz Josef Strauss - Bale Mulhouse,177116,47266254,562406,0.37,2019,complete
+Franz Josef Strauss,EDDM,Geneve Cointrin,LSGG,Franz Josef Strauss - Geneve Cointrin,262328,47266254,17742225,0.56,2019,complete
+Franz Josef Strauss,EDDM,Zurich,LSZH,Franz Josef Strauss - Zurich,373599,47266254,31292970,0.79,2019,complete
+Franz Josef Strauss,EDDM,Schonefeld,EDDB,Franz Josef Strauss - Schonefeld,22831237.135350592,47266254,11028278,NA,2019,complete
+Franz Josef Strauss,EDDM,Berlin Brandenburg Willy Brandt,EDDB,Franz Josef Strauss - Berlin Brandenburg Willy Brandt,22831237.135350592,47266254,11028278,NA,2019,complete
+Franz Josef Strauss,EDDM,Dresden International,EDDC,Franz Josef Strauss - Dresden International,209924,47266254,1420208,0.44,2019,complete
+Franz Josef Strauss,EDDM,Munster Osnabruck,EDDG,Franz Josef Strauss - Munster Osnabruck,233712,47266254,715527,0.49,2019,complete
+Franz Josef Strauss,EDDM,Hamburg,EDDH,Franz Josef Strauss - Hamburg,1739939,47266254,16279030,3.68,2019,complete
+Franz Josef Strauss,EDDM,Koln Bonn,EDDK,Franz Josef Strauss - Koln Bonn,1016763,47266254,10641348,2.15,2019,complete
+Franz Josef Strauss,EDDM,Dusseldorf,EDDL,Franz Josef Strauss - Dusseldorf,1488322,47266254,24588161,3.15,2019,complete
+Franz Josef Strauss,EDDM,Nurnberg,EDDN,Franz Josef Strauss - Nurnberg,128044,47266254,3486586,0.27,2019,complete
+Franz Josef Strauss,EDDM,Leipzig Halle,EDDP,Franz Josef Strauss - Leipzig Halle,169903,47266254,2217214,0.36,2019,complete
+Franz Josef Strauss,EDDM,Stuttgart,EDDS,Franz Josef Strauss - Stuttgart,193517,47266254,12275312,0.41,2019,complete
+Franz Josef Strauss,EDDM,Tegel,EDDT,Franz Josef Strauss - Tegel,1934225,47266254,24008455,4.09,2019,complete
+Franz Josef Strauss,EDDM,Hannover,EDDV,Franz Josef Strauss - Hannover,541004,47266254,5908901,1.14,2019,complete
+Franz Josef Strauss,EDDM,Neuenland,EDDW,Franz Josef Strauss - Neuenland,413075,47266254,2196047,0.87,2019,complete
+Franz Josef Strauss,EDDM,Paderborn Lippstadt,EDLP,Franz Josef Strauss - Paderborn Lippstadt,127119,47266254,461948,0.27,2019,complete
+Franz Josef Strauss,EDDM,Niederrhein,EDLV,Franz Josef Strauss - Niederrhein,7617429.688992869,47266254,1227625,NA,2019,complete
+Franz Josef Strauss,EDDM,Dortmund,EDLW,Franz Josef Strauss - Dortmund,187993,47266254,2691042,0.4,2019,complete
+Franz Josef Strauss,EDDM,HBF RAILWAY STATION,EDLW,Franz Josef Strauss - HBF RAILWAY STATION,187993,47266254,2691042,0.4,2019,complete
+Franz Josef Strauss,EDDM,Billund,EKBI,Franz Josef Strauss - Billund,11856894.92188465,47266254,2974341,NA,2019,complete
+Franz Josef Strauss,EDDM,Kastrup,EKCH,Franz Josef Strauss - Kastrup,511066,47266254,28737167,1.08,2019,complete
+Franz Josef Strauss,EDDM,Tallinn,EETN,Franz Josef Strauss - Tallinn,NA,47266254,NA,NA,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Eleftherios Venizelos Intl,LGAV,Franz Josef Strauss - Eleftherios Venizelos Intl,522662,47266254,NA,1.11,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Nikos Kazantzakis,LGIR,Franz Josef Strauss - Nikos Kazantzakis,236222,47266254,NA,0.5,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Kos,LGKO,Franz Josef Strauss - Kos,83642,47266254,NA,0.18,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Ioannis Kapodistrias Intl,LGKR,Franz Josef Strauss - Ioannis Kapodistrias Intl,NA,47266254,NA,NA,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Rhodes Diagoras,LGRP,Franz Josef Strauss - Rhodes Diagoras,119824,47266254,NA,0.25,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Makedonia,LGTS,Franz Josef Strauss - Makedonia,272204,47266254,NA,0.58,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Fuerteventura,GCFV,Franz Josef Strauss - Fuerteventura,138764,47266254,4935430,0.29,2019,complete
+Franz Josef Strauss,EDDM,Gran Canaria,GCLP,Franz Josef Strauss - Gran Canaria,181857,47266254,11196595,0.38,2019,complete
+Franz Josef Strauss,EDDM,Lanzarote,GCRR,Franz Josef Strauss - Lanzarote,17394922.775747295,47266254,6401678,NA,2019,complete
+Franz Josef Strauss,EDDM,Tenerife Sur,GCTS,Franz Josef Strauss - Tenerife Sur,198671,47266254,9350488,0.42,2019,complete
+Franz Josef Strauss,EDDM,Tenerife Norte,GCXO,Franz Josef Strauss - Tenerife Norte,16552880.18276904,47266254,5796902,NA,2019,complete
+Franz Josef Strauss,EDDM,Alicante,LEAL,Franz Josef Strauss - Alicante,92460,47266254,14627077,0.2,2019,complete
+Franz Josef Strauss,EDDM,Bilbao,LEBB,Franz Josef Strauss - Bilbao,322893,47266254,5814556,0.68,2019,complete
+Franz Josef Strauss,EDDM,Barcelona,LEBL,Franz Josef Strauss - Barcelona,886730,47266254,51210817,1.88,2019,complete
+Franz Josef Strauss,EDDM,Ibiza,LEIB,Franz Josef Strauss - Ibiza,107895,47266254,7632907,0.23,2019,complete
+Franz Josef Strauss,EDDM,Barajas,LEMD,Franz Josef Strauss - Barajas,898227,47266254,59373123,1.9,2019,complete
+Franz Josef Strauss,EDDM,Malaga,LEMG,Franz Josef Strauss - Malaga,177246,47266254,19158321,0.37,2019,complete
+Franz Josef Strauss,EDDM,Palma de Mallorca,LEPA,Franz Josef Strauss - Palma de Mallorca,875367,47266254,27397471,1.85,2019,complete
+Franz Josef Strauss,EDDM,Valencia,LEVC,Franz Josef Strauss - Valencia,99556,47266254,8341358,0.21,2019,complete
+Franz Josef Strauss,EDDM,Sevilla,LEZL,Franz Josef Strauss - Sevilla,18770795.014435325,47266254,7454425,NA,2019,complete
+Franz Josef Strauss,EDDM,Helsinki Malmi,EFHF,Franz Josef Strauss - Helsinki Malmi,NA,47266254,NA,NA,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Helsinki Vantaa,EFHK,Franz Josef Strauss - Helsinki Vantaa,585997,47266254,NA,1.24,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Merignac,LFBD,Franz Josef Strauss - Merignac,18976370.45006621,47266254,7618599,NA,2019,complete
+Franz Josef Strauss,EDDM,Blagnac,LFBO,Franz Josef Strauss - Blagnac,259279,47266254,9451746,0.55,2019,complete
+Franz Josef Strauss,EDDM,Saint Exupery,LFLL,Franz Josef Strauss - Saint Exupery,235583,47266254,11461753,0.5,2019,complete
+Franz Josef Strauss,EDDM,Provence,LFML,Franz Josef Strauss - Provence,219544,47266254,10030599,0.46,2019,complete
+Franz Josef Strauss,EDDM,Cote D'Azur,LFMN,Franz Josef Strauss - Cote D'Azur,257886,47266254,14277508,0.55,2019,complete
+Franz Josef Strauss,EDDM,Charles De Gaulle,LFPG,Franz Josef Strauss - Charles De Gaulle,1013774,47266254,75449170,2.14,2019,complete
+Franz Josef Strauss,EDDM,Orly,LFPO,Franz Josef Strauss - Orly,38718508.92919284,47266254,31716559,NA,2019,complete
+Franz Josef Strauss,EDDM,Nantes Atlantique,LFRS,Franz Josef Strauss - Nantes Atlantique,98046,47266254,7000005,0.21,2019,complete
+Franz Josef Strauss,EDDM,Dubrovnik,LDDU,Franz Josef Strauss - Dubrovnik,108229,47266254,NA,0.23,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Split International,LDSP,Franz Josef Strauss - Split International,127614,47266254,NA,0.27,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Zagreb,LDZA,Franz Josef Strauss - Zagreb,238379,47266254,NA,0.5,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Dublin,EIDW,Franz Josef Strauss - Dublin,596657,47266254,NA,1.26,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Keflavik International Airport,BIKF,Franz Josef Strauss - Keflavik International Airport,151699,47266254,NA,0.32,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Bari,LIBD,Franz Josef Strauss - Bari,106150,47266254,5464123,0.22,2019,complete
+Franz Josef Strauss,EDDM,Catania Fontanarossa,LICC,Franz Josef Strauss - Catania Fontanarossa,145650,47266254,9740700,0.31,2019,complete
+Franz Josef Strauss,EDDM,Palermo,LICJ,Franz Josef Strauss - Palermo,87901,47266254,6936607,0.19,2019,complete
+Franz Josef Strauss,EDDM,Olbia Costa Smeralda,LIEO,Franz Josef Strauss - Olbia Costa Smeralda,102066,47266254,2762110,0.22,2019,complete
+Franz Josef Strauss,EDDM,Malpensa,LIMC,Franz Josef Strauss - Malpensa,502133,47266254,28346074,1.06,2019,complete
+Franz Josef Strauss,EDDM,Torino,LIMF,Franz Josef Strauss - Torino,192281,47266254,3839752,0.41,2019,complete
+Franz Josef Strauss,EDDM,Linate,LIML,Franz Josef Strauss - Linate,17575748.880150456,47266254,6535465,NA,2019,complete
+Franz Josef Strauss,EDDM,Bologna,LIPE,Franz Josef Strauss - Bologna,205831,47266254,9338293,0.44,2019,complete
+Franz Josef Strauss,EDDM,Ronchi Dei Legionari,LIPQ,Franz Josef Strauss - Ronchi Dei Legionari,124579,47266254,718183,0.26,2019,complete
+Franz Josef Strauss,EDDM,Villafranca,LIPX,Franz Josef Strauss - Villafranca,125980,47266254,3315795,0.27,2019,complete
+Franz Josef Strauss,EDDM,Falconara,LIPY,Franz Josef Strauss - Falconara,115609,47266254,465340,0.24,2019,complete
+Franz Josef Strauss,EDDM,Marco Polo di Tessera,LIPZ,Franz Josef Strauss - Marco Polo di Tessera,239315,47266254,11454860,0.51,2019,complete
+Franz Josef Strauss,EDDM,Fiumicino,LIRF,Franz Josef Strauss - Fiumicino,716119,47266254,43191420,1.52,2019,complete
+Franz Josef Strauss,EDDM,Capodichino,LIRN,Franz Josef Strauss - Capodichino,305140,47266254,10387667,0.65,2019,complete
+Franz Josef Strauss,EDDM,Pisa,LIRP,Franz Josef Strauss - Pisa,107734,47266254,5357109,0.23,2019,complete
+Franz Josef Strauss,EDDM,Peretola,LIRQ,Franz Josef Strauss - Peretola,209014,47266254,2860307,0.44,2019,complete
+Franz Josef Strauss,EDDM,Vilnius Intl,EYVI,Franz Josef Strauss - Vilnius Intl,NA,47266254,NA,NA,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Luxembourg,ELLX,Franz Josef Strauss - Luxembourg,216184,47266254,NA,0.46,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Riga Intl,EVRA,Franz Josef Strauss - Riga Intl,122139,47266254,NA,0.26,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Luqa,LMML,Franz Josef Strauss - Luqa,228363,47266254,NA,0.48,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Schiphol,EHAM,Franz Josef Strauss - Schiphol,968050,47266254,71054718,2.05,2019,complete
+Franz Josef Strauss,EDDM,Eindhoven,EHEH,Franz Josef Strauss - Eindhoven,17854014.63228755,47266254,6744047,NA,2019,complete
+Franz Josef Strauss,EDDM,Gardermoen,ENGM,Franz Josef Strauss - Gardermoen,446880,47266254,NA,0.95,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Faro International,LPFR,Franz Josef Strauss - Faro International,79865,47266254,NA,0.17,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Porto,LPPR,Franz Josef Strauss - Porto,122551,47266254,NA,0.26,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Lisboa,LPPT,Franz Josef Strauss - Lisboa,499078,47266254,NA,1.06,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Beograd,LYBE,Franz Josef Strauss - Beograd,206652,47266254,NA,0.44,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Landvetter,ESGG,Franz Josef Strauss - Landvetter,241960,47266254,NA,0.51,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Arlanda,ESSA,Franz Josef Strauss - Arlanda,556408,47266254,NA,1.18,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Ljubljana,LJLJ,Franz Josef Strauss - Ljubljana,82085,47266254,NA,0.17,2019,missing_end_pax
+Franz Josef Strauss,EDDM,Birmingham,EGBB,Franz Josef Strauss - Birmingham,210349,47266254,11271854,0.45,2019,complete
+Franz Josef Strauss,EDDM,Manchester,EGCC,Franz Josef Strauss - Manchester,357615,47266254,26895408,0.76,2019,complete
+Franz Josef Strauss,EDDM,Luton,EGGW,Franz Josef Strauss - Luton,81874,47266254,17961864,0.17,2019,complete
+Franz Josef Strauss,EDDM,Gatwick,EGKK,Franz Josef Strauss - Gatwick,255739,47266254,43892982,0.54,2019,complete
+Franz Josef Strauss,EDDM,City,EGLC,Franz Josef Strauss - City,109721,47266254,5121684,0.23,2019,complete
+Franz Josef Strauss,EDDM,Heathrow,EGLL,Franz Josef Strauss - Heathrow,1261318,47266254,80788471,2.67,2019,complete
+Franz Josef Strauss,EDDM,Edinburgh,EGPH,Franz Josef Strauss - Edinburgh,174295,47266254,14510779,0.37,2019,complete
+Franz Josef Strauss,EDDM,Stansted,EGSS,Franz Josef Strauss - Stansted,123079,47266254,27745806,0.26,2019,complete
+Schiphol,EHAM,Flamingo,TNCB,Schiphol - Flamingo,130471,71054718,NA,0.18,2019,missing_end_pax
+Schiphol,EHAM,Innsbruck,LOWI,Schiphol - Innsbruck,78529,71054718,949950,0.11,2019,complete
+Schiphol,EHAM,Schwechat,LOWW,Schiphol - Schwechat,945674,71054718,31258901,1.33,2019,complete
+Schiphol,EHAM,Bale Mulhouse,LFSB,Schiphol - Bale Mulhouse,447402,71054718,8271471,0.63,2019,complete
+Schiphol,EHAM,Bale Mulhouse,LFSB,Schiphol - Bale Mulhouse,447402,71054718,562406,0.63,2019,complete
+Schiphol,EHAM,Geneve Cointrin,LSGG,Schiphol - Geneve Cointrin,707873,71054718,17742225,1,2019,complete
+Schiphol,EHAM,Zurich,LSZH,Schiphol - Zurich,978768,71054718,31292970,1.38,2019,complete
+Schiphol,EHAM,Schonefeld,EDDB,Schiphol - Schonefeld,317320,71054718,11028278,0.45,2019,complete
+Schiphol,EHAM,Berlin Brandenburg Willy Brandt,EDDB,Schiphol - Berlin Brandenburg Willy Brandt,317320,71054718,11028278,0.45,2019,complete
+Schiphol,EHAM,Munster Osnabruck,EDDG,Schiphol - Munster Osnabruck,7130327.426309818,71054718,715527,NA,2019,complete
+Schiphol,EHAM,Hamburg,EDDH,Schiphol - Hamburg,477238,71054718,16279030,0.67,2019,complete
+Schiphol,EHAM,Koln Bonn,EDDK,Schiphol - Koln Bonn,27497599.554867767,71054718,10641348,NA,2019,complete
+Schiphol,EHAM,Dusseldorf,EDDL,Schiphol - Dusseldorf,257004,71054718,24588161,0.36,2019,complete
+Schiphol,EHAM,Nurnberg,EDDN,Schiphol - Nurnberg,198424,71054718,3486586,0.28,2019,complete
+Schiphol,EHAM,Stuttgart,EDDS,Schiphol - Stuttgart,345419,71054718,12275312,0.49,2019,complete
+Schiphol,EHAM,Tegel,EDDT,Schiphol - Tegel,687425,71054718,24008455,0.97,2019,complete
+Schiphol,EHAM,Hannover,EDDV,Schiphol - Hannover,202215,71054718,5908901,0.28,2019,complete
+Schiphol,EHAM,Neuenland,EDDW,Schiphol - Neuenland,172038,71054718,2196047,0.24,2019,complete
+Schiphol,EHAM,Paderborn Lippstadt,EDLP,Schiphol - Paderborn Lippstadt,5729187.1038275575,71054718,461948,NA,2019,complete
+Schiphol,EHAM,Billund,EKBI,Schiphol - Billund,409300,71054718,2974341,0.58,2019,complete
+Schiphol,EHAM,Kastrup,EKCH,Schiphol - Kastrup,1110487,71054718,28737167,1.56,2019,complete
+Schiphol,EHAM,Aalborg,EKYT,Schiphol - Aalborg,234893,71054718,1240944,0.33,2019,complete
+Schiphol,EHAM,Tallinn,EETN,Schiphol - Tallinn,81694,71054718,NA,0.11,2019,missing_end_pax
+Schiphol,EHAM,Eleftherios Venizelos Intl,LGAV,Schiphol - Eleftherios Venizelos Intl,501302,71054718,NA,0.71,2019,missing_end_pax
+Schiphol,EHAM,Nikos Kazantzakis,LGIR,Schiphol - Nikos Kazantzakis,225595,71054718,NA,0.32,2019,missing_end_pax
+Schiphol,EHAM,Kos,LGKO,Schiphol - Kos,155548,71054718,NA,0.22,2019,missing_end_pax
+Schiphol,EHAM,Ioannis Kapodistrias Intl,LGKR,Schiphol - Ioannis Kapodistrias Intl,78894,71054718,NA,0.11,2019,missing_end_pax
+Schiphol,EHAM,Aktio,LGPZ,Schiphol - Aktio,NA,71054718,NA,NA,2019,missing_end_pax
+Schiphol,EHAM,Rhodes Diagoras,LGRP,Schiphol - Rhodes Diagoras,117259,71054718,NA,0.17,2019,missing_end_pax
+Schiphol,EHAM,Makedonia,LGTS,Schiphol - Makedonia,125647,71054718,NA,0.18,2019,missing_end_pax
+Schiphol,EHAM,Dionysios Solomos,LGZA,Schiphol - Dionysios Solomos,124433,71054718,NA,0.18,2019,missing_end_pax
+Schiphol,EHAM,Fuerteventura,GCFV,Schiphol - Fuerteventura,117443,71054718,4935430,0.17,2019,complete
+Schiphol,EHAM,Gran Canaria,GCLP,Schiphol - Gran Canaria,293115,71054718,11196595,0.41,2019,complete
+Schiphol,EHAM,Lanzarote,GCRR,Schiphol - Lanzarote,119471,71054718,6401678,0.17,2019,complete
+Schiphol,EHAM,Tenerife Sur,GCTS,Schiphol - Tenerife Sur,219842,71054718,9350488,0.31,2019,complete
+Schiphol,EHAM,Alicante,LEAL,Schiphol - Alicante,436604,71054718,14627077,0.61,2019,complete
+Schiphol,EHAM,Bilbao,LEBB,Schiphol - Bilbao,242130,71054718,5814556,0.34,2019,complete
+Schiphol,EHAM,Barcelona,LEBL,Schiphol - Barcelona,1382746,71054718,51210817,1.95,2019,complete
+Schiphol,EHAM,Girona,LEGE,Schiphol - Girona,11321658.011881387,71054718,1803961,NA,2019,complete
+Schiphol,EHAM,Ibiza,LEIB,Schiphol - Ibiza,297716,71054718,7632907,0.42,2019,complete
+Schiphol,EHAM,Barajas,LEMD,Schiphol - Barajas,1140173,71054718,59373123,1.6,2019,complete
+Schiphol,EHAM,Malaga,LEMG,Schiphol - Malaga,656716,71054718,19158321,0.92,2019,complete
+Schiphol,EHAM,Palma de Mallorca,LEPA,Schiphol - Palma de Mallorca,294489,71054718,27397471,0.41,2019,complete
+Schiphol,EHAM,Valencia,LEVC,Schiphol - Valencia,375055,71054718,8341358,0.53,2019,complete
+Schiphol,EHAM,Sevilla,LEZL,Schiphol - Sevilla,149709,71054718,7454425,0.21,2019,complete
+Schiphol,EHAM,Helsinki Malmi,EFHF,Schiphol - Helsinki Malmi,NA,71054718,NA,NA,2019,missing_end_pax
+Schiphol,EHAM,Helsinki Vantaa,EFHK,Schiphol - Helsinki Vantaa,707614,71054718,NA,1,2019,missing_end_pax
+Schiphol,EHAM,Merignac,LFBD,Schiphol - Merignac,300078,71054718,7618599,0.42,2019,complete
+Schiphol,EHAM,Blagnac,LFBO,Schiphol - Blagnac,256708,71054718,9451746,0.36,2019,complete
+Schiphol,EHAM,Saint Exupery,LFLL,Schiphol - Saint Exupery,323987,71054718,11461753,0.46,2019,complete
+Schiphol,EHAM,Provence,LFML,Schiphol - Provence,298167,71054718,10030599,0.42,2019,complete
+Schiphol,EHAM,Cote D'Azur,LFMN,Schiphol - Cote D'Azur,479882,71054718,14277508,0.68,2019,complete
+Schiphol,EHAM,Mediterranee,LFMT,Schiphol - Mediterranee,86508,71054718,1924607,0.12,2019,complete
+Schiphol,EHAM,Charles De Gaulle,LFPG,Schiphol - Charles De Gaulle,1239789,71054718,75449170,1.74,2019,complete
+Schiphol,EHAM,Orly,LFPO,Schiphol - Orly,148214,71054718,31716559,0.21,2019,complete
+Schiphol,EHAM,Nantes Atlantique,LFRS,Schiphol - Nantes Atlantique,193100,71054718,7000005,0.27,2019,complete
+Schiphol,EHAM,Bale Mulhouse,LFSB,Schiphol - Bale Mulhouse,24243082.298878126,71054718,8271471,NA,2019,complete
+Schiphol,EHAM,Bale Mulhouse,LFSB,Schiphol - Bale Mulhouse,6321518.783607939,71054718,562406,NA,2019,complete
+Schiphol,EHAM,Entzheim,LFST,Schiphol - Entzheim,93793,71054718,1240001,0.13,2019,complete
+Schiphol,EHAM,Split International,LDSP,Schiphol - Split International,80815,71054718,NA,0.11,2019,missing_end_pax
+Schiphol,EHAM,Zagreb,LDZA,Schiphol - Zagreb,157570,71054718,NA,0.22,2019,missing_end_pax
+Schiphol,EHAM,Cork,EICK,Schiphol - Cork,157079,71054718,NA,0.22,2019,missing_end_pax
+Schiphol,EHAM,Dublin,EIDW,Schiphol - Dublin,1212683,71054718,NA,1.71,2019,missing_end_pax
+Schiphol,EHAM,Keflavik International Airport,BIKF,Schiphol - Keflavik International Airport,293041,71054718,NA,0.41,2019,missing_end_pax
+Schiphol,EHAM,Bari,LIBD,Schiphol - Bari,100494,71054718,5464123,0.14,2019,complete
+Schiphol,EHAM,Catania Fontanarossa,LICC,Schiphol - Catania Fontanarossa,167717,71054718,9740700,0.24,2019,complete
+Schiphol,EHAM,Olbia Costa Smeralda,LIEO,Schiphol - Olbia Costa Smeralda,84225,71054718,2762110,0.12,2019,complete
+Schiphol,EHAM,Malpensa,LIMC,Schiphol - Malpensa,923721,71054718,28346074,1.3,2019,complete
+Schiphol,EHAM,Bergamo Orio Al Serio,LIME,Schiphol - Bergamo Orio Al Serio,31087102.983982988,71054718,13600898,NA,2019,complete
+Schiphol,EHAM,Torino,LIMF,Schiphol - Torino,112742,71054718,3839752,0.16,2019,complete
+Schiphol,EHAM,Linate,LIML,Schiphol - Linate,285261,71054718,6535465,0.4,2019,complete
+Schiphol,EHAM,Bologna,LIPE,Schiphol - Bologna,228063,71054718,9338293,0.32,2019,complete
+Schiphol,EHAM,Villafranca,LIPX,Schiphol - Villafranca,103941,71054718,3315795,0.15,2019,complete
+Schiphol,EHAM,Marco Polo di Tessera,LIPZ,Schiphol - Marco Polo di Tessera,413913,71054718,11454860,0.58,2019,complete
+Schiphol,EHAM,Fiumicino,LIRF,Schiphol - Fiumicino,1048531,71054718,43191420,1.48,2019,complete
+Schiphol,EHAM,Capodichino,LIRN,Schiphol - Capodichino,262886,71054718,10387667,0.37,2019,complete
+Schiphol,EHAM,Pisa,LIRP,Schiphol - Pisa,123204,71054718,5357109,0.17,2019,complete
+Schiphol,EHAM,Peretola,LIRQ,Schiphol - Peretola,270502,71054718,2860307,0.38,2019,complete
+Schiphol,EHAM,Vilnius Intl,EYVI,Schiphol - Vilnius Intl,NA,71054718,NA,NA,2019,missing_end_pax
+Schiphol,EHAM,Luxembourg,ELLX,Schiphol - Luxembourg,185681,71054718,NA,0.26,2019,missing_end_pax
+Schiphol,EHAM,Riga Intl,EVRA,Schiphol - Riga Intl,161059,71054718,NA,0.23,2019,missing_end_pax
+Schiphol,EHAM,Luqa,LMML,Schiphol - Luqa,94667,71054718,NA,0.13,2019,missing_end_pax
+Schiphol,EHAM,Maastricht,EHBK,Schiphol - Maastricht,5473430.868911198,71054718,421625,NA,2019,complete
+Schiphol,EHAM,Eindhoven,EHEH,Schiphol - Eindhoven,21890554.076216206,71054718,6744047,NA,2019,complete
+Schiphol,EHAM,Flesland,ENBR,Schiphol - Flesland,368348,71054718,NA,0.52,2019,missing_end_pax
+Schiphol,EHAM,Kjevik,ENCN,Schiphol - Kjevik,133723,71054718,NA,0.19,2019,missing_end_pax
+Schiphol,EHAM,Gardermoen,ENGM,Schiphol - Gardermoen,723482,71054718,NA,1.02,2019,missing_end_pax
+Schiphol,EHAM,Torp,ENTO,Schiphol - Torp,108892,71054718,NA,0.15,2019,missing_end_pax
+Schiphol,EHAM,Vaernes,ENVA,Schiphol - Vaernes,155109,71054718,NA,0.22,2019,missing_end_pax
+Schiphol,EHAM,Sola,ENZV,Schiphol - Sola,297152,71054718,NA,0.42,2019,missing_end_pax
+Schiphol,EHAM,Faro International,LPFR,Schiphol - Faro International,244632,71054718,NA,0.34,2019,missing_end_pax
+Schiphol,EHAM,Porto,LPPR,Schiphol - Porto,343536,71054718,NA,0.48,2019,missing_end_pax
+Schiphol,EHAM,Lisboa,LPPT,Schiphol - Lisboa,928647,71054718,NA,1.31,2019,missing_end_pax
+Schiphol,EHAM,Beograd,LYBE,Schiphol - Beograd,176581,71054718,NA,0.25,2019,missing_end_pax
+Schiphol,EHAM,Landvetter,ESGG,Schiphol - Landvetter,364256,71054718,NA,0.51,2019,missing_end_pax
+Schiphol,EHAM,Sturup,ESMS,Schiphol - Sturup,NA,71054718,NA,NA,2019,missing_end_pax
+Schiphol,EHAM,Arlanda,ESSA,Schiphol - Arlanda,863475,71054718,NA,1.22,2019,missing_end_pax
+Schiphol,EHAM,Saab,ESSL,Schiphol - Saab,142699,71054718,NA,0.2,2019,missing_end_pax
+Schiphol,EHAM,Ljubljana,LJLJ,Schiphol - Ljubljana,83848,71054718,NA,0.12,2019,missing_end_pax
+Schiphol,EHAM,Belfast Intl,EGAA,Schiphol - Belfast Intl,130098,71054718,6030063,0.18,2019,complete
+Schiphol,EHAM,Birmingham,EGBB,Schiphol - Birmingham,704510,71054718,11271854,0.99,2019,complete
+Schiphol,EHAM,Coventry,EGBE,Schiphol - Coventry,NA,71054718,NA,NA,2019,missing_end_pax
+Schiphol,EHAM,Manchester,EGCC,Schiphol - Manchester,1069549,71054718,26895408,1.51,2019,complete
+Schiphol,EHAM,Cardiff,EGFF,Schiphol - Cardiff,162079,71054718,1015866,0.23,2019,complete
+Schiphol,EHAM,Bristol,EGGD,Schiphol - Bristol,457727,71054718,8146487,0.64,2019,complete
+Schiphol,EHAM,Liverpool,EGGP,Schiphol - Liverpool,240650,71054718,4972891,0.34,2019,complete
+Schiphol,EHAM,Luton,EGGW,Schiphol - Luton,846434,71054718,17961864,1.19,2019,complete
+Schiphol,EHAM,Southampton,EGHI,Schiphol - Southampton,178062,71054718,1760117,0.25,2019,complete
+Schiphol,EHAM,City,EGLC,Schiphol - City,669508,71054718,5121684,0.94,2019,complete
+Schiphol,EHAM,Southend,EGMC,Schiphol - Southend,202574,71054718,2027107,0.29,2019,complete
+Schiphol,EHAM,Humberside,EGNJ,Schiphol - Humberside,135186,71054718,155690,0.19,2019,complete
+Schiphol,EHAM,Leeds Bradford,EGNM,Schiphol - Leeds Bradford,266731,71054718,3946565,0.38,2019,complete
+Schiphol,EHAM,Newcastle,EGNT,Schiphol - Newcastle,364167,71054718,5183775,0.51,2019,complete
+Schiphol,EHAM,Durham Tees Valley Airport,EGNV,Schiphol - Durham Tees Valley Airport,118134,71054718,139720,0.17,2019,complete
+Schiphol,EHAM,Nottingham East Midlands,EGNX,Schiphol - Nottingham East Midlands,17182878.83038538,71054718,4155267,NA,2019,complete
+Schiphol,EHAM,Dyce,EGPD,Schiphol - Dyce,320179,71054718,2279063,0.45,2019,complete
+Schiphol,EHAM,Inverness,EGPE,Schiphol - Inverness,99462,71054718,930884,0.14,2019,complete
+Schiphol,EHAM,Glasgow International,EGPF,Schiphol - Glasgow International,440053,71054718,8396045,0.62,2019,complete
+Schiphol,EHAM,Edinburgh,EGPH,Schiphol - Edinburgh,679190,71054718,14510779,0.96,2019,complete
+Schiphol,EHAM,Norwich,EGSH,Schiphol - Norwich,166510,71054718,324294,0.23,2019,complete
+Schiphol,EHAM,Stansted,EGSS,Schiphol - Stansted,363903,71054718,27745806,0.51,2019,complete
+Barcelona,LEBL,Tirana Rinas,LATI,Barcelona - Tirana Rinas,NA,51210817,NA,NA,2019,missing_end_pax
+Barcelona,LEBL,Schwechat,LOWW,Barcelona - Schwechat,641538,51210817,31258901,1.25,2019,complete
+Barcelona,LEBL,Brussels South,EBCI,Barcelona - Brussels South,122343,51210817,8196702,0.24,2019,complete
+Barcelona,LEBL,Bale Mulhouse,LFSB,Barcelona - Bale Mulhouse,20581272.742515393,51210817,8271471,NA,2019,complete
+Barcelona,LEBL,Bale Mulhouse,LFSB,Barcelona - Bale Mulhouse,5366681.539434029,51210817,562406,NA,2019,complete
+Barcelona,LEBL,Geneve Cointrin,LSGG,Barcelona - Geneve Cointrin,643619,51210817,17742225,1.26,2019,complete
+Barcelona,LEBL,Zurich,LSZH,Barcelona - Zurich,659997,51210817,31292970,1.29,2019,complete
+Barcelona,LEBL,Schonefeld,EDDB,Barcelona - Schonefeld,485873,51210817,11028278,0.95,2019,complete
+Barcelona,LEBL,Berlin Brandenburg Willy Brandt,EDDB,Barcelona - Berlin Brandenburg Willy Brandt,485873,51210817,11028278,0.95,2019,complete
+Barcelona,LEBL,Hamburg,EDDH,Barcelona - Hamburg,289907,51210817,16279030,0.57,2019,complete
+Barcelona,LEBL,Koln Bonn,EDDK,Barcelona - Koln Bonn,275270,51210817,10641348,0.54,2019,complete
+Barcelona,LEBL,Dusseldorf,EDDL,Barcelona - Dusseldorf,336742,51210817,24588161,0.66,2019,complete
+Barcelona,LEBL,Stuttgart,EDDS,Barcelona - Stuttgart,277422,51210817,12275312,0.54,2019,complete
+Barcelona,LEBL,Tegel,EDDT,Barcelona - Tegel,163490,51210817,24008455,0.32,2019,complete
+Barcelona,LEBL,Hannover,EDDV,Barcelona - Hannover,80329,51210817,5908901,0.16,2019,complete
+Barcelona,LEBL,Niederrhein,EDLV,Barcelona - Niederrhein,7928914.126135116,51210817,1227625,NA,2019,complete
+Barcelona,LEBL,Dortmund,EDLW,Barcelona - Dortmund,11739269.968840227,51210817,2691042,NA,2019,complete
+Barcelona,LEBL,HBF RAILWAY STATION,EDLW,Barcelona - HBF RAILWAY STATION,11739269.968840227,51210817,2691042,NA,2019,complete
+Barcelona,LEBL,Billund,EKBI,Barcelona - Billund,12341735.398500366,51210817,2974341,NA,2019,complete
+Barcelona,LEBL,Eleftherios Venizelos Intl,LGAV,Barcelona - Eleftherios Venizelos Intl,366271,51210817,NA,0.72,2019,missing_end_pax
+Barcelona,LEBL,Fuerteventura,GCFV,Barcelona - Fuerteventura,171065,51210817,4935430,0.33,2019,complete
+Barcelona,LEBL,Gran Canaria,GCLP,Barcelona - Gran Canaria,510605,51210817,11196595,1,2019,complete
+Barcelona,LEBL,Lanzarote,GCRR,Barcelona - Lanzarote,172698,51210817,6401678,0.34,2019,complete
+Barcelona,LEBL,Tenerife Sur,GCTS,Barcelona - Tenerife Sur,103339,51210817,9350488,0.2,2019,complete
+Barcelona,LEBL,Tenerife Norte,GCXO,Barcelona - Tenerife Norte,570058,51210817,5796902,1.11,2019,complete
+Barcelona,LEBL,Alicante,LEAL,Barcelona - Alicante,449098,51210817,14627077,0.88,2019,complete
+Barcelona,LEBL,Almeria,LEAM,Barcelona - Almeria,118285,51210817,914835,0.23,2019,complete
+Barcelona,LEBL,Asturias,LEAS,Barcelona - Asturias,290270,51210817,1392013,0.57,2019,complete
+Barcelona,LEBL,Bilbao,LEBB,Barcelona - Bilbao,622601,51210817,5814556,1.22,2019,complete
+Barcelona,LEBL,A Coruna,LECO,Barcelona - A Coruna,323189,51210817,1341771,0.63,2019,complete
+Barcelona,LEBL,Granada,LEGR,Barcelona - Granada,489536,51210817,1249920,0.96,2019,complete
+Barcelona,LEBL,Ibiza,LEIB,Barcelona - Ibiza,1206315,51210817,7632907,2.36,2019,complete
+Barcelona,LEBL,Jerez,LEJR,Barcelona - Jerez,186037,51210817,1086607,0.36,2019,complete
+Barcelona,LEBL,Barajas,LEMD,Barcelona - Barajas,2572893,51210817,59373123,5.02,2019,complete
+Barcelona,LEBL,Malaga,LEMG,Barcelona - Malaga,848964,51210817,19158321,1.66,2019,complete
+Barcelona,LEBL,Menorca,LEMH,Barcelona - Menorca,837792,51210817,2983071,1.64,2019,complete
+Barcelona,LEBL,Palma de Mallorca,LEPA,Barcelona - Palma de Mallorca,2173939,51210817,27397471,4.25,2019,complete
+Barcelona,LEBL,Pamplona,LEPP,Barcelona - Pamplona,3447842.5371566783,51210817,232131,NA,2019,complete
+Barcelona,LEBL,San Sebastian,LESO,Barcelona - San Sebastian,123438,51210817,321078,0.24,2019,complete
+Barcelona,LEBL,Santiago,LEST,Barcelona - Santiago,423952,51210817,2869020,0.83,2019,complete
+Barcelona,LEBL,Valencia,LEVC,Barcelona - Valencia,85247,51210817,8341358,0.17,2019,complete
+Barcelona,LEBL,Valladolid,LEVD,Barcelona - Valladolid,169375,51210817,214766,0.33,2019,complete
+Barcelona,LEBL,Vigo,LEVX,Barcelona - Vigo,196182,51210817,1007566,0.38,2019,complete
+Barcelona,LEBL,Sevilla,LEZL,Barcelona - Sevilla,1045029,51210817,7454425,2.04,2019,complete
+Barcelona,LEBL,Helsinki Malmi,EFHF,Barcelona - Helsinki Malmi,NA,51210817,NA,NA,2019,missing_end_pax
+Barcelona,LEBL,Helsinki Vantaa,EFHK,Barcelona - Helsinki Vantaa,333106,51210817,NA,0.65,2019,missing_end_pax
+Barcelona,LEBL,Merignac,LFBD,Barcelona - Merignac,218894,51210817,7618599,0.43,2019,complete
+Barcelona,LEBL,Saint Exupery,LFLL,Barcelona - Saint Exupery,303158,51210817,11461753,0.59,2019,complete
+Barcelona,LEBL,Bron,LFLY,Barcelona - Bron,NA,51210817,NA,NA,2019,missing_end_pax
+Barcelona,LEBL,Provence,LFML,Barcelona - Provence,113989,51210817,10030599,0.22,2019,complete
+Barcelona,LEBL,Cote D'Azur,LFMN,Barcelona - Cote D'Azur,308360,51210817,14277508,0.6,2019,complete
+Barcelona,LEBL,Beauvais–Tille,LFOB,Barcelona - Beauvais–Tille,183978,51210817,3903522,0.36,2019,complete
+Barcelona,LEBL,Charles De Gaulle,LFPG,Barcelona - Charles De Gaulle,1373128,51210817,75449170,2.68,2019,complete
+Barcelona,LEBL,Orly,LFPO,Barcelona - Orly,1148504,51210817,31716559,2.24,2019,complete
+Barcelona,LEBL,Nantes Atlantique,LFRS,Barcelona - Nantes Atlantique,156575,51210817,7000005,0.31,2019,complete
+Barcelona,LEBL,Bale Mulhouse,LFSB,Barcelona - Bale Mulhouse,357708,51210817,8271471,0.7,2019,complete
+Barcelona,LEBL,Bale Mulhouse,LFSB,Barcelona - Bale Mulhouse,357708,51210817,562406,0.7,2019,complete
+Barcelona,LEBL,Dubrovnik,LDDU,Barcelona - Dubrovnik,78890,51210817,NA,0.15,2019,missing_end_pax
+Barcelona,LEBL,Dublin,EIDW,Barcelona - Dublin,601531,51210817,NA,1.17,2019,missing_end_pax
+Barcelona,LEBL,Keflavik International Airport,BIKF,Barcelona - Keflavik International Airport,NA,51210817,NA,NA,2019,missing_end_pax
+Barcelona,LEBL,Bari,LIBD,Barcelona - Bari,16727886.986062855,51210817,5464123,NA,2019,complete
+Barcelona,LEBL,Catania Fontanarossa,LICC,Barcelona - Catania Fontanarossa,89077,51210817,9740700,0.17,2019,complete
+Barcelona,LEBL,Palermo,LICJ,Barcelona - Palermo,18847527.999128137,51210817,6936607,NA,2019,complete
+Barcelona,LEBL,Elmas,LIEE,Barcelona - Elmas,15508112.867798196,51210817,4696304,NA,2019,complete
+Barcelona,LEBL,Malpensa,LIMC,Barcelona - Malpensa,891709,51210817,28346074,1.74,2019,complete
+Barcelona,LEBL,Bergamo Orio Al Serio,LIME,Barcelona - Bergamo Orio Al Serio,409319,51210817,13600898,0.8,2019,complete
+Barcelona,LEBL,Torino,LIMF,Barcelona - Torino,205771,51210817,3839752,0.4,2019,complete
+Barcelona,LEBL,Linate,LIML,Barcelona - Linate,18294439.103861727,51210817,6535465,NA,2019,complete
+Barcelona,LEBL,Bologna,LIPE,Barcelona - Bologna,389825,51210817,9338293,0.76,2019,complete
+Barcelona,LEBL,Treviso,LIPH,Barcelona - Treviso,12802360.120374992,51210817,3200504,NA,2019,complete
+Barcelona,LEBL,Marco Polo di Tessera,LIPZ,Barcelona - Marco Polo di Tessera,514281,51210817,11454860,1,2019,complete
+Barcelona,LEBL,Ciampino,LIRA,Barcelona - Ciampino,17309493.455988623,51210817,5850689,NA,2019,complete
+Barcelona,LEBL,Fiumicino,LIRF,Barcelona - Fiumicino,1402757,51210817,43191420,2.74,2019,complete
+Barcelona,LEBL,Capodichino,LIRN,Barcelona - Capodichino,408217,51210817,10387667,0.8,2019,complete
+Barcelona,LEBL,Peretola,LIRQ,Barcelona - Peretola,187390,51210817,2860307,0.37,2019,complete
+Barcelona,LEBL,Vilnius Intl,EYVI,Barcelona - Vilnius Intl,105989,51210817,NA,0.21,2019,missing_end_pax
+Barcelona,LEBL,Luxembourg,ELLX,Barcelona - Luxembourg,114778,51210817,NA,0.22,2019,missing_end_pax
+Barcelona,LEBL,Riga Intl,EVRA,Barcelona - Riga Intl,103697,51210817,NA,0.2,2019,missing_end_pax
+Barcelona,LEBL,Luqa,LMML,Barcelona - Luqa,139479,51210817,NA,0.27,2019,missing_end_pax
+Barcelona,LEBL,Eindhoven,EHEH,Barcelona - Eindhoven,144355,51210817,6744047,0.28,2019,complete
+Barcelona,LEBL,Rotterdam,EHRD,Barcelona - Rotterdam,88873,51210817,1940700,0.17,2019,complete
+Barcelona,LEBL,Gardermoen,ENGM,Barcelona - Gardermoen,257433,51210817,NA,0.5,2019,missing_end_pax
+Barcelona,LEBL,Porto,LPPR,Barcelona - Porto,692341,51210817,NA,1.35,2019,missing_end_pax
+Barcelona,LEBL,Lisboa,LPPT,Barcelona - Lisboa,1008138,51210817,NA,1.97,2019,missing_end_pax
+Barcelona,LEBL,Beograd,LYBE,Barcelona - Beograd,NA,51210817,NA,NA,2019,missing_end_pax
+Barcelona,LEBL,Landvetter,ESGG,Barcelona - Landvetter,123750,51210817,NA,0.24,2019,missing_end_pax
+Barcelona,LEBL,Skavsta,ESKN,Barcelona - Skavsta,NA,51210817,NA,NA,2019,missing_end_pax
+Barcelona,LEBL,Arlanda,ESSA,Barcelona - Arlanda,297806,51210817,NA,0.58,2019,missing_end_pax
+Barcelona,LEBL,Belfast Intl,EGAA,Barcelona - Belfast Intl,17572832.804971173,51210817,6030063,NA,2019,complete
+Barcelona,LEBL,Birmingham,EGBB,Barcelona - Birmingham,242480,51210817,11271854,0.47,2019,complete
+Barcelona,LEBL,Manchester,EGCC,Barcelona - Manchester,507216,51210817,26895408,0.99,2019,complete
+Barcelona,LEBL,Bristol,EGGD,Barcelona - Bristol,204912,51210817,8146487,0.4,2019,complete
+Barcelona,LEBL,Liverpool,EGGP,Barcelona - Liverpool,233586,51210817,4972891,0.46,2019,complete
+Barcelona,LEBL,Luton,EGGW,Barcelona - Luton,469536,51210817,17961864,0.92,2019,complete
+Barcelona,LEBL,Southend,EGMC,Barcelona - Southend,10188709.713031331,51210817,2027107,NA,2019,complete
+Barcelona,LEBL,Leeds Bradford,EGNM,Barcelona - Leeds Bradford,14216427.750796083,51210817,3946565,NA,2019,complete
+Barcelona,LEBL,Newcastle,EGNT,Barcelona - Newcastle,16293107.527239088,51210817,5183775,NA,2019,complete
+Barcelona,LEBL,Nottingham East Midlands,EGNX,Barcelona - Nottingham East Midlands,14587481.548339281,51210817,4155267,NA,2019,complete
+Barcelona,LEBL,Glasgow International,EGPF,Barcelona - Glasgow International,20735677.563532013,51210817,8396045,NA,2019,complete
+Barcelona,LEBL,Edinburgh,EGPH,Barcelona - Edinburgh,171744,51210817,14510779,0.34,2019,complete
+Barcelona,LEBL,Prestwick,EGPK,Barcelona - Prestwick,5706522.164270721,51210817,635889,NA,2019,complete
+Barcelona,LEBL,Stansted,EGSS,Barcelona - Stansted,520624,51210817,27745806,1.02,2019,complete
+Barajas,LEMD,Tirana Rinas,LATI,Barajas - Tirana Rinas,NA,59373123,NA,NA,2019,missing_end_pax
+Barajas,LEMD,Schwechat,LOWW,Barajas - Schwechat,564079,59373123,31258901,0.95,2019,complete
+Barajas,LEMD,Brussels South,EBCI,Barajas - Brussels South,105814,59373123,8196702,0.18,2019,complete
+Barajas,LEMD,Bale Mulhouse,LFSB,Barajas - Bale Mulhouse,22160845.31496786,59373123,8271471,NA,2019,complete
+Barajas,LEMD,Bale Mulhouse,LFSB,Barajas - Bale Mulhouse,5778563.888539954,59373123,562406,NA,2019,complete
+Barajas,LEMD,Geneve Cointrin,LSGG,Barajas - Geneve Cointrin,584185,59373123,17742225,0.98,2019,complete
+Barajas,LEMD,Zurich,LSZH,Barajas - Zurich,693721,59373123,31292970,1.17,2019,complete
+Barajas,LEMD,Schonefeld,EDDB,Barajas - Schonefeld,192101,59373123,11028278,0.32,2019,complete
+Barajas,LEMD,Berlin Brandenburg Willy Brandt,EDDB,Barajas - Berlin Brandenburg Willy Brandt,192101,59373123,11028278,0.32,2019,complete
+Barajas,LEMD,Hamburg,EDDH,Barajas - Hamburg,207250,59373123,16279030,0.35,2019,complete
+Barajas,LEMD,Koln Bonn,EDDK,Barajas - Koln Bonn,78499,59373123,10641348,0.13,2019,complete
+Barajas,LEMD,Dusseldorf,EDDL,Barajas - Dusseldorf,487671,59373123,24588161,0.82,2019,complete
+Barajas,LEMD,Stuttgart,EDDS,Barajas - Stuttgart,26996733.30681651,59373123,12275312,NA,2019,complete
+Barajas,LEMD,Tegel,EDDT,Barajas - Tegel,442693,59373123,24008455,0.75,2019,complete
+Barajas,LEMD,Frankfurt Hahn,EDFH,Barajas - Frankfurt Hahn,9100577.962012522,59373123,1394916,NA,2019,complete
+Barajas,LEMD,Niederrhein,EDLV,Barajas - Niederrhein,8537442.832773464,59373123,1227625,NA,2019,complete
+Barajas,LEMD,Eleftherios Venizelos Intl,LGAV,Barajas - Eleftherios Venizelos Intl,382783,59373123,NA,0.64,2019,missing_end_pax
+Barajas,LEMD,Fuerteventura,GCFV,Barajas - Fuerteventura,351510,59373123,4935430,0.59,2019,complete
+Barajas,LEMD,La Palma,GCLA,Barajas - La Palma,144962,59373123,1386969,0.24,2019,complete
+Barajas,LEMD,Gran Canaria,GCLP,Barajas - Gran Canaria,1659106,59373123,11196595,2.79,2019,complete
+Barajas,LEMD,Lanzarote,GCRR,Barajas - Lanzarote,514886,59373123,6401678,0.87,2019,complete
+Barajas,LEMD,Tenerife Sur,GCTS,Barajas - Tenerife Sur,342422,59373123,9350488,0.58,2019,complete
+Barajas,LEMD,Tenerife Norte,GCXO,Barajas - Tenerife Norte,1493755,59373123,5796902,2.52,2019,complete
+Barajas,LEMD,Melilla,GEML,Barajas - Melilla,117945,59373123,426064,0.2,2019,complete
+Barajas,LEMD,Alicante,LEAL,Barajas - Alicante,299447,59373123,14627077,0.5,2019,complete
+Barajas,LEMD,Almeria,LEAM,Barajas - Almeria,210688,59373123,914835,0.35,2019,complete
+Barajas,LEMD,Asturias,LEAS,Barajas - Asturias,548213,59373123,1392013,0.92,2019,complete
+Barajas,LEMD,Bilbao,LEBB,Barajas - Bilbao,835758,59373123,5814556,1.41,2019,complete
+Barajas,LEMD,A Coruna,LECO,Barajas - A Coruna,680075,59373123,1341771,1.15,2019,complete
+Barajas,LEMD,Girona,LEGE,Barajas - Girona,10349241.437912393,59373123,1803961,NA,2019,complete
+Barajas,LEMD,Granada,LEGR,Barajas - Granada,199065,59373123,1249920,0.34,2019,complete
+Barajas,LEMD,Ibiza,LEIB,Barajas - Ibiza,837007,59373123,7632907,1.41,2019,complete
+Barajas,LEMD,Jerez,LEJR,Barajas - Jerez,304260,59373123,1086607,0.51,2019,complete
+Barajas,LEMD,Murcia San Javier,LELC,Barajas - Murcia San Javier,1117866.771928122,59373123,21047,NA,2019,complete
+Barajas,LEMD,Malaga,LEMG,Barajas - Malaga,357258,59373123,19158321,0.6,2019,complete
+Barajas,LEMD,Menorca,LEMH,Barajas - Menorca,311628,59373123,2983071,0.52,2019,complete
+Barajas,LEMD,Palma de Mallorca,LEPA,Barajas - Palma de Mallorca,1995104,59373123,27397471,3.36,2019,complete
+Barajas,LEMD,Pamplona,LEPP,Barajas - Pamplona,176999,59373123,232131,0.3,2019,complete
+Barajas,LEMD,San Sebastian,LESO,Barajas - San Sebastian,198468,59373123,321078,0.33,2019,complete
+Barajas,LEMD,Santiago,LEST,Barajas - Santiago,719748,59373123,2869020,1.21,2019,complete
+Barajas,LEMD,Valencia,LEVC,Barajas - Valencia,338217,59373123,8341358,0.57,2019,complete
+Barajas,LEMD,Vigo,LEVX,Barajas - Vigo,683930,59373123,1007566,1.15,2019,complete
+Barajas,LEMD,Zaragoza Ab,LEZG,Barajas - Zaragoza Ab,4388802.9200646505,59373123,324416,NA,2019,complete
+Barajas,LEMD,Sevilla,LEZL,Barajas - Sevilla,486438,59373123,7454425,0.82,2019,complete
+Barajas,LEMD,Helsinki Vantaa,EFHK,Barajas - Helsinki Vantaa,146865,59373123,NA,0.25,2019,missing_end_pax
+Barajas,LEMD,Merignac,LFBD,Barajas - Merignac,163516,59373123,7618599,0.28,2019,complete
+Barajas,LEMD,Blagnac,LFBO,Barajas - Blagnac,298199,59373123,9451746,0.5,2019,complete
+Barajas,LEMD,Saint Exupery,LFLL,Barajas - Saint Exupery,273042,59373123,11461753,0.46,2019,complete
+Barajas,LEMD,Bron,LFLY,Barajas - Bron,NA,59373123,NA,NA,2019,missing_end_pax
+Barajas,LEMD,Provence,LFML,Barajas - Provence,245886,59373123,10030599,0.41,2019,complete
+Barajas,LEMD,Cote D'Azur,LFMN,Barajas - Cote D'Azur,193490,59373123,14277508,0.33,2019,complete
+Barajas,LEMD,Beauvais–Tille,LFOB,Barajas - Beauvais–Tille,91414,59373123,3903522,0.15,2019,complete
+Barajas,LEMD,Charles De Gaulle,LFPG,Barajas - Charles De Gaulle,1115987,59373123,75449170,1.88,2019,complete
+Barajas,LEMD,Orly,LFPO,Barajas - Orly,1361645,59373123,31716559,2.29,2019,complete
+Barajas,LEMD,Nantes Atlantique,LFRS,Barajas - Nantes Atlantique,220044,59373123,7000005,0.37,2019,complete
+Barajas,LEMD,Bale Mulhouse,LFSB,Barajas - Bale Mulhouse,176131,59373123,8271471,0.3,2019,complete
+Barajas,LEMD,Bale Mulhouse,LFSB,Barajas - Bale Mulhouse,176131,59373123,562406,0.3,2019,complete
+Barajas,LEMD,Dubrovnik,LDDU,Barajas - Dubrovnik,94567,59373123,NA,0.16,2019,missing_end_pax
+Barajas,LEMD,Dublin,EIDW,Barajas - Dublin,554193,59373123,NA,0.93,2019,missing_end_pax
+Barajas,LEMD,Keflavik International Airport,BIKF,Barajas - Keflavik International Airport,NA,59373123,NA,NA,2019,missing_end_pax
+Barajas,LEMD,Bari,LIBD,Barajas - Bari,96299,59373123,5464123,0.16,2019,complete
+Barajas,LEMD,Catania Fontanarossa,LICC,Barajas - Catania Fontanarossa,90668,59373123,9740700,0.15,2019,complete
+Barajas,LEMD,Palermo,LICJ,Barajas - Palermo,78717,59373123,6936607,0.13,2019,complete
+Barajas,LEMD,Elmas,LIEE,Barajas - Elmas,79212,59373123,4696304,0.13,2019,complete
+Barajas,LEMD,Malpensa,LIMC,Barajas - Malpensa,747778,59373123,28346074,1.26,2019,complete
+Barajas,LEMD,Bergamo Orio Al Serio,LIME,Barajas - Bergamo Orio Al Serio,316346,59373123,13600898,0.53,2019,complete
+Barajas,LEMD,Torino,LIMF,Barajas - Torino,115370,59373123,3839752,0.19,2019,complete
+Barajas,LEMD,Linate,LIML,Barajas - Linate,365422,59373123,6535465,0.62,2019,complete
+Barajas,LEMD,Bologna,LIPE,Barajas - Bologna,312967,59373123,9338293,0.53,2019,complete
+Barajas,LEMD,Marco Polo di Tessera,LIPZ,Barajas - Marco Polo di Tessera,555109,59373123,11454860,0.93,2019,complete
+Barajas,LEMD,Ciampino,LIRA,Barajas - Ciampino,392734,59373123,5850689,0.66,2019,complete
+Barajas,LEMD,Fiumicino,LIRF,Barajas - Fiumicino,1266980,59373123,43191420,2.13,2019,complete
+Barajas,LEMD,Capodichino,LIRN,Barajas - Capodichino,233298,59373123,10387667,0.39,2019,complete
+Barajas,LEMD,Pisa,LIRP,Barajas - Pisa,122356,59373123,5357109,0.21,2019,complete
+Barajas,LEMD,Peretola,LIRQ,Barajas - Peretola,159818,59373123,2860307,0.27,2019,complete
+Barajas,LEMD,Luxembourg,ELLX,Barajas - Luxembourg,125768,59373123,NA,0.21,2019,missing_end_pax
+Barajas,LEMD,Luqa,LMML,Barajas - Luqa,107512,59373123,NA,0.18,2019,missing_end_pax
+Barajas,LEMD,Eindhoven,EHEH,Barajas - Eindhoven,20010375.60988751,59373123,6744047,NA,2019,complete
+Barajas,LEMD,Gardermoen,ENGM,Barajas - Gardermoen,112646,59373123,NA,0.19,2019,missing_end_pax
+Barajas,LEMD,Faro International,LPFR,Barajas - Faro International,NA,59373123,NA,NA,2019,missing_end_pax
+Barajas,LEMD,Porto,LPPR,Barajas - Porto,970110,59373123,NA,1.63,2019,missing_end_pax
+Barajas,LEMD,Lisboa,LPPT,Barajas - Lisboa,1557398,59373123,NA,2.62,2019,missing_end_pax
+Barajas,LEMD,Arlanda,ESSA,Barajas - Arlanda,204549,59373123,NA,0.34,2019,missing_end_pax
+Barajas,LEMD,Birmingham,EGBB,Barajas - Birmingham,127527,59373123,11271854,0.21,2019,complete
+Barajas,LEMD,Manchester,EGCC,Barajas - Manchester,185723,59373123,26895408,0.31,2019,complete
+Barajas,LEMD,Bristol,EGGD,Barajas - Bristol,109209,59373123,8146487,0.18,2019,complete
+Barajas,LEMD,Liverpool,EGGP,Barajas - Liverpool,83362,59373123,4972891,0.14,2019,complete
+Barajas,LEMD,Luton,EGGW,Barajas - Luton,135770,59373123,17961864,0.23,2019,complete
+Barajas,LEMD,City,EGLC,Barajas - City,17438187.23661184,59373123,5121684,NA,2019,complete
+Barajas,LEMD,Edinburgh,EGPH,Barajas - Edinburgh,174172,59373123,14510779,0.29,2019,complete
+Barajas,LEMD,Stansted,EGSS,Barajas - Stansted,502915,59373123,27745806,0.85,2019,complete
+Charles De Gaulle,LFPG,Schwechat,LOWW,Charles De Gaulle - Schwechat,942651,75449170,31258901,1.25,2019,complete
+Charles De Gaulle,LFPG,Bale Mulhouse,LFSB,Charles De Gaulle - Bale Mulhouse,145518,75449170,8271471,0.19,2019,complete
+Charles De Gaulle,LFPG,Bale Mulhouse,LFSB,Charles De Gaulle - Bale Mulhouse,145518,75449170,562406,0.19,2019,complete
+Charles De Gaulle,LFPG,Geneve Cointrin,LSGG,Charles De Gaulle - Geneve Cointrin,726648,75449170,17742225,0.96,2019,complete
+Charles De Gaulle,LFPG,Zurich,LSZH,Charles De Gaulle - Zurich,723912,75449170,31292970,0.96,2019,complete
+Charles De Gaulle,LFPG,Schonefeld,EDDB,Charles De Gaulle - Schonefeld,114480,75449170,11028278,0.15,2019,complete
+Charles De Gaulle,LFPG,Berlin Brandenburg Willy Brandt,EDDB,Charles De Gaulle - Berlin Brandenburg Willy Brandt,114480,75449170,11028278,0.15,2019,complete
+Charles De Gaulle,LFPG,Hamburg,EDDH,Charles De Gaulle - Hamburg,464745,75449170,16279030,0.62,2019,complete
+Charles De Gaulle,LFPG,Koln Bonn,EDDK,Charles De Gaulle - Koln Bonn,28335152.624984395,75449170,10641348,NA,2019,complete
+Charles De Gaulle,LFPG,Dusseldorf,EDDL,Charles De Gaulle - Dusseldorf,464579,75449170,24588161,0.62,2019,complete
+Charles De Gaulle,LFPG,Nurnberg,EDDN,Charles De Gaulle - Nurnberg,167841,75449170,3486586,0.22,2019,complete
+Charles De Gaulle,LFPG,Stuttgart,EDDS,Charles De Gaulle - Stuttgart,166573,75449170,12275312,0.22,2019,complete
+Charles De Gaulle,LFPG,Tegel,EDDT,Charles De Gaulle - Tegel,864627,75449170,24008455,1.15,2019,complete
+Charles De Gaulle,LFPG,Hannover,EDDV,Charles De Gaulle - Hannover,160227,75449170,5908901,0.21,2019,complete
+Charles De Gaulle,LFPG,Neuenland,EDDW,Charles De Gaulle - Neuenland,12872059.797522306,75449170,2196047,NA,2019,complete
+Charles De Gaulle,LFPG,Dortmund,EDLW,Charles De Gaulle - Dortmund,14249101.211484885,75449170,2691042,NA,2019,complete
+Charles De Gaulle,LFPG,HBF RAILWAY STATION,EDLW,Charles De Gaulle - HBF RAILWAY STATION,14249101.211484885,75449170,2691042,NA,2019,complete
+Charles De Gaulle,LFPG,Billund,EKBI,Charles De Gaulle - Billund,90892,75449170,2974341,0.12,2019,complete
+Charles De Gaulle,LFPG,Roskilde,EKRK,Charles De Gaulle - Roskilde,NA,75449170,NA,NA,2019,missing_end_pax
+Charles De Gaulle,LFPG,Eleftherios Venizelos Intl,LGAV,Charles De Gaulle - Eleftherios Venizelos Intl,685312,75449170,NA,0.91,2019,missing_end_pax
+Charles De Gaulle,LFPG,Nikos Kazantzakis,LGIR,Charles De Gaulle - Nikos Kazantzakis,173895,75449170,NA,0.23,2019,missing_end_pax
+Charles De Gaulle,LFPG,Rhodes Diagoras,LGRP,Charles De Gaulle - Rhodes Diagoras,NA,75449170,NA,NA,2019,missing_end_pax
+Charles De Gaulle,LFPG,Fuerteventura,GCFV,Charles De Gaulle - Fuerteventura,92819,75449170,4935430,0.12,2019,complete
+Charles De Gaulle,LFPG,Gran Canaria,GCLP,Charles De Gaulle - Gran Canaria,29064992.681508627,75449170,11196595,NA,2019,complete
+Charles De Gaulle,LFPG,Tenerife Norte,GCXO,Charles De Gaulle - Tenerife Norte,20913427.37265559,75449170,5796902,NA,2019,complete
+Charles De Gaulle,LFPG,Alicante,LEAL,Charles De Gaulle - Alicante,33220487.943076484,75449170,14627077,NA,2019,complete
+Charles De Gaulle,LFPG,Bilbao,LEBB,Charles De Gaulle - Bilbao,312469,75449170,5814556,0.41,2019,complete
+Charles De Gaulle,LFPG,Ibiza,LEIB,Charles De Gaulle - Ibiza,111911,75449170,7632907,0.15,2019,complete
+Charles De Gaulle,LFPG,Malaga,LEMG,Charles De Gaulle - Malaga,476316,75449170,19158321,0.63,2019,complete
+Charles De Gaulle,LFPG,Palma de Mallorca,LEPA,Charles De Gaulle - Palma de Mallorca,209567,75449170,27397471,0.28,2019,complete
+Charles De Gaulle,LFPG,Valencia,LEVC,Charles De Gaulle - Valencia,289480,75449170,8341358,0.38,2019,complete
+Charles De Gaulle,LFPG,Vigo,LEVX,Charles De Gaulle - Vigo,8718945.946627952,75449170,1007566,NA,2019,complete
+Charles De Gaulle,LFPG,Sevilla,LEZL,Charles De Gaulle - Sevilla,204711,75449170,7454425,0.27,2019,complete
+Charles De Gaulle,LFPG,Helsinki Malmi,EFHF,Charles De Gaulle - Helsinki Malmi,NA,75449170,NA,NA,2019,missing_end_pax
+Charles De Gaulle,LFPG,Helsinki Vantaa,EFHK,Charles De Gaulle - Helsinki Vantaa,490045,75449170,NA,0.65,2019,missing_end_pax
+Charles De Gaulle,LFPG,Dzaoudzi Pamandzi,FMCZ,Charles De Gaulle - Dzaoudzi Pamandzi,87778,75449170,380253,0.12,2019,complete
+Charles De Gaulle,LFPG,St Denis Gillot,FMEE,Charles De Gaulle - St Denis Gillot,388818,75449170,2450824,0.52,2019,complete
+Charles De Gaulle,LFPG,Merignac,LFBD,Charles De Gaulle - Merignac,652237,75449170,7618599,0.86,2019,complete
+Charles De Gaulle,LFPG,Blagnac,LFBO,Charles De Gaulle - Blagnac,1001404,75449170,9451746,1.33,2019,complete
+Charles De Gaulle,LFPG,Pau Pyrenees,LFBP,Charles De Gaulle - Pau Pyrenees,176943,75449170,598929,0.23,2019,complete
+Charles De Gaulle,LFPG,Anglet,LFBZ,Charles De Gaulle - Anglet,266501,75449170,1062537,0.35,2019,complete
+Charles De Gaulle,LFPG,Poretta,LFKB,Charles De Gaulle - Poretta,10522421.545363026,75449170,1467496,NA,2019,complete
+Charles De Gaulle,LFPG,Sud Corse,LFKF,Charles De Gaulle - Sud Corse,7421788.81364796,75449170,730067,NA,2019,complete
+Charles De Gaulle,LFPG,Campo Dell Oro,LFKJ,Charles De Gaulle - Campo Dell Oro,107813,75449170,1594582,0.14,2019,complete
+Charles De Gaulle,LFPG,Auvergne,LFLC,Charles De Gaulle - Auvergne,175372,75449170,389357,0.23,2019,complete
+Charles De Gaulle,LFPG,Saint Exupery,LFLL,Charles De Gaulle - Saint Exupery,537164,75449170,11461753,0.71,2019,complete
+Charles De Gaulle,LFPG,Provence,LFML,Charles De Gaulle - Provence,676320,75449170,10030599,0.9,2019,complete
+Charles De Gaulle,LFPG,Cote D'Azur,LFMN,Charles De Gaulle - Cote D'Azur,1125569,75449170,14277508,1.49,2019,complete
+Charles De Gaulle,LFPG,Mediterranee,LFMT,Charles De Gaulle - Mediterranee,427009,75449170,1924607,0.57,2019,complete
+Charles De Gaulle,LFPG,Guipavas,LFRB,Charles De Gaulle - Guipavas,267833,75449170,1173358,0.35,2019,complete
+Charles De Gaulle,LFPG,St Jacques,LFRN,Charles De Gaulle - St Jacques,148969,75449170,832954,0.2,2019,complete
+Charles De Gaulle,LFPG,Nantes Atlantique,LFRS,Charles De Gaulle - Nantes Atlantique,453061,75449170,7000005,0.6,2019,complete
+Charles De Gaulle,LFPG,Bale Mulhouse,LFSB,Charles De Gaulle - Bale Mulhouse,24981505.591718648,75449170,8271471,NA,2019,complete
+Charles De Gaulle,LFPG,Bale Mulhouse,LFSB,Charles De Gaulle - Bale Mulhouse,6514066.771458518,75449170,562406,NA,2019,complete
+Charles De Gaulle,LFPG,Entzheim,LFST,Charles De Gaulle - Entzheim,9672489.144432781,75449170,1240001,NA,2019,complete
+Charles De Gaulle,LFPG,Garons,LFTW,Charles De Gaulle - Garons,4146832.9997794703,75449170,227918,NA,2019,complete
+Charles De Gaulle,LFPG,Rochambeau,SOCA,Charles De Gaulle - Rochambeau,6486139.413933376,75449170,557594,NA,2019,complete
+Charles De Gaulle,LFPG,Le Lamentin,TFFF,Charles De Gaulle - Le Lamentin,12134561.426405571,75449170,1951613,NA,2019,complete
+Charles De Gaulle,LFPG,Le Raizet,TFFR,Charles De Gaulle - Le Raizet,12992018.480579913,75449170,2237169,NA,2019,complete
+Charles De Gaulle,LFPG,Split International,LDSP,Charles De Gaulle - Split International,NA,75449170,NA,NA,2019,missing_end_pax
+Charles De Gaulle,LFPG,Zagreb,LDZA,Charles De Gaulle - Zagreb,170214,75449170,NA,0.23,2019,missing_end_pax
+Charles De Gaulle,LFPG,Cork,EICK,Charles De Gaulle - Cork,134580,75449170,NA,0.18,2019,missing_end_pax
+Charles De Gaulle,LFPG,Dublin,EIDW,Charles De Gaulle - Dublin,755638,75449170,NA,1,2019,missing_end_pax
+Charles De Gaulle,LFPG,Keflavik International Airport,BIKF,Charles De Gaulle - Keflavik International Airport,282747,75449170,NA,0.37,2019,missing_end_pax
+Charles De Gaulle,LFPG,Catania Fontanarossa,LICC,Charles De Gaulle - Catania Fontanarossa,157708,75449170,9740700,0.21,2019,complete
+Charles De Gaulle,LFPG,Palermo,LICJ,Charles De Gaulle - Palermo,22877089.866637103,75449170,6936607,NA,2019,complete
+Charles De Gaulle,LFPG,Malpensa,LIMC,Charles De Gaulle - Malpensa,1083693,75449170,28346074,1.44,2019,complete
+Charles De Gaulle,LFPG,Torino,LIMF,Charles De Gaulle - Torino,171291,75449170,3839752,0.23,2019,complete
+Charles De Gaulle,LFPG,Linate,LIML,Charles De Gaulle - Linate,419393,75449170,6535465,0.56,2019,complete
+Charles De Gaulle,LFPG,Bologna,LIPE,Charles De Gaulle - Bologna,297423,75449170,9338293,0.39,2019,complete
+Charles De Gaulle,LFPG,Villafranca,LIPX,Charles De Gaulle - Villafranca,15816889.094893156,75449170,3315795,NA,2019,complete
+Charles De Gaulle,LFPG,Marco Polo di Tessera,LIPZ,Charles De Gaulle - Marco Polo di Tessera,812692,75449170,11454860,1.08,2019,complete
+Charles De Gaulle,LFPG,Fiumicino,LIRF,Charles De Gaulle - Fiumicino,1304921,75449170,43191420,1.73,2019,complete
+Charles De Gaulle,LFPG,Capodichino,LIRN,Charles De Gaulle - Capodichino,199036,75449170,10387667,0.26,2019,complete
+Charles De Gaulle,LFPG,Pisa,LIRP,Charles De Gaulle - Pisa,20104462.878911488,75449170,5357109,NA,2019,complete
+Charles De Gaulle,LFPG,Peretola,LIRQ,Charles De Gaulle - Peretola,450646,75449170,2860307,0.6,2019,complete
+Charles De Gaulle,LFPG,Luxembourg,ELLX,Charles De Gaulle - Luxembourg,149530,75449170,NA,0.2,2019,missing_end_pax
+Charles De Gaulle,LFPG,Riga Intl,EVRA,Charles De Gaulle - Riga Intl,145438,75449170,NA,0.19,2019,missing_end_pax
+Charles De Gaulle,LFPG,Luqa,LMML,Charles De Gaulle - Luqa,102659,75449170,NA,0.14,2019,missing_end_pax
+Charles De Gaulle,LFPG,Flesland,ENBR,Charles De Gaulle - Flesland,87099,75449170,NA,0.12,2019,missing_end_pax
+Charles De Gaulle,LFPG,Gardermoen,ENGM,Charles De Gaulle - Gardermoen,513759,75449170,NA,0.68,2019,missing_end_pax
+Charles De Gaulle,LFPG,Faro International,LPFR,Charles De Gaulle - Faro International,NA,75449170,NA,NA,2019,missing_end_pax
+Charles De Gaulle,LFPG,Porto,LPPR,Charles De Gaulle - Porto,316370,75449170,NA,0.42,2019,missing_end_pax
+Charles De Gaulle,LFPG,Lisboa,LPPT,Charles De Gaulle - Lisboa,689353,75449170,NA,0.91,2019,missing_end_pax
+Charles De Gaulle,LFPG,Beograd,LYBE,Charles De Gaulle - Beograd,223698,75449170,NA,0.3,2019,missing_end_pax
+Charles De Gaulle,LFPG,Landvetter,ESGG,Charles De Gaulle - Landvetter,142553,75449170,NA,0.19,2019,missing_end_pax
+Charles De Gaulle,LFPG,Save,ESGP,Charles De Gaulle - Save,NA,75449170,NA,NA,2019,missing_end_pax
+Charles De Gaulle,LFPG,Arlanda,ESSA,Charles De Gaulle - Arlanda,658709,75449170,NA,0.87,2019,missing_end_pax
+Charles De Gaulle,LFPG,Ljubljana,LJLJ,Charles De Gaulle - Ljubljana,100878,75449170,NA,0.13,2019,missing_end_pax
+Charles De Gaulle,LFPG,Belfast Intl,EGAA,Charles De Gaulle - Belfast Intl,88836,75449170,6030063,0.12,2019,complete
+Charles De Gaulle,LFPG,Belfast City,EGAC,Charles De Gaulle - Belfast City,13603220.764995692,75449170,2452613,NA,2019,complete
+Charles De Gaulle,LFPG,Birmingham,EGBB,Charles De Gaulle - Birmingham,400880,75449170,11271854,0.53,2019,complete
+Charles De Gaulle,LFPG,Nottingham Airport,EGBN,Charles De Gaulle - Nottingham Airport,NA,75449170,NA,NA,2019,missing_end_pax
+Charles De Gaulle,LFPG,Manchester,EGCC,Charles De Gaulle - Manchester,680914,75449170,26895408,0.9,2019,complete
+Charles De Gaulle,LFPG,Cardiff,EGFF,Charles De Gaulle - Cardiff,8754784.208146995,75449170,1015866,NA,2019,complete
+Charles De Gaulle,LFPG,Bristol,EGGD,Charles De Gaulle - Bristol,169909,75449170,8146487,0.23,2019,complete
+Charles De Gaulle,LFPG,Liverpool,EGGP,Charles De Gaulle - Liverpool,87569,75449170,4972891,0.12,2019,complete
+Charles De Gaulle,LFPG,Luton,EGGW,Charles De Gaulle - Luton,284091,75449170,17961864,0.38,2019,complete
+Charles De Gaulle,LFPG,Southampton,EGHI,Charles De Gaulle - Southampton,76720,75449170,1760117,0.1,2019,complete
+Charles De Gaulle,LFPG,Leeds Bradford,EGNM,Charles De Gaulle - Leeds Bradford,17255870.120079428,75449170,3946565,NA,2019,complete
+Charles De Gaulle,LFPG,Newcastle,EGNT,Charles De Gaulle - Newcastle,165568,75449170,5183775,0.22,2019,complete
+Charles De Gaulle,LFPG,Nottingham East Midlands,EGNX,Charles De Gaulle - Nottingham East Midlands,17706254.43955864,75449170,4155267,NA,2019,complete
+Charles De Gaulle,LFPG,Dyce,EGPD,Charles De Gaulle - Dyce,91038,75449170,2279063,0.12,2019,complete
+Charles De Gaulle,LFPG,Glasgow International,EGPF,Charles De Gaulle - Glasgow International,128166,75449170,8396045,0.17,2019,complete
+Charles De Gaulle,LFPG,Edinburgh,EGPH,Charles De Gaulle - Edinburgh,361254,75449170,14510779,0.48,2019,complete
+Charles De Gaulle,LFPG,Exeter,EGTE,Charles De Gaulle - Exeter,76054,75449170,789227,0.1,2019,complete
+Orly,LFPO,Schwechat,LOWW,Orly - Schwechat,31486898.510994364,31716559,31258901,NA,2019,complete
+Orly,LFPO,Geneve Cointrin,LSGG,Orly - Geneve Cointrin,333177,31716559,17742225,1.05,2019,complete
+Orly,LFPO,Schonefeld,EDDB,Orly - Schonefeld,18702380.325921137,31716559,11028278,NA,2019,complete
+Orly,LFPO,Berlin Brandenburg Willy Brandt,EDDB,Orly - Berlin Brandenburg Willy Brandt,18702380.325921137,31716559,11028278,NA,2019,complete
+Orly,LFPO,Hamburg,EDDH,Orly - Hamburg,22722561.81546812,31716559,16279030,NA,2019,complete
+Orly,LFPO,Dusseldorf,EDDL,Orly - Dusseldorf,27925827.813298553,31716559,24588161,NA,2019,complete
+Orly,LFPO,Tegel,EDDT,Orly - Tegel,308218,31716559,24008455,0.97,2019,complete
+Orly,LFPO,Eleftherios Venizelos Intl,LGAV,Orly - Eleftherios Venizelos Intl,217406,31716559,NA,0.69,2019,missing_end_pax
+Orly,LFPO,Nikos Kazantzakis,LGIR,Orly - Nikos Kazantzakis,154711,31716559,NA,0.49,2019,missing_end_pax
+Orly,LFPO,Mikonos,LGMK,Orly - Mikonos,80712,31716559,NA,0.25,2019,missing_end_pax
+Orly,LFPO,Rhodes Diagoras,LGRP,Orly - Rhodes Diagoras,NA,31716559,NA,NA,2019,missing_end_pax
+Orly,LFPO,Santorini,LGSR,Orly - Santorini,NA,31716559,NA,NA,2019,missing_end_pax
+Orly,LFPO,Fuerteventura,GCFV,Orly - Fuerteventura,12511389.082966367,31716559,4935430,NA,2019,complete
+Orly,LFPO,Lanzarote,GCRR,Orly - Lanzarote,14249182.362016495,31716559,6401678,NA,2019,complete
+Orly,LFPO,Tenerife Sur,GCTS,Orly - Tenerife Sur,17221071.520982426,31716559,9350488,NA,2019,complete
+Orly,LFPO,Tenerife Norte,GCXO,Orly - Tenerife Norte,13559416.812688442,31716559,5796902,NA,2019,complete
+Orly,LFPO,Alicante,LEAL,Orly - Alicante,251640,31716559,14627077,0.79,2019,complete
+Orly,LFPO,Ibiza,LEIB,Orly - Ibiza,118206,31716559,7632907,0.37,2019,complete
+Orly,LFPO,Malaga,LEMG,Orly - Malaga,322542,31716559,19158321,1.02,2019,complete
+Orly,LFPO,Menorca,LEMH,Orly - Menorca,9726908.41802723,31716559,2983071,NA,2019,complete
+Orly,LFPO,Palma de Mallorca,LEPA,Orly - Palma de Mallorca,129085,31716559,27397471,0.41,2019,complete
+Orly,LFPO,Valencia,LEVC,Orly - Valencia,282513,31716559,8341358,0.89,2019,complete
+Orly,LFPO,Sevilla,LEZL,Orly - Sevilla,212692,31716559,7454425,0.67,2019,complete
+Orly,LFPO,St Denis Gillot,FMEE,Orly - St Denis Gillot,982834,31716559,2450824,3.1,2019,complete
+Orly,LFPO,Merignac,LFBD,Orly - Merignac,566001,31716559,7618599,1.78,2019,complete
+Orly,LFPO,Blagnac,LFBO,Orly - Blagnac,2216636,31716559,9451746,6.99,2019,complete
+Orly,LFPO,Pau Pyrenees,LFBP,Orly - Pau Pyrenees,301939,31716559,598929,0.95,2019,complete
+Orly,LFPO,Lourdes,LFBT,Orly - Lourdes,133880,31716559,300715,0.42,2019,complete
+Orly,LFPO,Anglet,LFBZ,Orly - Anglet,365291,31716559,1062537,1.15,2019,complete
+Orly,LFPO,Marcillac,LFCR,Orly - Marcillac,NA,31716559,NA,NA,2019,missing_end_pax
+Orly,LFPO,Poretta,LFKB,Orly - Poretta,431500,31716559,1467496,1.36,2019,complete
+Orly,LFPO,Saint Catherine,LFKC,Orly - Saint Catherine,146294,31716559,321443,0.46,2019,complete
+Orly,LFPO,Sud Corse,LFKF,Orly - Sud Corse,170309,31716559,730067,0.54,2019,complete
+Orly,LFPO,Campo Dell Oro,LFKJ,Orly - Campo Dell Oro,446313,31716559,1594582,1.41,2019,complete
+Orly,LFPO,Auvergne,LFLC,Orly - Auvergne,105345,31716559,389357,0.33,2019,complete
+Orly,LFPO,Saint Exupery,LFLL,Orly - Saint Exupery,158320,31716559,11461753,0.5,2019,complete
+Orly,LFPO,Saint Geoirs,LFLS,Orly - Saint Geoirs,2309880.917782127,31716559,168226,NA,2019,complete
+Orly,LFPO,Provence,LFML,Orly - Provence,883720,31716559,10030599,2.79,2019,complete
+Orly,LFPO,Cote D'Azur,LFMN,Orly - Cote D'Azur,2059092,31716559,14277508,6.49,2019,complete
+Orly,LFPO,Rivesaltes,LFMP,Orly - Rivesaltes,239289,31716559,441526,0.75,2019,complete
+Orly,LFPO,Mediterranee,LFMT,Orly - Mediterranee,562050,31716559,1924607,1.77,2019,complete
+Orly,LFPO,Caumont,LFMV,Orly - Caumont,NA,31716559,NA,NA,2019,missing_end_pax
+Orly,LFPO,Guipavas,LFRB,Orly - Guipavas,293762,31716559,1173358,0.93,2019,complete
+Orly,LFPO,Lann Bihoue,LFRH,Orly - Lann Bihoue,NA,31716559,NA,NA,2019,missing_end_pax
+Orly,LFPO,Pluguffan,LFRQ,Orly - Pluguffan,NA,31716559,NA,NA,2019,missing_end_pax
+Orly,LFPO,Nantes Atlantique,LFRS,Orly - Nantes Atlantique,100756,31716559,7000005,0.32,2019,complete
+Orly,LFPO,Bale Mulhouse,LFSB,Orly - Bale Mulhouse,81646,31716559,8271471,0.26,2019,complete
+Orly,LFPO,Bale Mulhouse,LFSB,Orly - Bale Mulhouse,81646,31716559,562406,0.26,2019,complete
+Orly,LFPO,Entzheim,LFST,Orly - Entzheim,6271249.068292456,31716559,1240001,NA,2019,complete
+Orly,LFPO,Le Palyvestre,LFTH,Orly - Le Palyvestre,337428,31716559,490933,1.06,2019,complete
+Orly,LFPO,Rochambeau,SOCA,Orly - Rochambeau,351223,31716559,557594,1.11,2019,complete
+Orly,LFPO,Le Lamentin,TFFF,Orly - Le Lamentin,1217234,31716559,1951613,3.84,2019,complete
+Orly,LFPO,Le Raizet,TFFR,Orly - Le Raizet,1429730,31716559,2237169,4.51,2019,complete
+Orly,LFPO,Dublin,EIDW,Orly - Dublin,96992,31716559,NA,0.31,2019,missing_end_pax
+Orly,LFPO,Keflavik International Airport,BIKF,Orly - Keflavik International Airport,NA,31716559,NA,NA,2019,missing_end_pax
+Orly,LFPO,Bari,LIBD,Orly - Bari,13164466.54873478,31716559,5464123,NA,2019,complete
+Orly,LFPO,Catania Fontanarossa,LICC,Orly - Catania Fontanarossa,17576731.38701562,31716559,9740700,NA,2019,complete
+Orly,LFPO,Palermo,LICJ,Orly - Palermo,118769,31716559,6936607,0.37,2019,complete
+Orly,LFPO,Olbia Costa Smeralda,LIEO,Orly - Olbia Costa Smeralda,77894,31716559,2762110,0.25,2019,complete
+Orly,LFPO,Malpensa,LIMC,Orly - Malpensa,350645,31716559,28346074,1.11,2019,complete
+Orly,LFPO,Linate,LIML,Orly - Linate,179140,31716559,6535465,0.56,2019,complete
+Orly,LFPO,Marco Polo di Tessera,LIPZ,Orly - Marco Polo di Tessera,277967,31716559,11454860,0.88,2019,complete
+Orly,LFPO,Ciampino,LIRA,Orly - Ciampino,13622177.610762201,31716559,5850689,NA,2019,complete
+Orly,LFPO,Fiumicino,LIRF,Orly - Fiumicino,727905,31716559,43191420,2.3,2019,complete
+Orly,LFPO,Capodichino,LIRN,Orly - Capodichino,389374,31716559,10387667,1.23,2019,complete
+Orly,LFPO,Pisa,LIRP,Orly - Pisa,155933,31716559,5357109,0.49,2019,complete
+Orly,LFPO,Peretola,LIRQ,Orly - Peretola,132944,31716559,2860307,0.42,2019,complete
+Orly,LFPO,Luqa,LMML,Orly - Luqa,106698,31716559,NA,0.34,2019,missing_end_pax
+Orly,LFPO,Gardermoen,ENGM,Orly - Gardermoen,NA,31716559,NA,NA,2019,missing_end_pax
+Orly,LFPO,Faro International,LPFR,Orly - Faro International,221809,31716559,NA,0.7,2019,missing_end_pax
+Orly,LFPO,Porto,LPPR,Orly - Porto,910176,31716559,NA,2.87,2019,missing_end_pax
+Orly,LFPO,Lisboa,LPPT,Orly - Lisboa,1290516,31716559,NA,4.07,2019,missing_end_pax
+Orly,LFPO,Arlanda,ESSA,Orly - Arlanda,NA,31716559,NA,NA,2019,missing_end_pax
+Orly,LFPO,Manchester,EGCC,Orly - Manchester,29206673.803448964,31716559,26895408,NA,2019,complete
+Orly,LFPO,Bristol,EGGD,Orly - Bristol,16074157.383148674,31716559,8146487,NA,2019,complete
+Orly,LFPO,Luton,EGGW,Orly - Luton,23868148.63591175,31716559,17961864,NA,2019,complete
+Orly,LFPO,Southampton,EGHI,Orly - Southampton,7471603.220019315,31716559,1760117,NA,2019,complete
+Orly,LFPO,City,EGLC,Orly - City,12745281.196009604,31716559,5121684,NA,2019,complete
+Zurich,LSZH,Graz,LOWG,Zurich - Graz,5304471.528641661,31292970,899161,NA,2019,complete
+Zurich,LSZH,Wolfgang A. Mozart,LOWS,Zurich - Wolfgang A. Mozart,6804809.191654826,31292970,1479739,NA,2019,complete
+Zurich,LSZH,Bale Mulhouse,LFSB,Zurich - Bale Mulhouse,16088470.836560883,31292970,8271471,NA,2019,complete
+Zurich,LSZH,Bale Mulhouse,LFSB,Zurich - Bale Mulhouse,4195158.410098479,31292970,562406,NA,2019,complete
+Zurich,LSZH,Geneve Cointrin,LSGG,Zurich - Geneve Cointrin,622076,31292970,17742225,1.99,2019,complete
+Zurich,LSZH,Lugano,LSZA,Zurich - Lugano,1323737.5676923278,31292970,55996,NA,2019,complete
+Zurich,LSZH,Schonefeld,EDDB,Zurich - Schonefeld,18577071.15251648,31292970,11028278,NA,2019,complete
+Zurich,LSZH,Berlin Brandenburg Willy Brandt,EDDB,Zurich - Berlin Brandenburg Willy Brandt,18577071.15251648,31292970,11028278,NA,2019,complete
+Zurich,LSZH,Dresden International,EDDC,Zurich - Dresden International,102647,31292970,1420208,0.33,2019,complete
+Zurich,LSZH,Hamburg,EDDH,Zurich - Hamburg,692048,31292970,16279030,2.21,2019,complete
+Zurich,LSZH,Koln Bonn,EDDK,Zurich - Koln Bonn,256701,31292970,10641348,0.82,2019,complete
+Zurich,LSZH,Dusseldorf,EDDL,Zurich - Dusseldorf,747601,31292970,24588161,2.39,2019,complete
+Zurich,LSZH,Nurnberg,EDDN,Zurich - Nurnberg,155304,31292970,3486586,0.5,2019,complete
+Zurich,LSZH,Stuttgart,EDDS,Zurich - Stuttgart,178121,31292970,12275312,0.57,2019,complete
+Zurich,LSZH,Tegel,EDDT,Zurich - Tegel,1163424,31292970,24008455,3.72,2019,complete
+Zurich,LSZH,Hannover,EDDV,Zurich - Hannover,214555,31292970,5908901,0.69,2019,complete
+Zurich,LSZH,Neuenland,EDDW,Zurich - Neuenland,79490,31292970,2196047,0.25,2019,complete
+Zurich,LSZH,Eleftherios Venizelos Intl,LGAV,Zurich - Eleftherios Venizelos Intl,496945,31292970,NA,1.59,2019,missing_end_pax
+Zurich,LSZH,Nikos Kazantzakis,LGIR,Zurich - Nikos Kazantzakis,112382,31292970,NA,0.36,2019,missing_end_pax
+Zurich,LSZH,Kos,LGKO,Zurich - Kos,NA,31292970,NA,NA,2019,missing_end_pax
+Zurich,LSZH,Rhodes Diagoras,LGRP,Zurich - Rhodes Diagoras,NA,31292970,NA,NA,2019,missing_end_pax
+Zurich,LSZH,Makedonia,LGTS,Zurich - Makedonia,NA,31292970,NA,NA,2019,missing_end_pax
+Zurich,LSZH,Gran Canaria,GCLP,Zurich - Gran Canaria,113785,31292970,11196595,0.36,2019,complete
+Zurich,LSZH,Tenerife Sur,GCTS,Zurich - Tenerife Sur,107074,31292970,9350488,0.34,2019,complete
+Zurich,LSZH,Alicante,LEAL,Zurich - Alicante,21394501.20354971,31292970,14627077,NA,2019,complete
+Zurich,LSZH,Ibiza,LEIB,Zurich - Ibiza,15454977.507708965,31292970,7632907,NA,2019,complete
+Zurich,LSZH,Malaga,LEMG,Zurich - Malaga,282718,31292970,19158321,0.9,2019,complete
+Zurich,LSZH,Palma de Mallorca,LEPA,Zurich - Palma de Mallorca,470152,31292970,27397471,1.5,2019,complete
+Zurich,LSZH,Valencia,LEVC,Zurich - Valencia,244311,31292970,8341358,0.78,2019,complete
+Zurich,LSZH,Helsinki Vantaa,EFHK,Zurich - Helsinki Vantaa,206984,31292970,NA,0.66,2019,missing_end_pax
+Zurich,LSZH,Merignac,LFBD,Zurich - Merignac,85237,31292970,7618599,0.27,2019,complete
+Zurich,LSZH,Saint Exupery,LFLL,Zurich - Saint Exupery,18938645.484205306,31292970,11461753,NA,2019,complete
+Zurich,LSZH,Cote D'Azur,LFMN,Zurich - Cote D'Azur,286469,31292970,14277508,0.92,2019,complete
+Zurich,LSZH,Zagreb,LDZA,Zurich - Zagreb,103945,31292970,NA,0.33,2019,missing_end_pax
+Zurich,LSZH,Dublin,EIDW,Zurich - Dublin,280365,31292970,NA,0.9,2019,missing_end_pax
+Zurich,LSZH,Keflavik International Airport,BIKF,Zurich - Keflavik International Airport,90505,31292970,NA,0.29,2019,missing_end_pax
+Zurich,LSZH,Casale,LIBR,Zurich - Casale,9175973.644057617,31292970,2690652,NA,2019,complete
+Zurich,LSZH,Catania Fontanarossa,LICC,Zurich - Catania Fontanarossa,17458964.25561952,31292970,9740700,NA,2019,complete
+Zurich,LSZH,Palermo,LICJ,Zurich - Palermo,14733194.994731795,31292970,6936607,NA,2019,complete
+Zurich,LSZH,Torino,LIMF,Zurich - Torino,10961625.980822371,31292970,3839752,NA,2019,complete
+Zurich,LSZH,Linate,LIML,Zurich - Linate,14300842.98847624,31292970,6535465,NA,2019,complete
+Zurich,LSZH,Bologna,LIPE,Zurich - Bologna,17094529.028323945,31292970,9338293,NA,2019,complete
+Zurich,LSZH,Marco Polo di Tessera,LIPZ,Zurich - Marco Polo di Tessera,239036,31292970,11454860,0.76,2019,complete
+Zurich,LSZH,Capodichino,LIRN,Zurich - Capodichino,110455,31292970,10387667,0.35,2019,complete
+Zurich,LSZH,Peretola,LIRQ,Zurich - Peretola,169445,31292970,2860307,0.54,2019,complete
+Zurich,LSZH,Luxembourg,ELLX,Zurich - Luxembourg,126260,31292970,NA,0.4,2019,missing_end_pax
+Zurich,LSZH,Riga Intl,EVRA,Zurich - Riga Intl,100827,31292970,NA,0.32,2019,missing_end_pax
+Zurich,LSZH,Alexaner The Great,LWSK,Zurich - Alexaner The Great,143138,31292970,NA,0.46,2019,missing_end_pax
+Zurich,LSZH,Luqa,LMML,Zurich - Luqa,115201,31292970,NA,0.37,2019,missing_end_pax
+Zurich,LSZH,Gardermoen,ENGM,Zurich - Gardermoen,180961,31292970,NA,0.58,2019,missing_end_pax
+Zurich,LSZH,Porto,LPPR,Zurich - Porto,276485,31292970,NA,0.88,2019,missing_end_pax
+Zurich,LSZH,Lisboa,LPPT,Zurich - Lisboa,486014,31292970,NA,1.55,2019,missing_end_pax
+Zurich,LSZH,Beograd,LYBE,Zurich - Beograd,418746,31292970,NA,1.34,2019,missing_end_pax
+Zurich,LSZH,Landvetter,ESGG,Zurich - Landvetter,89038,31292970,NA,0.28,2019,missing_end_pax
+Zurich,LSZH,Arlanda,ESSA,Zurich - Arlanda,398505,31292970,NA,1.27,2019,missing_end_pax
+Zurich,LSZH,Ljubljana,LJLJ,Zurich - Ljubljana,85467,31292970,NA,0.27,2019,missing_end_pax
+Zurich,LSZH,Birmingham,EGBB,Zurich - Birmingham,97976,31292970,11271854,0.31,2019,complete
+Zurich,LSZH,Manchester,EGCC,Zurich - Manchester,144731,31292970,26895408,0.46,2019,complete
+Zurich,LSZH,Luton,EGGW,Zurich - Luton,173843,31292970,17961864,0.56,2019,complete
+Zurich,LSZH,City,EGLC,Zurich - City,430202,31292970,5121684,1.37,2019,complete
+Zurich,LSZH,Edinburgh,EGPH,Zurich - Edinburgh,21309279.00994377,31292970,14510779,NA,2019,complete
+Zurich,LSZH,Stansted,EGSS,Zurich - Stansted,29466059.70916064,31292970,27745806,NA,2019,complete
+Brussels Natl,EBBR,Tirana Rinas,LATI,Brussels Natl - Tirana Rinas,NA,25569693,NA,NA,2019,missing_end_pax
+Brussels Natl,EBBR,Schwechat,LOWW,Brussels Natl - Schwechat,486177,25569693,31258901,1.9,2019,complete
+Brussels Natl,EBBR,Geneve Cointrin,LSGG,Brussels Natl - Geneve Cointrin,615005,25569693,17742225,2.41,2019,complete
+Brussels Natl,EBBR,Zurich,LSZH,Brussels Natl - Zurich,324112,25569693,31292970,1.27,2019,complete
+Brussels Natl,EBBR,Schonefeld,EDDB,Brussels Natl - Schonefeld,164493,25569693,11028278,0.64,2019,complete
+Brussels Natl,EBBR,Berlin Brandenburg Willy Brandt,EDDB,Brussels Natl - Berlin Brandenburg Willy Brandt,164493,25569693,11028278,0.64,2019,complete
+Brussels Natl,EBBR,Frankfurt Main,EDDF,Brussels Natl - Frankfurt Main,578559,25569693,70066509,2.26,2019,complete
+Brussels Natl,EBBR,Hamburg,EDDH,Brussels Natl - Hamburg,196919,25569693,16279030,0.77,2019,complete
+Brussels Natl,EBBR,Tempelhof,EDDI,Brussels Natl - Tempelhof,NA,25569693,NA,NA,2019,missing_end_pax
+Brussels Natl,EBBR,Dusseldorf,EDDL,Brussels Natl - Dusseldorf,25074124.674743343,25569693,24588161,NA,2019,complete
+Brussels Natl,EBBR,Franz Josef Strauss,EDDM,Brussels Natl - Franz Josef Strauss,439029,25569693,47266254,1.72,2019,complete
+Brussels Natl,EBBR,Stuttgart,EDDS,Brussels Natl - Stuttgart,17716544.790653057,25569693,12275312,NA,2019,complete
+Brussels Natl,EBBR,Tegel,EDDT,Brussels Natl - Tegel,348494,25569693,24008455,1.36,2019,complete
+Brussels Natl,EBBR,Hannover,EDDV,Brussels Natl - Hannover,12291817.7881627,25569693,5908901,NA,2019,complete
+Brussels Natl,EBBR,Billund,EKBI,Brussels Natl - Billund,109108,25569693,2974341,0.43,2019,complete
+Brussels Natl,EBBR,Kastrup,EKCH,Brussels Natl - Kastrup,478894,25569693,28737167,1.87,2019,complete
+Brussels Natl,EBBR,Eleftherios Venizelos Intl,LGAV,Brussels Natl - Eleftherios Venizelos Intl,273471,25569693,NA,1.07,2019,missing_end_pax
+Brussels Natl,EBBR,Nikos Kazantzakis,LGIR,Brussels Natl - Nikos Kazantzakis,159282,25569693,NA,0.62,2019,missing_end_pax
+Brussels Natl,EBBR,Kos,LGKO,Brussels Natl - Kos,79854,25569693,NA,0.31,2019,missing_end_pax
+Brussels Natl,EBBR,Ioannis Kapodistrias Intl,LGKR,Brussels Natl - Ioannis Kapodistrias Intl,NA,25569693,NA,NA,2019,missing_end_pax
+Brussels Natl,EBBR,Rhodes Diagoras,LGRP,Brussels Natl - Rhodes Diagoras,81912,25569693,NA,0.32,2019,missing_end_pax
+Brussels Natl,EBBR,Gran Canaria,GCLP,Brussels Natl - Gran Canaria,121116,25569693,11196595,0.47,2019,complete
+Brussels Natl,EBBR,Lanzarote,GCRR,Brussels Natl - Lanzarote,77432,25569693,6401678,0.3,2019,complete
+Brussels Natl,EBBR,Tenerife Sur,GCTS,Brussels Natl - Tenerife Sur,270319,25569693,9350488,1.06,2019,complete
+Brussels Natl,EBBR,Alicante,LEAL,Brussels Natl - Alicante,412625,25569693,14627077,1.61,2019,complete
+Brussels Natl,EBBR,Almeria,LEAM,Brussels Natl - Almeria,4836532.858945032,25569693,914835,NA,2019,complete
+Brussels Natl,EBBR,Bilbao,LEBB,Brussels Natl - Bilbao,154677,25569693,5814556,0.6,2019,complete
+Brussels Natl,EBBR,Barcelona,LEBL,Brussels Natl - Barcelona,952169,25569693,51210817,3.72,2019,complete
+Brussels Natl,EBBR,Ibiza,LEIB,Brussels Natl - Ibiza,13970364.658359889,25569693,7632907,NA,2019,complete
+Brussels Natl,EBBR,Barajas,LEMD,Brussels Natl - Barajas,1086037,25569693,59373123,4.25,2019,complete
+Brussels Natl,EBBR,Malaga,LEMG,Brussels Natl - Malaga,528277,25569693,19158321,2.07,2019,complete
+Brussels Natl,EBBR,Palma de Mallorca,LEPA,Brussels Natl - Palma de Mallorca,196365,25569693,27397471,0.77,2019,complete
+Brussels Natl,EBBR,Santiago,LEST,Brussels Natl - Santiago,8565042.942732979,25569693,2869020,NA,2019,complete
+Brussels Natl,EBBR,Valencia,LEVC,Brussels Natl - Valencia,229602,25569693,8341358,0.9,2019,complete
+Brussels Natl,EBBR,Sevilla,LEZL,Brussels Natl - Sevilla,13806062.390903678,25569693,7454425,NA,2019,complete
+Brussels Natl,EBBR,Helsinki Malmi,EFHF,Brussels Natl - Helsinki Malmi,NA,25569693,NA,NA,2019,missing_end_pax
+Brussels Natl,EBBR,Helsinki Vantaa,EFHK,Brussels Natl - Helsinki Vantaa,231501,25569693,NA,0.91,2019,missing_end_pax
+Brussels Natl,EBBR,Merignac,LFBD,Brussels Natl - Merignac,82952,25569693,7618599,0.32,2019,complete
+Brussels Natl,EBBR,Blagnac,LFBO,Brussels Natl - Blagnac,188527,25569693,9451746,0.74,2019,complete
+Brussels Natl,EBBR,Saint Exupery,LFLL,Brussels Natl - Saint Exupery,261219,25569693,11461753,1.02,2019,complete
+Brussels Natl,EBBR,Provence,LFML,Brussels Natl - Provence,152139,25569693,10030599,0.59,2019,complete
+Brussels Natl,EBBR,Cote D'Azur,LFMN,Brussels Natl - Cote D'Azur,385835,25569693,14277508,1.51,2019,complete
+Brussels Natl,EBBR,Charles De Gaulle,LFPG,Brussels Natl - Charles De Gaulle,196076,25569693,75449170,0.77,2019,complete
+Brussels Natl,EBBR,Nantes Atlantique,LFRS,Brussels Natl - Nantes Atlantique,86699,25569693,7000005,0.34,2019,complete
+Brussels Natl,EBBR,Bale Mulhouse,LFSB,Brussels Natl - Bale Mulhouse,109475,25569693,8271471,0.43,2019,complete
+Brussels Natl,EBBR,Bale Mulhouse,LFSB,Brussels Natl - Bale Mulhouse,109475,25569693,562406,0.43,2019,complete
+Brussels Natl,EBBR,Entzheim,LFST,Brussels Natl - Entzheim,5630847.6173390625,25569693,1240001,NA,2019,complete
+Brussels Natl,EBBR,Zagreb,LDZA,Brussels Natl - Zagreb,119816,25569693,NA,0.47,2019,missing_end_pax
+Brussels Natl,EBBR,Dublin,EIDW,Brussels Natl - Dublin,438568,25569693,NA,1.72,2019,missing_end_pax
+Brussels Natl,EBBR,Keflavik International Airport,BIKF,Brussels Natl - Keflavik International Airport,105117,25569693,NA,0.41,2019,missing_end_pax
+Brussels Natl,EBBR,Catania Fontanarossa,LICC,Brussels Natl - Catania Fontanarossa,15781847.439545853,25569693,9740700,NA,2019,complete
+Brussels Natl,EBBR,Malpensa,LIMC,Brussels Natl - Malpensa,430943,25569693,28346074,1.69,2019,complete
+Brussels Natl,EBBR,Bergamo Orio Al Serio,LIME,Brussels Natl - Bergamo Orio Al Serio,18648613.52445039,25569693,13600898,NA,2019,complete
+Brussels Natl,EBBR,Torino,LIMF,Brussels Natl - Torino,9908646.720725086,25569693,3839752,NA,2019,complete
+Brussels Natl,EBBR,Linate,LIML,Brussels Natl - Linate,222103,25569693,6535465,0.87,2019,complete
+Brussels Natl,EBBR,Bologna,LIPE,Brussels Natl - Bologna,15452420.041988537,25569693,9338293,NA,2019,complete
+Brussels Natl,EBBR,Treviso,LIPH,Brussels Natl - Treviso,9046319.954836441,25569693,3200504,NA,2019,complete
+Brussels Natl,EBBR,Marco Polo di Tessera,LIPZ,Brussels Natl - Marco Polo di Tessera,229738,25569693,11454860,0.9,2019,complete
+Brussels Natl,EBBR,Ciampino,LIRA,Brussels Natl - Ciampino,12231121.026646618,25569693,5850689,NA,2019,complete
+Brussels Natl,EBBR,Fiumicino,LIRF,Brussels Natl - Fiumicino,721051,25569693,43191420,2.82,2019,complete
+Brussels Natl,EBBR,Capodichino,LIRN,Brussels Natl - Capodichino,77222,25569693,10387667,0.3,2019,complete
+Brussels Natl,EBBR,Peretola,LIRQ,Brussels Natl - Peretola,8552027.354712507,25569693,2860307,NA,2019,complete
+Brussels Natl,EBBR,Luxembourg,ELLX,Brussels Natl - Luxembourg,NA,25569693,NA,NA,2019,missing_end_pax
+Brussels Natl,EBBR,Riga Intl,EVRA,Brussels Natl - Riga Intl,99173,25569693,NA,0.39,2019,missing_end_pax
+Brussels Natl,EBBR,Luqa,LMML,Brussels Natl - Luqa,104250,25569693,NA,0.41,2019,missing_end_pax
+Brussels Natl,EBBR,Schiphol,EHAM,Brussels Natl - Schiphol,281568,25569693,71054718,1.1,2019,complete
+Brussels Natl,EBBR,Gardermoen,ENGM,Brussels Natl - Gardermoen,295114,25569693,NA,1.15,2019,missing_end_pax
+Brussels Natl,EBBR,Faro International,LPFR,Brussels Natl - Faro International,101160,25569693,NA,0.4,2019,missing_end_pax
+Brussels Natl,EBBR,Porto,LPPR,Brussels Natl - Porto,347994,25569693,NA,1.36,2019,missing_end_pax
+Brussels Natl,EBBR,Lisboa,LPPT,Brussels Natl - Lisboa,772853,25569693,NA,3.02,2019,missing_end_pax
+Brussels Natl,EBBR,Landvetter,ESGG,Brussels Natl - Landvetter,203331,25569693,NA,0.8,2019,missing_end_pax
+Brussels Natl,EBBR,Arlanda,ESSA,Brussels Natl - Arlanda,157407,25569693,NA,0.62,2019,missing_end_pax
+Brussels Natl,EBBR,Bromma,ESSB,Brussels Natl - Bromma,208293,25569693,NA,0.81,2019,missing_end_pax
+Brussels Natl,EBBR,Ljubljana,LJLJ,Brussels Natl - Ljubljana,NA,25569693,NA,NA,2019,missing_end_pax
+Brussels Natl,EBBR,Birmingham,EGBB,Brussels Natl - Birmingham,132236,25569693,11271854,0.52,2019,complete
+Brussels Natl,EBBR,Manchester,EGCC,Brussels Natl - Manchester,247115,25569693,26895408,0.97,2019,complete
+Brussels Natl,EBBR,Bristol,EGGD,Brussels Natl - Bristol,14432711.859470174,25569693,8146487,NA,2019,complete
+Brussels Natl,EBBR,Gatwick,EGKK,Brussels Natl - Gatwick,33501195.121883728,25569693,43892982,NA,2019,complete
+Brussels Natl,EBBR,City,EGLC,Brussels Natl - City,11443770.686404547,25569693,5121684,NA,2019,complete
+Brussels Natl,EBBR,Heathrow,EGLL,Brussels Natl - Heathrow,675607,25569693,80788471,2.64,2019,complete
+Brussels Natl,EBBR,Leeds Bradford,EGNM,Brussels Natl - Leeds Bradford,10045519.172971848,25569693,3946565,NA,2019,complete
+Brussels Natl,EBBR,Newcastle,EGNT,Brussels Natl - Newcastle,11512929.050900774,25569693,5183775,NA,2019,complete
+Brussels Natl,EBBR,Glasgow International,EGPF,Brussels Natl - Glasgow International,14652108.82651999,25569693,8396045,NA,2019,complete
+Brussels Natl,EBBR,Edinburgh,EGPH,Brussels Natl - Edinburgh,146670,25569693,14510779,0.57,2019,complete
+Brussels Natl,EBBR,Stansted,EGSS,Brussels Natl - Stansted,26635535.31389144,25569693,27745806,NA,2019,complete
+Gatwick,EGKK,Tirana Rinas,LATI,Gatwick - Tirana Rinas,106224,43892982,NA,0.24,2019,missing_end_pax
+Gatwick,EGKK,Innsbruck,LOWI,Gatwick - Innsbruck,189034,43892982,949950,0.43,2019,complete
+Gatwick,EGKK,Wolfgang A. Mozart,LOWS,Gatwick - Wolfgang A. Mozart,130724,43892982,1479739,0.3,2019,complete
+Gatwick,EGKK,Schwechat,LOWW,Gatwick - Schwechat,286947,43892982,31258901,0.65,2019,complete
+Gatwick,EGKK,Geneve Cointrin,LSGG,Gatwick - Geneve Cointrin,833653,43892982,17742225,1.9,2019,complete
+Gatwick,EGKK,Zurich,LSZH,Gatwick - Zurich,157184,43892982,31292970,0.36,2019,complete
+Gatwick,EGKK,Schonefeld,EDDB,Gatwick - Schonefeld,201998,43892982,11028278,0.46,2019,complete
+Gatwick,EGKK,Berlin Brandenburg Willy Brandt,EDDB,Gatwick - Berlin Brandenburg Willy Brandt,201998,43892982,11028278,0.46,2019,complete
+Gatwick,EGKK,Hamburg,EDDH,Gatwick - Hamburg,175124,43892982,16279030,0.4,2019,complete
+Gatwick,EGKK,Koln Bonn,EDDK,Gatwick - Koln Bonn,21612045.165132705,43892982,10641348,NA,2019,complete
+Gatwick,EGKK,Dusseldorf,EDDL,Gatwick - Dusseldorf,129755,43892982,24588161,0.3,2019,complete
+Gatwick,EGKK,Nurnberg,EDDN,Gatwick - Nurnberg,12370798.540896703,43892982,3486586,NA,2019,complete
+Gatwick,EGKK,Stuttgart,EDDS,Gatwick - Stuttgart,124923,43892982,12275312,0.28,2019,complete
+Gatwick,EGKK,Tegel,EDDT,Gatwick - Tegel,279145,43892982,24008455,0.64,2019,complete
+Gatwick,EGKK,Neuenland,EDDW,Gatwick - Neuenland,9817894.450550688,43892982,2196047,NA,2019,complete
+Gatwick,EGKK,Billund,EKBI,Gatwick - Billund,11425965.866169127,43892982,2974341,NA,2019,complete
+Gatwick,EGKK,Kastrup,EKCH,Gatwick - Kastrup,770577,43892982,28737167,1.76,2019,complete
+Gatwick,EGKK,Tallinn,EETN,Gatwick - Tallinn,77678,43892982,NA,0.18,2019,missing_end_pax
+Gatwick,EGKK,Eleftherios Venizelos Intl,LGAV,Gatwick - Eleftherios Venizelos Intl,225636,43892982,NA,0.51,2019,missing_end_pax
+Gatwick,EGKK,Nikos Kazantzakis,LGIR,Gatwick - Nikos Kazantzakis,270454,43892982,NA,0.62,2019,missing_end_pax
+Gatwick,EGKK,Kos,LGKO,Gatwick - Kos,135315,43892982,NA,0.31,2019,missing_end_pax
+Gatwick,EGKK,Ioannis Kapodistrias Intl,LGKR,Gatwick - Ioannis Kapodistrias Intl,217565,43892982,NA,0.5,2019,missing_end_pax
+Gatwick,EGKK,Mikonos,LGMK,Gatwick - Mikonos,96128,43892982,NA,0.22,2019,missing_end_pax
+Gatwick,EGKK,Aktio,LGPZ,Gatwick - Aktio,83669,43892982,NA,0.19,2019,missing_end_pax
+Gatwick,EGKK,Rhodes Diagoras,LGRP,Gatwick - Rhodes Diagoras,194289,43892982,NA,0.44,2019,missing_end_pax
+Gatwick,EGKK,Souda,LGSA,Gatwick - Souda,122304,43892982,NA,0.28,2019,missing_end_pax
+Gatwick,EGKK,Alexandros Papadiamantis,LGSK,Gatwick - Alexandros Papadiamantis,NA,43892982,NA,NA,2019,missing_end_pax
+Gatwick,EGKK,Santorini,LGSR,Gatwick - Santorini,115333,43892982,NA,0.26,2019,missing_end_pax
+Gatwick,EGKK,Makedonia,LGTS,Gatwick - Makedonia,186533,43892982,NA,0.42,2019,missing_end_pax
+Gatwick,EGKK,Dionysios Solomos,LGZA,Gatwick - Dionysios Solomos,137263,43892982,NA,0.31,2019,missing_end_pax
+Gatwick,EGKK,Fuerteventura,GCFV,Gatwick - Fuerteventura,201762,43892982,4935430,0.46,2019,complete
+Gatwick,EGKK,Gran Canaria,GCLP,Gatwick - Gran Canaria,259969,43892982,11196595,0.59,2019,complete
+Gatwick,EGKK,Lanzarote,GCRR,Gatwick - Lanzarote,355129,43892982,6401678,0.81,2019,complete
+Gatwick,EGKK,Tenerife Sur,GCTS,Gatwick - Tenerife Sur,698207,43892982,9350488,1.59,2019,complete
+Gatwick,EGKK,Alicante,LEAL,Gatwick - Alicante,891486,43892982,14627077,2.03,2019,complete
+Gatwick,EGKK,Almeria,LEAM,Gatwick - Almeria,145469,43892982,914835,0.33,2019,complete
+Gatwick,EGKK,Bilbao,LEBB,Gatwick - Bilbao,215907,43892982,5814556,0.49,2019,complete
+Gatwick,EGKK,Barcelona,LEBL,Gatwick - Barcelona,1586967,43892982,51210817,3.62,2019,complete
+Gatwick,EGKK,Girona,LEGE,Gatwick - Girona,8898383.43193313,43892982,1803961,NA,2019,complete
+Gatwick,EGKK,Ibiza,LEIB,Gatwick - Ibiza,280657,43892982,7632907,0.64,2019,complete
+Gatwick,EGKK,Murcia San Javier,LELC,Gatwick - Murcia San Javier,961153.2615322075,43892982,21047,NA,2019,complete
+Gatwick,EGKK,Barajas,LEMD,Gatwick - Barajas,1030956,43892982,59373123,2.35,2019,complete
+Gatwick,EGKK,Malaga,LEMG,Gatwick - Malaga,1112756,43892982,19158321,2.54,2019,complete
+Gatwick,EGKK,Menorca,LEMH,Gatwick - Menorca,237337,43892982,2983071,0.54,2019,complete
+Gatwick,EGKK,Palma de Mallorca,LEPA,Gatwick - Palma de Mallorca,772811,43892982,27397471,1.76,2019,complete
+Gatwick,EGKK,Reus,LERS,Gatwick - Reus,5928964.191772624,43892982,800871,NA,2019,complete
+Gatwick,EGKK,Valencia,LEVC,Gatwick - Valencia,307712,43892982,8341358,0.7,2019,complete
+Gatwick,EGKK,Sevilla,LEZL,Gatwick - Sevilla,240453,43892982,7454425,0.55,2019,complete
+Gatwick,EGKK,Helsinki Vantaa,EFHK,Gatwick - Helsinki Vantaa,228891,43892982,NA,0.52,2019,missing_end_pax
+Gatwick,EGKK,Merignac,LFBD,Gatwick - Merignac,325293,43892982,7618599,0.74,2019,complete
+Gatwick,EGKK,Blagnac,LFBO,Gatwick - Blagnac,230131,43892982,9451746,0.52,2019,complete
+Gatwick,EGKK,Aix Les Bains,LFLB,Gatwick - Aix Les Bains,1245233.8636232151,43892982,35327,NA,2019,complete
+Gatwick,EGKK,Saint Exupery,LFLL,Gatwick - Saint Exupery,247110,43892982,11461753,0.56,2019,complete
+Gatwick,EGKK,Saint Geoirs,LFLS,Gatwick - Saint Geoirs,111622,43892982,168226,0.25,2019,complete
+Gatwick,EGKK,Provence,LFML,Gatwick - Provence,154318,43892982,10030599,0.35,2019,complete
+Gatwick,EGKK,Cote D'Azur,LFMN,Gatwick - Cote D'Azur,620627,43892982,14277508,1.41,2019,complete
+Gatwick,EGKK,Mediterranee,LFMT,Gatwick - Mediterranee,142629,43892982,1924607,0.32,2019,complete
+Gatwick,EGKK,Charles De Gaulle,LFPG,Gatwick - Charles De Gaulle,580354,43892982,75449170,1.32,2019,complete
+Gatwick,EGKK,Nantes Atlantique,LFRS,Gatwick - Nantes Atlantique,164566,43892982,7000005,0.37,2019,complete
+Gatwick,EGKK,Bale Mulhouse,LFSB,Gatwick - Bale Mulhouse,288862,43892982,8271471,0.66,2019,complete
+Gatwick,EGKK,Bale Mulhouse,LFSB,Gatwick - Bale Mulhouse,288862,43892982,562406,0.66,2019,complete
+Gatwick,EGKK,Gibraltar,LXGB,Gatwick - Gibraltar,193394,43892982,NA,0.44,2019,missing_end_pax
+Gatwick,EGKK,Dubrovnik,LDDU,Gatwick - Dubrovnik,237386,43892982,NA,0.54,2019,missing_end_pax
+Gatwick,EGKK,Split International,LDSP,Gatwick - Split International,178494,43892982,NA,0.41,2019,missing_end_pax
+Gatwick,EGKK,Zagreb,LDZA,Gatwick - Zagreb,NA,43892982,NA,NA,2019,missing_end_pax
+Gatwick,EGKK,Cork,EICK,Gatwick - Cork,125840,43892982,NA,0.29,2019,missing_end_pax
+Gatwick,EGKK,Dublin,EIDW,Gatwick - Dublin,1347219,43892982,NA,3.07,2019,missing_end_pax
+Gatwick,EGKK,Ireland West Knock,EIKN,Gatwick - Ireland West Knock,83234,43892982,NA,0.19,2019,missing_end_pax
+Gatwick,EGKK,Shannon,EINN,Gatwick - Shannon,117390,43892982,NA,0.27,2019,missing_end_pax
+Gatwick,EGKK,Keflavik International Airport,BIKF,Gatwick - Keflavik International Airport,242186,43892982,NA,0.55,2019,missing_end_pax
+Gatwick,EGKK,Bari,LIBD,Gatwick - Bari,107939,43892982,5464123,0.25,2019,complete
+Gatwick,EGKK,Catania Fontanarossa,LICC,Gatwick - Catania Fontanarossa,204132,43892982,9740700,0.47,2019,complete
+Gatwick,EGKK,Palermo,LICJ,Gatwick - Palermo,17449021.926517084,43892982,6936607,NA,2019,complete
+Gatwick,EGKK,Olbia Costa Smeralda,LIEO,Gatwick - Olbia Costa Smeralda,95199,43892982,2762110,0.22,2019,complete
+Gatwick,EGKK,Malpensa,LIMC,Gatwick - Malpensa,644452,43892982,28346074,1.47,2019,complete
+Gatwick,EGKK,Bergamo Orio Al Serio,LIME,Gatwick - Bergamo Orio Al Serio,24433255.433892474,43892982,13600898,NA,2019,complete
+Gatwick,EGKK,Torino,LIMF,Gatwick - Torino,209944,43892982,3839752,0.48,2019,complete
+Gatwick,EGKK,Linate,LIML,Gatwick - Linate,218600,43892982,6535465,0.5,2019,complete
+Gatwick,EGKK,Bologna,LIPE,Gatwick - Bologna,95947,43892982,9338293,0.22,2019,complete
+Gatwick,EGKK,Villafranca,LIPX,Gatwick - Villafranca,275520,43892982,3315795,0.63,2019,complete
+Gatwick,EGKK,Marco Polo di Tessera,LIPZ,Gatwick - Marco Polo di Tessera,696161,43892982,11454860,1.59,2019,complete
+Gatwick,EGKK,Ciampino,LIRA,Gatwick - Ciampino,16025111.137355585,43892982,5850689,NA,2019,complete
+Gatwick,EGKK,Fiumicino,LIRF,Gatwick - Fiumicino,740666,43892982,43191420,1.69,2019,complete
+Gatwick,EGKK,Capodichino,LIRN,Gatwick - Capodichino,435312,43892982,10387667,0.99,2019,complete
+Gatwick,EGKK,Pisa,LIRP,Gatwick - Pisa,188044,43892982,5357109,0.43,2019,complete
+Gatwick,EGKK,Peretola,LIRQ,Gatwick - Peretola,121526,43892982,2860307,0.28,2019,complete
+Gatwick,EGKK,Kaunas Intl,EYKA,Gatwick - Kaunas Intl,NA,43892982,NA,NA,2019,missing_end_pax
+Gatwick,EGKK,Vilnius Intl,EYVI,Gatwick - Vilnius Intl,NA,43892982,NA,NA,2019,missing_end_pax
+Gatwick,EGKK,Luxembourg,ELLX,Gatwick - Luxembourg,NA,43892982,NA,NA,2019,missing_end_pax
+Gatwick,EGKK,Riga Intl,EVRA,Gatwick - Riga Intl,145412,43892982,NA,0.33,2019,missing_end_pax
+Gatwick,EGKK,Luqa,LMML,Gatwick - Luqa,400770,43892982,NA,0.91,2019,missing_end_pax
+Gatwick,EGKK,Schiphol,EHAM,Gatwick - Schiphol,1099220,43892982,71054718,2.5,2019,complete
+Gatwick,EGKK,Rotterdam,EHRD,Gatwick - Rotterdam,9229469.657970604,43892982,1940700,NA,2019,complete
+Gatwick,EGKK,Flesland,ENBR,Gatwick - Flesland,208740,43892982,NA,0.48,2019,missing_end_pax
+Gatwick,EGKK,Gardermoen,ENGM,Gatwick - Gardermoen,410813,43892982,NA,0.94,2019,missing_end_pax
+Gatwick,EGKK,Moss,ENRY,Gatwick - Moss,NA,43892982,NA,NA,2019,missing_end_pax
+Gatwick,EGKK,Sola,ENZV,Gatwick - Sola,87056,43892982,NA,0.2,2019,missing_end_pax
+Gatwick,EGKK,Faro International,LPFR,Gatwick - Faro International,714456,43892982,NA,1.63,2019,missing_end_pax
+Gatwick,EGKK,Porto,LPPR,Gatwick - Porto,387271,43892982,NA,0.88,2019,missing_end_pax
+Gatwick,EGKK,Lisboa,LPPT,Gatwick - Lisboa,376404,43892982,NA,0.86,2019,missing_end_pax
+Gatwick,EGKK,Landvetter,ESGG,Gatwick - Landvetter,172358,43892982,NA,0.39,2019,missing_end_pax
+Gatwick,EGKK,Skavsta,ESKN,Gatwick - Skavsta,NA,43892982,NA,NA,2019,missing_end_pax
+Gatwick,EGKK,Arlanda,ESSA,Gatwick - Arlanda,436077,43892982,NA,0.99,2019,missing_end_pax
+Gatwick,EGKK,Belfast Intl,EGAA,Gatwick - Belfast Intl,582004,43892982,6030063,1.33,2019,complete
+Gatwick,EGKK,Belfast City,EGAC,Gatwick - Belfast City,10375572.189617593,43892982,2452613,NA,2019,complete
+Gatwick,EGKK,Manchester,EGCC,Gatwick - Manchester,34358691.174528986,43892982,26895408,NA,2019,complete
+Gatwick,EGKK,Guernsey,EGJB,Gatwick - Guernsey,310399,43892982,NA,0.71,2019,missing_end_pax
+Gatwick,EGKK,Jersey,EGJJ,Gatwick - Jersey,692449,43892982,NA,1.58,2019,missing_end_pax
+Gatwick,EGKK,Isle Of Man,EGNS,Gatwick - Isle Of Man,177202,43892982,NA,0.4,2019,missing_end_pax
+Gatwick,EGKK,Newcastle,EGNT,Gatwick - Newcastle,15084142.095825337,43892982,5183775,NA,2019,complete
+Gatwick,EGKK,Dyce,EGPD,Gatwick - Dyce,10001743.40981941,43892982,2279063,NA,2019,complete
+Gatwick,EGKK,Inverness,EGPE,Gatwick - Inverness,258376,43892982,930884,0.59,2019,complete
+Gatwick,EGKK,Glasgow International,EGPF,Gatwick - Glasgow International,641717,43892982,8396045,1.46,2019,complete
+Gatwick,EGKK,Edinburgh,EGPH,Gatwick - Edinburgh,731907,43892982,14510779,1.67,2019,complete
+Heathrow,EGLL,Schwechat,LOWW,Heathrow - Schwechat,835503,80788471,31258901,1.03,2019,complete
+Heathrow,EGLL,Bale Mulhouse,LFSB,Heathrow - Bale Mulhouse,25850328.72152385,80788471,8271471,NA,2019,complete
+Heathrow,EGLL,Bale Mulhouse,LFSB,Heathrow - Bale Mulhouse,6740617.243340998,80788471,562406,NA,2019,complete
+Heathrow,EGLL,Geneve Cointrin,LSGG,Heathrow - Geneve Cointrin,1070524,80788471,17742225,1.33,2019,complete
+Heathrow,EGLL,Zurich,LSZH,Heathrow - Zurich,1188545,80788471,31292970,1.47,2019,complete
+Heathrow,EGLL,Hamburg,EDDH,Heathrow - Hamburg,613188,80788471,16279030,0.76,2019,complete
+Heathrow,EGLL,Koln Bonn,EDDK,Heathrow - Koln Bonn,189557,80788471,10641348,0.23,2019,complete
+Heathrow,EGLL,Dusseldorf,EDDL,Heathrow - Dusseldorf,730850,80788471,24588161,0.9,2019,complete
+Heathrow,EGLL,Nurnberg,EDDN,Heathrow - Nurnberg,16783204.460114464,80788471,3486586,NA,2019,complete
+Heathrow,EGLL,Stuttgart,EDDS,Heathrow - Stuttgart,342408,80788471,12275312,0.42,2019,complete
+Heathrow,EGLL,Tegel,EDDT,Heathrow - Tegel,752162,80788471,24008455,0.93,2019,complete
+Heathrow,EGLL,Hannover,EDDV,Heathrow - Hannover,176409,80788471,5908901,0.22,2019,complete
+Heathrow,EGLL,Neuenland,EDDW,Heathrow - Neuenland,13319732.706557479,80788471,2196047,NA,2019,complete
+Heathrow,EGLL,Billund,EKBI,Heathrow - Billund,91019,80788471,2974341,0.11,2019,complete
+Heathrow,EGLL,Kastrup,EKCH,Heathrow - Kastrup,947501,80788471,28737167,1.17,2019,complete
+Heathrow,EGLL,Eleftherios Venizelos Intl,LGAV,Heathrow - Eleftherios Venizelos Intl,748688,80788471,NA,0.93,2019,missing_end_pax
+Heathrow,EGLL,Ioannis Kapodistrias Intl,LGKR,Heathrow - Ioannis Kapodistrias Intl,90653,80788471,NA,0.11,2019,missing_end_pax
+Heathrow,EGLL,Alicante,LEAL,Heathrow - Alicante,34375851.78623603,80788471,14627077,NA,2019,complete
+Heathrow,EGLL,Bilbao,LEBB,Heathrow - Bilbao,21673695.780458763,80788471,5814556,NA,2019,complete
+Heathrow,EGLL,Barcelona,LEBL,Heathrow - Barcelona,785125,80788471,51210817,0.97,2019,complete
+Heathrow,EGLL,A Coruna,LECO,Heathrow - A Coruna,112412,80788471,1341771,0.14,2019,complete
+Heathrow,EGLL,Barajas,LEMD,Heathrow - Barajas,1476551,80788471,59373123,1.83,2019,complete
+Heathrow,EGLL,Malaga,LEMG,Heathrow - Malaga,120345,80788471,19158321,0.15,2019,complete
+Heathrow,EGLL,Palma de Mallorca,LEPA,Heathrow - Palma de Mallorca,141246,80788471,27397471,0.17,2019,complete
+Heathrow,EGLL,Santiago,LEST,Heathrow - Santiago,15224445.4437073,80788471,2869020,NA,2019,complete
+Heathrow,EGLL,Valencia,LEVC,Heathrow - Valencia,99320,80788471,8341358,0.12,2019,complete
+Heathrow,EGLL,Sevilla,LEZL,Heathrow - Sevilla,24540407.452488948,80788471,7454425,NA,2019,complete
+Heathrow,EGLL,Helsinki Malmi,EFHF,Heathrow - Helsinki Malmi,NA,80788471,NA,NA,2019,missing_end_pax
+Heathrow,EGLL,Helsinki Vantaa,EFHK,Heathrow - Helsinki Vantaa,817869,80788471,NA,1.01,2019,missing_end_pax
+Heathrow,EGLL,Blagnac,LFBO,Heathrow - Blagnac,269462,80788471,9451746,0.33,2019,complete
+Heathrow,EGLL,Saint Exupery,LFLL,Heathrow - Saint Exupery,273848,80788471,11461753,0.34,2019,complete
+Heathrow,EGLL,Provence,LFML,Heathrow - Provence,293354,80788471,10030599,0.36,2019,complete
+Heathrow,EGLL,Cote D'Azur,LFMN,Heathrow - Cote D'Azur,511494,80788471,14277508,0.63,2019,complete
+Heathrow,EGLL,Charles De Gaulle,LFPG,Heathrow - Charles De Gaulle,1260985,80788471,75449170,1.56,2019,complete
+Heathrow,EGLL,Orly,LFPO,Heathrow - Orly,50619485.4477136,80788471,31716559,NA,2019,complete
+Heathrow,EGLL,Bale Mulhouse,LFSB,Heathrow - Bale Mulhouse,278482,80788471,8271471,0.34,2019,complete
+Heathrow,EGLL,Bale Mulhouse,LFSB,Heathrow - Bale Mulhouse,278482,80788471,562406,0.34,2019,complete
+Heathrow,EGLL,Gibraltar,LXGB,Heathrow - Gibraltar,162975,80788471,NA,0.2,2019,missing_end_pax
+Heathrow,EGLL,Zagreb,LDZA,Heathrow - Zagreb,141232,80788471,NA,0.17,2019,missing_end_pax
+Heathrow,EGLL,Cork,EICK,Heathrow - Cork,379107,80788471,NA,0.47,2019,missing_end_pax
+Heathrow,EGLL,Dublin,EIDW,Heathrow - Dublin,1855333,80788471,NA,2.3,2019,missing_end_pax
+Heathrow,EGLL,Shannon,EINN,Heathrow - Shannon,268189,80788471,NA,0.33,2019,missing_end_pax
+Heathrow,EGLL,Keflavik International Airport,BIKF,Heathrow - Keflavik International Airport,353509,80788471,NA,0.44,2019,missing_end_pax
+Heathrow,EGLL,Malpensa,LIMC,Heathrow - Malpensa,364913,80788471,28346074,0.45,2019,complete
+Heathrow,EGLL,Torino,LIMF,Heathrow - Torino,17612713.96177182,80788471,3839752,NA,2019,complete
+Heathrow,EGLL,Linate,LIML,Heathrow - Linate,501815,80788471,6535465,0.62,2019,complete
+Heathrow,EGLL,Bologna,LIPE,Heathrow - Bologna,310343,80788471,9338293,0.38,2019,complete
+Heathrow,EGLL,Marco Polo di Tessera,LIPZ,Heathrow - Marco Polo di Tessera,174134,80788471,11454860,0.22,2019,complete
+Heathrow,EGLL,Fiumicino,LIRF,Heathrow - Fiumicino,930930,80788471,43191420,1.15,2019,complete
+Heathrow,EGLL,Pisa,LIRP,Heathrow - Pisa,174155,80788471,5357109,0.22,2019,complete
+Heathrow,EGLL,Luxembourg,ELLX,Heathrow - Luxembourg,181538,80788471,NA,0.22,2019,missing_end_pax
+Heathrow,EGLL,Riga Intl,EVRA,Heathrow - Riga Intl,NA,80788471,NA,NA,2019,missing_end_pax
+Heathrow,EGLL,Luqa,LMML,Heathrow - Luqa,201035,80788471,NA,0.25,2019,missing_end_pax
+Heathrow,EGLL,Schiphol,EHAM,Heathrow - Schiphol,1748216,80788471,71054718,2.16,2019,complete
+Heathrow,EGLL,Rotterdam,EHRD,Heathrow - Rotterdam,12521429.05860589,80788471,1940700,NA,2019,complete
+Heathrow,EGLL,Flesland,ENBR,Heathrow - Flesland,NA,80788471,NA,NA,2019,missing_end_pax
+Heathrow,EGLL,Gardermoen,ENGM,Heathrow - Gardermoen,685828,80788471,NA,0.85,2019,missing_end_pax
+Heathrow,EGLL,Sola,ENZV,Heathrow - Sola,NA,80788471,NA,NA,2019,missing_end_pax
+Heathrow,EGLL,Faro International,LPFR,Heathrow - Faro International,NA,80788471,NA,NA,2019,missing_end_pax
+Heathrow,EGLL,Porto,LPPR,Heathrow - Porto,NA,80788471,NA,NA,2019,missing_end_pax
+Heathrow,EGLL,Lisboa,LPPT,Heathrow - Lisboa,943228,80788471,NA,1.17,2019,missing_end_pax
+Heathrow,EGLL,Beograd,LYBE,Heathrow - Beograd,102600,80788471,NA,0.13,2019,missing_end_pax
+Heathrow,EGLL,Landvetter,ESGG,Heathrow - Landvetter,247369,80788471,NA,0.31,2019,missing_end_pax
+Heathrow,EGLL,Arlanda,ESSA,Heathrow - Arlanda,959792,80788471,NA,1.19,2019,missing_end_pax
+Heathrow,EGLL,Belfast Intl,EGAA,Heathrow - Belfast Intl,22071691.593615405,80788471,6030063,NA,2019,complete
+Heathrow,EGLL,Belfast City,EGAC,Heathrow - Belfast City,668575,80788471,2452613,0.83,2019,complete
+Heathrow,EGLL,Manchester,EGCC,Heathrow - Manchester,554201,80788471,26895408,0.69,2019,complete
+Heathrow,EGLL,Jersey,EGJJ,Heathrow - Jersey,NA,80788471,NA,NA,2019,missing_end_pax
+Heathrow,EGLL,Leeds Bradford,EGNM,Heathrow - Leeds Bradford,100189,80788471,3946565,0.12,2019,complete
+Heathrow,EGLL,Isle Of Man,EGNS,Heathrow - Isle Of Man,NA,80788471,NA,NA,2019,missing_end_pax
+Heathrow,EGLL,Newcastle,EGNT,Heathrow - Newcastle,461804,80788471,5183775,0.57,2019,complete
+Heathrow,EGLL,Durham Tees Valley Airport,EGNV,Heathrow - Durham Tees Valley Airport,3359726.9484468526,80788471,139720,NA,2019,complete
+Heathrow,EGLL,Dyce,EGPD,Heathrow - Dyce,692289,80788471,2279063,0.86,2019,complete
+Heathrow,EGLL,Inverness,EGPE,Heathrow - Inverness,140358,80788471,930884,0.17,2019,complete
+Heathrow,EGLL,Glasgow International,EGPF,Heathrow - Glasgow International,865008,80788471,8396045,1.07,2019,complete
+Heathrow,EGLL,Edinburgh,EGPH,Heathrow - Edinburgh,1196921,80788471,14510779,1.48,2019,complete
+Kastrup,EKCH,Schwechat,LOWW,Kastrup - Schwechat,456143,28737167,31258901,1.59,2019,complete
+Kastrup,EKCH,Brussels South,EBCI,Kastrup - Brussels South,117777,28737167,8196702,0.41,2019,complete
+Kastrup,EKCH,Geneve Cointrin,LSGG,Kastrup - Geneve Cointrin,227425,28737167,17742225,0.79,2019,complete
+Kastrup,EKCH,Zurich,LSZH,Kastrup - Zurich,515266,28737167,31292970,1.79,2019,complete
+Kastrup,EKCH,Schonefeld,EDDB,Kastrup - Schonefeld,281501,28737167,11028278,0.98,2019,complete
+Kastrup,EKCH,Berlin Brandenburg Willy Brandt,EDDB,Kastrup - Berlin Brandenburg Willy Brandt,281501,28737167,11028278,0.98,2019,complete
+Kastrup,EKCH,Hamburg,EDDH,Kastrup - Hamburg,185417,28737167,16279030,0.65,2019,complete
+Kastrup,EKCH,Koln Bonn,EDDK,Kastrup - Koln Bonn,89914,28737167,10641348,0.31,2019,complete
+Kastrup,EKCH,Dusseldorf,EDDL,Kastrup - Dusseldorf,327358,28737167,24588161,1.14,2019,complete
+Kastrup,EKCH,Stuttgart,EDDS,Kastrup - Stuttgart,174459,28737167,12275312,0.61,2019,complete
+Kastrup,EKCH,Tegel,EDDT,Kastrup - Tegel,346969,28737167,24008455,1.21,2019,complete
+Kastrup,EKCH,Hannover,EDDV,Kastrup - Hannover,13030927.627128737,28737167,5908901,NA,2019,complete
+Kastrup,EKCH,Aarhus,EKAH,Kastrup - Aarhus,180509,28737167,451394,0.63,2019,complete
+Kastrup,EKCH,Billund,EKBI,Kastrup - Billund,109317,28737167,2974341,0.38,2019,complete
+Kastrup,EKCH,Karup,EKKA,Kastrup - Karup,110981,28737167,110962,0.39,2019,complete
+Kastrup,EKCH,Bornholm Ronne,EKRN,Kastrup - Bornholm Ronne,219199,28737167,222645,0.76,2019,complete
+Kastrup,EKCH,Sonderborg,EKSB,Kastrup - Sonderborg,1381003.5572445134,28737167,66366,NA,2019,complete
+Kastrup,EKCH,Vagar,EKVG,Kastrup - Vagar,302037,28737167,NA,1.05,2019,missing_end_pax
+Kastrup,EKCH,Aalborg,EKYT,Kastrup - Aalborg,782275,28737167,1240944,2.72,2019,complete
+Kastrup,EKCH,Tallinn,EETN,Kastrup - Tallinn,117021,28737167,NA,0.41,2019,missing_end_pax
+Kastrup,EKCH,Eleftherios Venizelos Intl,LGAV,Kastrup - Eleftherios Venizelos Intl,223907,28737167,NA,0.78,2019,missing_end_pax
+Kastrup,EKCH,Rhodes Diagoras,LGRP,Kastrup - Rhodes Diagoras,84592,28737167,NA,0.29,2019,missing_end_pax
+Kastrup,EKCH,Souda,LGSA,Kastrup - Souda,163766,28737167,NA,0.57,2019,missing_end_pax
+Kastrup,EKCH,Gran Canaria,GCLP,Kastrup - Gran Canaria,214986,28737167,11196595,0.75,2019,complete
+Kastrup,EKCH,Tenerife Sur,GCTS,Kastrup - Tenerife Sur,133177,28737167,9350488,0.46,2019,complete
+Kastrup,EKCH,Alicante,LEAL,Kastrup - Alicante,249469,28737167,14627077,0.87,2019,complete
+Kastrup,EKCH,Barcelona,LEBL,Kastrup - Barcelona,444567,28737167,51210817,1.55,2019,complete
+Kastrup,EKCH,Barajas,LEMD,Kastrup - Barajas,308156,28737167,59373123,1.07,2019,complete
+Kastrup,EKCH,Malaga,LEMG,Kastrup - Malaga,523432,28737167,19158321,1.82,2019,complete
+Kastrup,EKCH,Palma de Mallorca,LEPA,Kastrup - Palma de Mallorca,316926,28737167,27397471,1.1,2019,complete
+Kastrup,EKCH,Helsinki Vantaa,EFHK,Kastrup - Helsinki Vantaa,852741,28737167,NA,2.97,2019,missing_end_pax
+Kastrup,EKCH,Cote D'Azur,LFMN,Kastrup - Cote D'Azur,289714,28737167,14277508,1.01,2019,complete
+Kastrup,EKCH,Beauvais–Tille,LFOB,Kastrup - Beauvais–Tille,10591324.921943147,28737167,3903522,NA,2019,complete
+Kastrup,EKCH,Charles De Gaulle,LFPG,Kastrup - Charles De Gaulle,778363,28737167,75449170,2.71,2019,complete
+Kastrup,EKCH,Orly,LFPO,Kastrup - Orly,108473,28737167,31716559,0.38,2019,complete
+Kastrup,EKCH,Bale Mulhouse,LFSB,Kastrup - Bale Mulhouse,107432,28737167,8271471,0.37,2019,complete
+Kastrup,EKCH,Bale Mulhouse,LFSB,Kastrup - Bale Mulhouse,107432,28737167,562406,0.37,2019,complete
+Kastrup,EKCH,Split International,LDSP,Kastrup - Split International,105435,28737167,NA,0.37,2019,missing_end_pax
+Kastrup,EKCH,Zagreb,LDZA,Kastrup - Zagreb,NA,28737167,NA,NA,2019,missing_end_pax
+Kastrup,EKCH,Dublin,EIDW,Kastrup - Dublin,264680,28737167,NA,0.92,2019,missing_end_pax
+Kastrup,EKCH,Keflavik International Airport,BIKF,Kastrup - Keflavik International Airport,531975,28737167,NA,1.85,2019,missing_end_pax
+Kastrup,EKCH,Malpensa,LIMC,Kastrup - Malpensa,365450,28737167,28346074,1.27,2019,complete
+Kastrup,EKCH,Bergamo Orio Al Serio,LIME,Kastrup - Bergamo Orio Al Serio,195480,28737167,13600898,0.68,2019,complete
+Kastrup,EKCH,Bologna,LIPE,Kastrup - Bologna,143268,28737167,9338293,0.5,2019,complete
+Kastrup,EKCH,Marco Polo di Tessera,LIPZ,Kastrup - Marco Polo di Tessera,93307,28737167,11454860,0.32,2019,complete
+Kastrup,EKCH,Ciampino,LIRA,Kastrup - Ciampino,114580,28737167,5850689,0.4,2019,complete
+Kastrup,EKCH,Fiumicino,LIRF,Kastrup - Fiumicino,290611,28737167,43191420,1.01,2019,complete
+Kastrup,EKCH,Pisa,LIRP,Kastrup - Pisa,12407583.80871163,28737167,5357109,NA,2019,complete
+Kastrup,EKCH,Kaunas Intl,EYKA,Kastrup - Kaunas Intl,121299,28737167,NA,0.42,2019,missing_end_pax
+Kastrup,EKCH,Palanga International,EYPA,Kastrup - Palanga International,76649,28737167,NA,0.27,2019,missing_end_pax
+Kastrup,EKCH,Vilnius Intl,EYVI,Kastrup - Vilnius Intl,119933,28737167,NA,0.42,2019,missing_end_pax
+Kastrup,EKCH,Luxembourg,ELLX,Kastrup - Luxembourg,80512,28737167,NA,0.28,2019,missing_end_pax
+Kastrup,EKCH,Riga Intl,EVRA,Kastrup - Riga Intl,221903,28737167,NA,0.77,2019,missing_end_pax
+Kastrup,EKCH,Eindhoven,EHEH,Kastrup - Eindhoven,13921379.417818084,28737167,6744047,NA,2019,complete
+Kastrup,EKCH,Flesland,ENBR,Kastrup - Flesland,434841,28737167,NA,1.51,2019,missing_end_pax
+Kastrup,EKCH,Kjevik,ENCN,Kastrup - Kjevik,78648,28737167,NA,0.27,2019,missing_end_pax
+Kastrup,EKCH,Gardermoen,ENGM,Kastrup - Gardermoen,1479320,28737167,NA,5.15,2019,missing_end_pax
+Kastrup,EKCH,Torp,ENTO,Kastrup - Torp,NA,28737167,NA,NA,2019,missing_end_pax
+Kastrup,EKCH,Vaernes,ENVA,Kastrup - Vaernes,128260,28737167,NA,0.45,2019,missing_end_pax
+Kastrup,EKCH,Sola,ENZV,Kastrup - Sola,296240,28737167,NA,1.03,2019,missing_end_pax
+Kastrup,EKCH,Faro International,LPFR,Kastrup - Faro International,NA,28737167,NA,NA,2019,missing_end_pax
+Kastrup,EKCH,Porto,LPPR,Kastrup - Porto,NA,28737167,NA,NA,2019,missing_end_pax
+Kastrup,EKCH,Lisboa,LPPT,Kastrup - Lisboa,214390,28737167,NA,0.75,2019,missing_end_pax
+Kastrup,EKCH,Beograd,LYBE,Kastrup - Beograd,NA,28737167,NA,NA,2019,missing_end_pax
+Kastrup,EKCH,Landvetter,ESGG,Kastrup - Landvetter,276386,28737167,NA,0.96,2019,missing_end_pax
+Kastrup,EKCH,Arlanda,ESSA,Kastrup - Arlanda,1390123,28737167,NA,4.84,2019,missing_end_pax
+Kastrup,EKCH,Birmingham,EGBB,Kastrup - Birmingham,80043,28737167,11271854,0.28,2019,complete
+Kastrup,EKCH,Manchester,EGCC,Kastrup - Manchester,330195,28737167,26895408,1.15,2019,complete
+Kastrup,EKCH,Bristol,EGGD,Kastrup - Bristol,15300554.15278574,28737167,8146487,NA,2019,complete
+Kastrup,EKCH,Luton,EGGW,Kastrup - Luton,111068,28737167,17961864,0.39,2019,complete
+Kastrup,EKCH,Edinburgh,EGPH,Kastrup - Edinburgh,219040,28737167,14510779,0.76,2019,complete
+Kastrup,EKCH,Stansted,EGSS,Kastrup - Stansted,384649,28737167,27745806,1.34,2019,complete
+Malpensa,LIMC,Tirana Rinas,LATI,Malpensa - Tirana Rinas,316322,28346074,NA,1.12,2019,missing_end_pax
+Malpensa,LIMC,Schwechat,LOWW,Malpensa - Schwechat,447310,28346074,31258901,1.58,2019,complete
+Malpensa,LIMC,Geneve Cointrin,LSGG,Malpensa - Geneve Cointrin,22425931.926558815,28346074,17742225,NA,2019,complete
+Malpensa,LIMC,Zurich,LSZH,Malpensa - Zurich,203026,28346074,31292970,0.72,2019,complete
+Malpensa,LIMC,Schonefeld,EDDB,Malpensa - Schonefeld,169227,28346074,11028278,0.6,2019,complete
+Malpensa,LIMC,Berlin Brandenburg Willy Brandt,EDDB,Malpensa - Berlin Brandenburg Willy Brandt,169227,28346074,11028278,0.6,2019,complete
+Malpensa,LIMC,Hamburg,EDDH,Malpensa - Hamburg,133044,28346074,16279030,0.47,2019,complete
+Malpensa,LIMC,Koln Bonn,EDDK,Malpensa - Koln Bonn,97554,28346074,10641348,0.34,2019,complete
+Malpensa,LIMC,Dusseldorf,EDDL,Malpensa - Dusseldorf,254767,28346074,24588161,0.9,2019,complete
+Malpensa,LIMC,Stuttgart,EDDS,Malpensa - Stuttgart,125972,28346074,12275312,0.44,2019,complete
+Malpensa,LIMC,Tegel,EDDT,Malpensa - Tegel,210817,28346074,24008455,0.74,2019,complete
+Malpensa,LIMC,Eleftherios Venizelos Intl,LGAV,Malpensa - Eleftherios Venizelos Intl,300523,28346074,NA,1.06,2019,missing_end_pax
+Malpensa,LIMC,Nikos Kazantzakis,LGIR,Malpensa - Nikos Kazantzakis,NA,28346074,NA,NA,2019,missing_end_pax
+Malpensa,LIMC,Ioannis Kapodistrias Intl,LGKR,Malpensa - Ioannis Kapodistrias Intl,NA,28346074,NA,NA,2019,missing_end_pax
+Malpensa,LIMC,Mikonos,LGMK,Malpensa - Mikonos,95696,28346074,NA,0.34,2019,missing_end_pax
+Malpensa,LIMC,Rhodes Diagoras,LGRP,Malpensa - Rhodes Diagoras,NA,28346074,NA,NA,2019,missing_end_pax
+Malpensa,LIMC,Santorini,LGSR,Malpensa - Santorini,NA,28346074,NA,NA,2019,missing_end_pax
+Malpensa,LIMC,Makedonia,LGTS,Malpensa - Makedonia,NA,28346074,NA,NA,2019,missing_end_pax
+Malpensa,LIMC,Fuerteventura,GCFV,Malpensa - Fuerteventura,11827935.745590607,28346074,4935430,NA,2019,complete
+Malpensa,LIMC,Gran Canaria,GCLP,Malpensa - Gran Canaria,17815148.34117387,28346074,11196595,NA,2019,complete
+Malpensa,LIMC,Lanzarote,GCRR,Malpensa - Lanzarote,13470799.468189407,28346074,6401678,NA,2019,complete
+Malpensa,LIMC,Tenerife Sur,GCTS,Malpensa - Tenerife Sur,110451,28346074,9350488,0.39,2019,complete
+Malpensa,LIMC,Alicante,LEAL,Malpensa - Alicante,96952,28346074,14627077,0.34,2019,complete
+Malpensa,LIMC,Bilbao,LEBB,Malpensa - Bilbao,12838217.73663089,28346074,5814556,NA,2019,complete
+Malpensa,LIMC,Ibiza,LEIB,Malpensa - Ibiza,222388,28346074,7632907,0.78,2019,complete
+Malpensa,LIMC,Malaga,LEMG,Malpensa - Malaga,188992,28346074,19158321,0.67,2019,complete
+Malpensa,LIMC,Menorca,LEMH,Malpensa - Menorca,87729,28346074,2983071,0.31,2019,complete
+Malpensa,LIMC,Palma de Mallorca,LEPA,Malpensa - Palma de Mallorca,163989,28346074,27397471,0.58,2019,complete
+Malpensa,LIMC,Valencia,LEVC,Malpensa - Valencia,132075,28346074,8341358,0.47,2019,complete
+Malpensa,LIMC,Sevilla,LEZL,Malpensa - Sevilla,14536288.476686545,28346074,7454425,NA,2019,complete
+Malpensa,LIMC,Helsinki Vantaa,EFHK,Malpensa - Helsinki Vantaa,212480,28346074,NA,0.75,2019,missing_end_pax
+Malpensa,LIMC,Merignac,LFBD,Malpensa - Merignac,14695488.11813769,28346074,7618599,NA,2019,complete
+Malpensa,LIMC,Lourdes,LFBT,Malpensa - Lourdes,2919604.364106548,28346074,300715,NA,2019,complete
+Malpensa,LIMC,Saint Exupery,LFLL,Malpensa - Saint Exupery,18024863.347823806,28346074,11461753,NA,2019,complete
+Malpensa,LIMC,Provence,LFML,Malpensa - Provence,16862031.35800447,28346074,10030599,NA,2019,complete
+Malpensa,LIMC,Cote D'Azur,LFMN,Malpensa - Cote D'Azur,20117437.66744642,28346074,14277508,NA,2019,complete
+Malpensa,LIMC,Beauvais–Tille,LFOB,Malpensa - Beauvais–Tille,10519007.722814353,28346074,3903522,NA,2019,complete
+Malpensa,LIMC,Nantes Atlantique,LFRS,Malpensa - Nantes Atlantique,14086257.832737906,28346074,7000005,NA,2019,complete
+Malpensa,LIMC,Dublin,EIDW,Malpensa - Dublin,142769,28346074,NA,0.5,2019,missing_end_pax
+Malpensa,LIMC,Keflavik International Airport,BIKF,Malpensa - Keflavik International Airport,NA,28346074,NA,NA,2019,missing_end_pax
+Malpensa,LIMC,Bari,LIBD,Malpensa - Bari,383309,28346074,5464123,1.35,2019,complete
+Malpensa,LIMC,Casale,LIBR,Malpensa - Casale,339608,28346074,2690652,1.2,2019,complete
+Malpensa,LIMC,Lamezia Terme,LICA,Malpensa - Lamezia Terme,735275,28346074,2872795,2.59,2019,complete
+Malpensa,LIMC,Catania Fontanarossa,LICC,Malpensa - Catania Fontanarossa,1265344,28346074,9740700,4.46,2019,complete
+Malpensa,LIMC,Palermo,LICJ,Malpensa - Palermo,893904,28346074,6936607,3.15,2019,complete
+Malpensa,LIMC,Alghero,LIEA,Malpensa - Alghero,113960,28346074,1283257,0.4,2019,complete
+Malpensa,LIMC,Elmas,LIEE,Malpensa - Elmas,424704,28346074,4696304,1.5,2019,complete
+Malpensa,LIMC,Olbia Costa Smeralda,LIEO,Malpensa - Olbia Costa Smeralda,433180,28346074,2762110,1.53,2019,complete
+Malpensa,LIMC,Bologna,LIPE,Malpensa - Bologna,16269724.779838225,28346074,9338293,NA,2019,complete
+Malpensa,LIMC,Ronchi Dei Legionari,LIPQ,Malpensa - Ronchi Dei Legionari,4511947.302833002,28346074,718183,NA,2019,complete
+Malpensa,LIMC,Falconara,LIPY,Malpensa - Falconara,3631881.341007715,28346074,465340,NA,2019,complete
+Malpensa,LIMC,Marco Polo di Tessera,LIPZ,Malpensa - Marco Polo di Tessera,18019442.533542484,28346074,11454860,NA,2019,complete
+Malpensa,LIMC,Fiumicino,LIRF,Malpensa - Fiumicino,420692,28346074,43191420,1.48,2019,complete
+Malpensa,LIMC,Capodichino,LIRN,Malpensa - Capodichino,583771,28346074,10387667,2.06,2019,complete
+Malpensa,LIMC,Pisa,LIRP,Malpensa - Pisa,12322865.25691432,28346074,5357109,NA,2019,complete
+Malpensa,LIMC,Peretola,LIRQ,Malpensa - Peretola,9004358.604848986,28346074,2860307,NA,2019,complete
+Malpensa,LIMC,Vilnius Intl,EYVI,Malpensa - Vilnius Intl,85939,28346074,NA,0.3,2019,missing_end_pax
+Malpensa,LIMC,Luxembourg,ELLX,Malpensa - Luxembourg,165127,28346074,NA,0.58,2019,missing_end_pax
+Malpensa,LIMC,Riga Intl,EVRA,Malpensa - Riga Intl,NA,28346074,NA,NA,2019,missing_end_pax
+Malpensa,LIMC,Luqa,LMML,Malpensa - Luqa,NA,28346074,NA,NA,2019,missing_end_pax
+Malpensa,LIMC,Gardermoen,ENGM,Malpensa - Gardermoen,121031,28346074,NA,0.43,2019,missing_end_pax
+Malpensa,LIMC,Porto,LPPR,Malpensa - Porto,208117,28346074,NA,0.73,2019,missing_end_pax
+Malpensa,LIMC,Lisboa,LPPT,Malpensa - Lisboa,450148,28346074,NA,1.59,2019,missing_end_pax
+Malpensa,LIMC,Beograd,LYBE,Malpensa - Beograd,NA,28346074,NA,NA,2019,missing_end_pax
+Malpensa,LIMC,Arlanda,ESSA,Malpensa - Arlanda,99839,28346074,NA,0.35,2019,missing_end_pax
+Malpensa,LIMC,Birmingham,EGBB,Malpensa - Birmingham,17874921.19146812,28346074,11271854,NA,2019,complete
+Malpensa,LIMC,Manchester,EGCC,Malpensa - Manchester,183066,28346074,26895408,0.65,2019,complete
+Malpensa,LIMC,Luton,EGGW,Malpensa - Luton,170437,28346074,17961864,0.6,2019,complete
+Malpensa,LIMC,City,EGLC,Malpensa - City,80006,28346074,5121684,0.28,2019,complete
+Malpensa,LIMC,Edinburgh,EGPH,Malpensa - Edinburgh,168456,28346074,14510779,0.59,2019,complete
+Malpensa,LIMC,Stansted,EGSS,Malpensa - Stansted,246776,28346074,27745806,0.87,2019,complete
+Fiumicino,LIRF,Tirana Rinas,LATI,Fiumicino - Tirana Rinas,336983,43191420,NA,0.78,2019,missing_end_pax
+Fiumicino,LIRF,Schwechat,LOWW,Fiumicino - Schwechat,556034,43191420,31258901,1.29,2019,complete
+Fiumicino,LIRF,Brussels South,EBCI,Fiumicino - Brussels South,18815610.505557347,43191420,8196702,NA,2019,complete
+Fiumicino,LIRF,Geneve Cointrin,LSGG,Fiumicino - Geneve Cointrin,330603,43191420,17742225,0.77,2019,complete
+Fiumicino,LIRF,Zurich,LSZH,Fiumicino - Zurich,406689,43191420,31292970,0.94,2019,complete
+Fiumicino,LIRF,Schonefeld,EDDB,Fiumicino - Schonefeld,21824916.654474538,43191420,11028278,NA,2019,complete
+Fiumicino,LIRF,Berlin Brandenburg Willy Brandt,EDDB,Fiumicino - Berlin Brandenburg Willy Brandt,21824916.654474538,43191420,11028278,NA,2019,complete
+Fiumicino,LIRF,Hamburg,EDDH,Fiumicino - Hamburg,85224,43191420,16279030,0.2,2019,complete
+Fiumicino,LIRF,Koln Bonn,EDDK,Fiumicino - Koln Bonn,85619,43191420,10641348,0.2,2019,complete
+Fiumicino,LIRF,Dusseldorf,EDDL,Fiumicino - Dusseldorf,217343,43191420,24588161,0.5,2019,complete
+Fiumicino,LIRF,Nurnberg,EDDN,Fiumicino - Nurnberg,12271536.183058746,43191420,3486586,NA,2019,complete
+Fiumicino,LIRF,Stuttgart,EDDS,Fiumicino - Stuttgart,89770,43191420,12275312,0.21,2019,complete
+Fiumicino,LIRF,Tegel,EDDT,Fiumicino - Tegel,311700,43191420,24008455,0.72,2019,complete
+Fiumicino,LIRF,Memmingen,EDJA,Fiumicino - Memmingen,8556249.979318043,43191420,1694999,NA,2019,complete
+Fiumicino,LIRF,Eleftherios Venizelos Intl,LGAV,Fiumicino - Eleftherios Venizelos Intl,596959,43191420,NA,1.38,2019,missing_end_pax
+Fiumicino,LIRF,Mikonos,LGMK,Fiumicino - Mikonos,79756,43191420,NA,0.18,2019,missing_end_pax
+Fiumicino,LIRF,Rhodes Diagoras,LGRP,Fiumicino - Rhodes Diagoras,NA,43191420,NA,NA,2019,missing_end_pax
+Fiumicino,LIRF,Santorini,LGSR,Fiumicino - Santorini,90311,43191420,NA,0.21,2019,missing_end_pax
+Fiumicino,LIRF,Makedonia,LGTS,Fiumicino - Makedonia,NA,43191420,NA,NA,2019,missing_end_pax
+Fiumicino,LIRF,Tenerife Sur,GCTS,Fiumicino - Tenerife Sur,20096289.568299916,43191420,9350488,NA,2019,complete
+Fiumicino,LIRF,Alicante,LEAL,Fiumicino - Alicante,105770,43191420,14627077,0.24,2019,complete
+Fiumicino,LIRF,Ibiza,LEIB,Fiumicino - Ibiza,175602,43191420,7632907,0.41,2019,complete
+Fiumicino,LIRF,Malaga,LEMG,Fiumicino - Malaga,293109,43191420,19158321,0.68,2019,complete
+Fiumicino,LIRF,Palma de Mallorca,LEPA,Fiumicino - Palma de Mallorca,34399646.46473594,43191420,27397471,NA,2019,complete
+Fiumicino,LIRF,Valencia,LEVC,Fiumicino - Valencia,228328,43191420,8341358,0.53,2019,complete
+Fiumicino,LIRF,Sevilla,LEZL,Fiumicino - Sevilla,129829,43191420,7454425,0.3,2019,complete
+Fiumicino,LIRF,Helsinki Vantaa,EFHK,Fiumicino - Helsinki Vantaa,271431,43191420,NA,0.63,2019,missing_end_pax
+Fiumicino,LIRF,Merignac,LFBD,Fiumicino - Merignac,18139958.90901024,43191420,7618599,NA,2019,complete
+Fiumicino,LIRF,Blagnac,LFBO,Fiumicino - Blagnac,151993,43191420,9451746,0.35,2019,complete
+Fiumicino,LIRF,Saint Exupery,LFLL,Fiumicino - Saint Exupery,235859,43191420,11461753,0.55,2019,complete
+Fiumicino,LIRF,Provence,LFML,Fiumicino - Provence,182423,43191420,10030599,0.42,2019,complete
+Fiumicino,LIRF,Cote D'Azur,LFMN,Fiumicino - Cote D'Azur,304627,43191420,14277508,0.71,2019,complete
+Fiumicino,LIRF,Beauvais–Tille,LFOB,Fiumicino - Beauvais–Tille,12984554.600803217,43191420,3903522,NA,2019,complete
+Fiumicino,LIRF,Nantes Atlantique,LFRS,Fiumicino - Nantes Atlantique,98592,43191420,7000005,0.23,2019,complete
+Fiumicino,LIRF,Bale Mulhouse,LFSB,Fiumicino - Bale Mulhouse,108790,43191420,8271471,0.25,2019,complete
+Fiumicino,LIRF,Bale Mulhouse,LFSB,Fiumicino - Bale Mulhouse,108790,43191420,562406,0.25,2019,complete
+Fiumicino,LIRF,Dubrovnik,LDDU,Fiumicino - Dubrovnik,NA,43191420,NA,NA,2019,missing_end_pax
+Fiumicino,LIRF,Split International,LDSP,Fiumicino - Split International,NA,43191420,NA,NA,2019,missing_end_pax
+Fiumicino,LIRF,Zagreb,LDZA,Fiumicino - Zagreb,NA,43191420,NA,NA,2019,missing_end_pax
+Fiumicino,LIRF,Dublin,EIDW,Fiumicino - Dublin,199115,43191420,NA,0.46,2019,missing_end_pax
+Fiumicino,LIRF,Keflavik International Airport,BIKF,Fiumicino - Keflavik International Airport,NA,43191420,NA,NA,2019,missing_end_pax
+Fiumicino,LIRF,Crotone,LIBC,Fiumicino - Crotone,2644271.657935319,43191420,161888,NA,2019,complete
+Fiumicino,LIRF,Bari,LIBD,Fiumicino - Bari,764162,43191420,5464123,1.77,2019,complete
+Fiumicino,LIRF,Casale,LIBR,Fiumicino - Casale,525571,43191420,2690652,1.22,2019,complete
+Fiumicino,LIRF,Lamezia Terme,LICA,Fiumicino - Lamezia Terme,422204,43191420,2872795,0.98,2019,complete
+Fiumicino,LIRF,Catania Fontanarossa,LICC,Fiumicino - Catania Fontanarossa,1824428,43191420,9740700,4.22,2019,complete
+Fiumicino,LIRF,Palermo,LICJ,Fiumicino - Palermo,1579946,43191420,6936607,3.66,2019,complete
+Fiumicino,LIRF,Reggio Calabria,LICR,Fiumicino - Reggio Calabria,204406,43191420,366615,0.47,2019,complete
+Fiumicino,LIRF,Trapani Birgi,LICT,Fiumicino - Trapani Birgi,4093322.7031373912,43191420,387931,NA,2019,complete
+Fiumicino,LIRF,Sigonella,LICZ,Fiumicino - Sigonella,NA,43191420,NA,NA,2019,missing_end_pax
+Fiumicino,LIRF,Alghero,LIEA,Fiumicino - Alghero,320420,43191420,1283257,0.74,2019,complete
+Fiumicino,LIRF,Elmas,LIEE,Fiumicino - Elmas,903952,43191420,4696304,2.09,2019,complete
+Fiumicino,LIRF,Olbia Costa Smeralda,LIEO,Fiumicino - Olbia Costa Smeralda,310015,43191420,2762110,0.72,2019,complete
+Fiumicino,LIRF,Bergamo Orio Al Serio,LIME,Fiumicino - Bergamo Orio Al Serio,24237204.82842772,43191420,13600898,NA,2019,complete
+Fiumicino,LIRF,Torino,LIMF,Fiumicino - Torino,488770,43191420,3839752,1.13,2019,complete
+Fiumicino,LIRF,Linate,LIML,Fiumicino - Linate,771311,43191420,6535465,1.79,2019,complete
+Fiumicino,LIRF,Bologna,LIPE,Fiumicino - Bologna,287904,43191420,9338293,0.67,2019,complete
+Fiumicino,LIRF,Ronchi Dei Legionari,LIPQ,Fiumicino - Ronchi Dei Legionari,265586,43191420,718183,0.61,2019,complete
+Fiumicino,LIRF,Villafranca,LIPX,Fiumicino - Villafranca,201605,43191420,3315795,0.47,2019,complete
+Fiumicino,LIRF,Falconara,LIPY,Fiumicino - Falconara,4483156.854583609,43191420,465340,NA,2019,complete
+Fiumicino,LIRF,Marco Polo di Tessera,LIPZ,Fiumicino - Marco Polo di Tessera,446941,43191420,11454860,1.03,2019,complete
+Fiumicino,LIRF,Capodichino,LIRN,Fiumicino - Capodichino,308971,43191420,10387667,0.72,2019,complete
+Fiumicino,LIRF,Pisa,LIRP,Fiumicino - Pisa,165055,43191420,5357109,0.38,2019,complete
+Fiumicino,LIRF,Peretola,LIRQ,Fiumicino - Peretola,264669,43191420,2860307,0.61,2019,complete
+Fiumicino,LIRF,Vilnius Intl,EYVI,Fiumicino - Vilnius Intl,NA,43191420,NA,NA,2019,missing_end_pax
+Fiumicino,LIRF,Luxembourg,ELLX,Fiumicino - Luxembourg,NA,43191420,NA,NA,2019,missing_end_pax
+Fiumicino,LIRF,Riga Intl,EVRA,Fiumicino - Riga Intl,NA,43191420,NA,NA,2019,missing_end_pax
+Fiumicino,LIRF,Luqa,LMML,Fiumicino - Luqa,393231,43191420,NA,0.91,2019,missing_end_pax
+Fiumicino,LIRF,Eindhoven,EHEH,Fiumicino - Eindhoven,17067072.58075444,43191420,6744047,NA,2019,complete
+Fiumicino,LIRF,Rotterdam,EHRD,Fiumicino - Rotterdam,9155413.087021252,43191420,1940700,NA,2019,complete
+Fiumicino,LIRF,Gardermoen,ENGM,Fiumicino - Gardermoen,178717,43191420,NA,0.41,2019,missing_end_pax
+Fiumicino,LIRF,Porto,LPPR,Fiumicino - Porto,NA,43191420,NA,NA,2019,missing_end_pax
+Fiumicino,LIRF,Lisboa,LPPT,Fiumicino - Lisboa,460406,43191420,NA,1.07,2019,missing_end_pax
+Fiumicino,LIRF,Beograd,LYBE,Fiumicino - Beograd,153726,43191420,NA,0.36,2019,missing_end_pax
+Fiumicino,LIRF,Arlanda,ESSA,Fiumicino - Arlanda,215730,43191420,NA,0.5,2019,missing_end_pax
+Fiumicino,LIRF,Birmingham,EGBB,Fiumicino - Birmingham,22064618.290210236,43191420,11271854,NA,2019,complete
+Fiumicino,LIRF,Manchester,EGCC,Fiumicino - Manchester,109958,43191420,26895408,0.25,2019,complete
+Fiumicino,LIRF,Bristol,EGGD,Fiumicino - Bristol,115444,43191420,8146487,0.27,2019,complete
+Fiumicino,LIRF,Luton,EGGW,Fiumicino - Luton,93909,43191420,17961864,0.22,2019,complete
+Fiumicino,LIRF,City,EGLC,Fiumicino - City,14873224.423482623,43191420,5121684,NA,2019,complete
