@@ -88,7 +88,7 @@ ALTERNATIVE_TIME_H <- 6
 routes_path <- file.path(data_clean, "master_routes_clean.csv")
 airports_path <- file.path(data_clean, "all_airports.gpkg")
 main_airports_path <- file.path(data_clean, "main_airports.gpkg")
-rail_path <- file.path(data_raw, "shapefiles", "railways_GL2017_EU.shp")
+rail_path <- file.path(data_clean, "shapefiles", "railways_GL2017_EU.shp")
 countries_path <- file.path(data_clean, "ne_10m_countries.gpkg")
 
 required_paths <- c(routes_path, airports_path, main_airports_path, rail_path, countries_path)

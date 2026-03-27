@@ -33,7 +33,7 @@ conventional_rail <- st_read(
   st_transform(map_crs)
 
 hsr <- st_read(
-  file.path(data_raw, "shapefiles", "railways_GL2017_EU.shp"),
+  file.path(data_clean, "shapefiles", "railways_GL2017_EU.shp"),
   quiet = TRUE
 ) %>%
   st_make_valid() %>%
@@ -77,7 +77,7 @@ base_map <- ggplot() +
   ) +
   labs(
     title = "Countries, GL2017 Rail Network, and Major Airports",
-    subtitle = "Basemap using the GL2017 rail shapefile from data/raw/shapefiles/railways_GL2017_EU.shp"
+    subtitle = "Basemap using the GL2017 rail shapefile from data/clean/shapefiles/railways_GL2017_EU.shp"
   ) +
   theme_minimal(base_size = 11) +
   theme(

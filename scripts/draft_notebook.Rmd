@@ -26,7 +26,8 @@ substitution welfare-improving?
   connectivity change
 - Sensitivity analysis across carbon prices and airport overhead assumptions
 
-**Data:** Natural Earth rail, OpenFlights (airports + routes), Eurostat `avia_paoa`
+**Data:** Natural Earth rail, GL2017 rail, OpenFlights (airports + routes),
+cleaned Eurostat airport passenger totals already stored in this repo
 
 ---
 
@@ -51,7 +52,6 @@ library(ggspatial)   # annotation_map_tile() — replaces contextily
 library(ggrepel)
 library(patchwork)
 library(scales)
-library(httr)
 ```
 
 ```{r paths}
@@ -68,7 +68,7 @@ C_HSR    <- "#e63946"
 C_CONV   <- "#cccccc"
 C_APHSR  <- "#2176ae"
 C_APNONE <- "#aaaaaa"
-SOURCE   <- "Data: Natural Earth rail, OpenFlights, Eurostat avia_paoa"
+SOURCE   <- "Data: Natural Earth rail, GL2017 rail, OpenFlights, cleaned Eurostat airport totals"
 ANALYSIS_CRS <- 3035
 RAIL_SPEED <- 800
 LOCAL_ACCESS_SPEED <- 60
@@ -112,7 +112,7 @@ rail_ne <- st_read(
   paste0(
     "/vsizip/",
     normalizePath(
-      file.path(data_raw, "shapefiles", "ne_10m_railroads.zip"),
+      file.path(data_clean, "shapefiles", "ne_10m_railroads.zip"),
       winslash = "/", mustWork = TRUE
     )
   ),
@@ -123,7 +123,7 @@ rail_ne <- st_read(
   st_intersection(countries_mask)
 
 rail_gl2017 <- st_read(
-  file.path(data_raw, "shapefiles", "railways_GL2017_EU.shp"),
+  file.path(data_clean, "shapefiles", "railways_GL2017_EU.shp"),
   quiet = TRUE
 ) %>%
   st_make_valid() %>%
@@ -177,7 +177,7 @@ airfields), and dropped airports that don't appear in the routes file.
 ap_cols <- c("id", "name", "city", "country", "iata", "icao",
              "lat", "lon", "alt", "tz", "dst", "tz_db", "type", "source")
 airports_raw <- read.csv(
-  file.path(data_raw, "airports.txt"),
+  file.path(data_clean, "openflights", "airports.txt"),
   header = FALSE, col.names = ap_cols,
   na.strings = "\\N", stringsAsFactors = FALSE
 )
@@ -185,7 +185,7 @@ airports_raw <- read.csv(
 rt_cols <- c("airline", "airline_id", "src_iata", "src_id",
              "dst_iata", "dst_id", "codeshare", "stops", "equipment")
 routes_raw <- read.csv(
-  file.path(data_raw, "routes.txt"),
+  file.path(data_clean, "openflights", "routes.txt"),
   header = FALSE, col.names = rt_cols,
   na.strings = "\\N", stringsAsFactors = FALSE
 )
@@ -276,10 +276,11 @@ routes.
 
 ## 3. Passenger Demand — Eurostat `avia_paoa`
 
-Passenger data from Eurostat's `avia_paoa` dataset via the SDMX 3.0 API.
-Quarterly figures summed to annual totals for the most recent complete year.
-Airports below the reporting threshold (mostly small regional ones) are kept
-but excluded from demand-weighted analysis.
+Passenger data comes from the cleaned airport passenger layer already stored in
+this repo. That keeps the notebook reproducible for classmates without relying
+on a live API call during rendering. Airports below the reporting threshold
+(mostly small regional ones) are kept but excluded from demand-weighted
+analysis.
 
 **Notes:**
 
@@ -288,39 +289,28 @@ but excluded from demand-weighted analysis.
   standard demand proxy
 
 ```{r load-pax}
-pax_url <- paste0(
-  "https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/data/",
-  "dataflow/ESTAT/avia_paoa$defaultview/1.0",
-  "?c[freq]=Q&compress=false&format=csvdata&formatVersion=1.0&lang=en"
-)
+pax_clean <- st_read(
+  file.path(data_clean, "airports_pax_2019.gpkg"),
+  quiet = TRUE
+) %>%
+  st_drop_geometry() %>%
+  transmute(
+    icao = ICAO,
+    passengers = airport_total_passengers,
+    year = year
+  ) %>%
+  filter(!is.na(icao), !is.na(passengers)) %>%
+  distinct(icao, .keep_all = TRUE)
 
-cat("Downloading Eurostat avia_paoa...\n")
-resp    <- GET(pax_url, timeout(120))
-stop_for_status(resp)
-pax_raw <- read.csv(text = content(resp, "text"), stringsAsFactors = FALSE)
-
-pax <- pax_raw %>%
-  filter(tra_meas == "PAS_BRD", schedule == "TOT", tra_cov == "TOTAL") %>%
-  mutate(year = as.integer(substr(TIME_PERIOD, 1, 4)))
-
-latest_year <- pax %>%
-  group_by(year) %>%
-  summarise(n_quarters = n_distinct(TIME_PERIOD)) %>%
-  filter(n_quarters == 4) %>%
-  pull(year) %>%
-  max()
-
-pax_annual <- pax %>%
-  filter(year == latest_year) %>%
-  group_by(rep_airp) %>%
-  summarise(passengers = sum(OBS_VALUE, na.rm = TRUE), .groups = "drop") %>%
-  mutate(icao = sub(".*_", "", rep_airp))
+latest_year <- pax_clean %>%
+  summarise(year = max(year, na.rm = TRUE)) %>%
+  pull(year)
 
 europe_civil_pax <- europe_civil %>%
-  left_join(pax_annual %>% select(icao, passengers), by = "icao")
+  left_join(pax_clean %>% select(icao, passengers), by = "icao")
 
 matched <- sum(!is.na(europe_civil_pax$passengers))
-cat(sprintf("Year: %d  |  Airports matched: %d / %d\n",
+cat(sprintf("Year: %d  |  Airports matched to cleaned passenger totals: %d / %d\n",
             latest_year, matched, nrow(europe_civil_pax)))
 cat("\nTop 10 airports by passengers:\n")
 europe_civil_pax %>%
